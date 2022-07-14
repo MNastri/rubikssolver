@@ -96,6 +96,22 @@ class RubiksCube:
 
 
 def unify_transforms(transforms: List[List[int]]) -> List[int]:
+    """ Unifies the received transformations in a single transformation.
+    e.g.:
+    three U turns is the same as one U' turn.
+    usage e.g.:
+    >>> from src.cubo import unify_transforms
+    >>> my_transform = [1,2,0] +[i for i in range(3,54)] # three id cycle 0→1→2→0
+    >>> result = unify_transforms([my_transform])
+    >>> result
+    [1, 2, 0, 3, 4, ..., 53]
+    >>> result = unify_transforms([my_transform, my_transform])
+    >>> result
+    [2, 0, 1, 3, 4, ..., 53]
+    >>> result = unify_transforms([my_transform, my_transform, my_transform])
+    >>> result
+    [0, 1, 2, 3, 4, ..., 53]
+    """
     assert all(
         len(transform) == 54 for transform in transforms
     ), "length of transform must be 54"
