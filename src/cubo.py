@@ -61,10 +61,11 @@ class RubiksCube:
 
     def _transform(self, destination):
         """Receives a list of destination for all the facelets (ids) and makes the
-        corresponding move on the cube
+        corresponding move on the cube.
         Upper face clockwise turn example:
-        ID:   0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11...18,19,20...27,28,29...36,37,38...
-        Dest: 2, 5, 8, 3, 4, 7, 0, 3, 6,18,19,20...29,28,27...36,37,38... 9,10,11...
+        The facelet in position 0 goes to 2, the facelet in position 1 goes to 5, etc.
+        Start:   0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11...18,19,20...27,28,29...36,37,38...
+        Dest:    2, 5, 8, 3, 4, 7, 0, 3, 6,18,19,20...29,28,27...36,37,38... 9,10,11...
         """
         assert len(destination) == 54  # TODO remove
         assert len(set(destination)) == len(destination)  # TODO remove
