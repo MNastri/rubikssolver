@@ -114,7 +114,7 @@ def unify_transforms(transforms: List[List[int]]) -> List[int]:
     ), "length of transform must be 54"
     assert all(
         len(set(transform)) == len(transform) for transform in transforms
-    ), "destination index in transform must be unique"
+    ), "destination in transform must be unique"
     facelets = {i: i for i in range(54)}
     # print(list(facelets.values()))
     for transform in transforms:
