@@ -102,8 +102,7 @@ def unify_transforms(transforms: List[List[int]]) -> List[int]:
     usage:
     >>> from src.cubo import unify_transforms
     >>> my_transform = [1,2,0] +[i for i in range(3,54)] # three id cycle 0→1→2→0
-    >>> result = unify_transforms([my_transform])
-    >>> result
+    >>> unify_transforms([my_transform])
     [1, 2, 0, 3, 4, ..., 53]
     >>> unify_transforms([my_transform, my_transform])
     [2, 0, 1, 3, 4, ..., 53]
