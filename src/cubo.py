@@ -148,7 +148,7 @@ def test_u_turns():
     print(f"{u_prime_turn_from_u=}")
     u_prime_turn_from_u2 = unify_transforms([u2_turn, u_turn])
     print(f"{u_prime_turn_from_u2=}")
-    assert(u_prime_turn_from_u2 == u_prime_turn_from_u)
+    assert u_prime_turn_from_u2 == u_prime_turn_from_u
 
 
 if __name__ == "__main__":
