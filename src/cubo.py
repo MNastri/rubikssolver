@@ -2,7 +2,7 @@ from enum import Enum
 from typing import List
 
 
-# cube face colors
+# face colors
 #                  ──────── ┌──┬──┬──┐
 #                /        /││  │  │  │
 #               /   0    / │├──┼──┼──┤
@@ -30,7 +30,7 @@ class Color(Enum):
     WHITE = 5
 
 
-# cublet face position (id)
+# facelet position (id)
 #           ┌──┬──┬──┐
 #           │0 │1 │2 │
 #           ├──┼──┼──┤
@@ -52,21 +52,20 @@ class Color(Enum):
 #           ├──┼──┼──┤
 #           │51│52│53│
 #           └──┴──┴──┘
-
-
 class RubiksCube:
-    # 54 cublet face positions
+    # 54 facelet positions
     pos = "".join([str(c.value) * 9 for c in Color])  # Solved cube
 
     def __repr__(self):
         return self.pos
 
     def _transform(self, destination):
-        # Receives a list of destination for all the cublet face positions (ids) and
-        # makes the corresponding move in the cube
-        # Upper face clockwise turn example:
-        # ID:   0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11...18,19,20...27,28,29...36,37,38...
-        # Dest: 2, 5, 8, 3, 4, 7, 0, 3, 6,18,19,20...29,28,27...36,37,38... 9,10,11...
+        """Receives a list of destination for all the facelets (ids) and makes the
+        corresponding move on the cube
+        Upper face clockwise turn example:
+        ID:   0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11...18,19,20...27,28,29...36,37,38...
+        Dest: 2, 5, 8, 3, 4, 7, 0, 3, 6,18,19,20...29,28,27...36,37,38... 9,10,11...
+        """
         assert len(destination) == 54  # TODO remove
         _pos_copy = list(self.pos)
         for idx, dest in enumerate(destination):
