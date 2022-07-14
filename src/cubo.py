@@ -76,13 +76,15 @@ class RubiksCube:
         self.pos = "".join(_pos_copy)
 
     def upper_layer_clockwise_turn(self):
-        # >>> from src.cubo import RubiksCube
-        # >>> my_cube = RubiksCube()
-        # >>> print(my_cube)
-        # 000000000111111111222222222333333333444444444555555555
-        # >>> my_cube.upper_layer_clockwise_turn()
-        # >>> print(my_cube)
-        # 000000000444111111111222222222333333333444444555555555
+        """
+        >>> from src.cubo import RubiksCube
+        >>> my_cube = RubiksCube()
+        >>> print(my_cube)
+        000000000111111111222222222333333333444444444555555555
+        >>> my_cube.upper_layer_clockwise_turn()
+        >>> print(my_cube)
+        000000000222111111333222222444333333111444444555555555
+        """
         self._transform(
             [ 2,  5,  8,  1,  4,  7,  0,  3,  6,
              36, 37, 38, 12, 13, 14, 15, 16, 17,
