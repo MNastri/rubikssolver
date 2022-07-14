@@ -1,5 +1,5 @@
 from enum import Enum
-import timing
+from typing import List
 
 
 # cube face colors
@@ -108,8 +108,29 @@ class RubiksCube:
     def r_move(self):
         pass
 
-    def r_prime_move(self):
-        pass
+def unify_transforms(transforms: List[List[int]]) -> List[int]:
+    assert all(
+        len(transform) == 54 for transform in transforms
+    ), "length of transform must be 54"
+    assert all(
+        len(set(transform)) == len(transform) for transform in transforms
+    ), "destination index in transform must be unique"
+    facelets = {i: i for i in range(54)}
+    # print(list(facelets.values()))
+    for transform in transforms:
+        new_facelets = {i: None for i in range(54)}
+        for start_idx, end_idx in enumerate(transform):
+            if start_idx == end_idx:
+                new_facelets[start_idx] = end_idx
+                continue
+            for idx, current_position in facelets.items():
+                if start_idx == current_position:
+                    new_facelets[idx] = end_idx
+                    break
+        facelets = new_facelets
+        # print(list(facelets.values()))
+    return list(facelets.values())
+
 
 if __name__ == "__main__":
     my_cube = RubiksCube()
