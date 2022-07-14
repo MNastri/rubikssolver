@@ -115,10 +115,10 @@ def unify_transforms(transforms: List[List[int]]) -> List[int]:
     assert all(
         len(set(transform)) == len(transform) for transform in transforms
     ), "destination in transform must be unique"
-    facelets = {i: i for i in range(54)}
+    facelets = {ii: ii for ii in range(54)}
     # print(list(facelets.values()))
     for transform in transforms:
-        new_facelets = {i: None for i in range(54)}
+        new_facelets = {ii: None for ii in range(54)}
         for start_idx, end_idx in enumerate(transform):
             if start_idx == end_idx:
                 new_facelets[start_idx] = end_idx
