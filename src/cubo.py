@@ -91,22 +91,7 @@ class RubiksCube:
              27, 28, 29, 39, 40, 41, 42, 43, 44,
              45, 46, 47, 48, 49, 50, 51, 52, 53, ]
         )
-    def upper_layer_anticlockwise_turn(self):
-        # TODO
-        #  self._transform(
-        #      [ 6,  3,  0,  7,  4,  1,  8,  5,  2,
-        #       36, 37, 38, 12, 13, 14, 15, 16, 17,
-        #        9, 10, 11, 21, 22, 23, 24, 25, 26,
-        #       18, 19, 20, 30, 31, 32, 33, 34, 35,
-        #       27, 28, 29, 39, 40, 41, 42, 43, 44,
-        #       45, 46, 47, 48, 49, 50, 51, 52, 53, ]
-        #  )
-        self.upper_layer_clockwise_turn()
-        self.upper_layer_clockwise_turn()
-        self.upper_layer_clockwise_turn()
 
-    def r_move(self):
-        pass
 
 def unify_transforms(transforms: List[List[int]]) -> List[int]:
     assert all(
