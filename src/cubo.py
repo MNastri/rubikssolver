@@ -67,6 +67,7 @@ class RubiksCube:
         Dest: 2, 5, 8, 3, 4, 7, 0, 3, 6,18,19,20...29,28,27...36,37,38... 9,10,11...
         """
         assert len(destination) == 54  # TODO remove
+        assert len(set(destination)) == len(destination)  # TODO remove
         _pos_copy = list(self.pos)
         for idx, dest in enumerate(destination):
             _pos_copy[dest] = self.pos[idx]
