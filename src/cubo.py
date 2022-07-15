@@ -30,7 +30,7 @@ class Color(Enum):
     WHITE = 5
 
 
-# facelet position (id)
+# facelet position
 #           ┌──┬──┬──┐
 #           │0 │1 │2 │
 #           ├──┼──┼──┤
@@ -60,12 +60,21 @@ class RubiksCube:
         return self.pos
 
     def _transform(self, destination):
-        """Receives a list of destination for all the facelets (ids) and makes the
+        """Receives a list of destination for all the facelets and makes the
         corresponding move on the cube.
         Upper face clockwise turn example:
-        The facelet in position 0 goes to 2, the facelet in position 1 goes to 5, etc.
-        Start:   0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11...18,19,20...27,28,29...36,37,38...
-        Dest:    2, 5, 8, 3, 4, 7, 0, 3, 6,18,19,20...29,28,27...36,37,38... 9,10,11...
+        u_move =
+           [  2,  5,  8,  1,  4,  7,  0,  3,  6,
+             36, 37, 38, 12, 13, 14, 15, 16, 17,
+              9, 10, 11, 21, 22, 23, 24, 25, 26,
+             18, 19, 20, 30, 31, 32, 33, 34, 35,
+             27, 28, 29, 39, 40, 41, 42, 43, 44,
+             45, 46, 47, 48, 49, 50, 51, 52, 53, ]
+        This represents the transformation that makes the facelet in position 0 go to
+        position 2, the facelet in position 1 go to position 5, the facelet in 3 go to 8,
+        etc.
+        Start: 0,1,2,3,4,5,6,7,8, 9,10,11,12...17,18,19,20,21...26,27,28,29,30...35,36,37,38,39...53
+        Dest:  2,5,8,1,4,7,0,3,6,36,37,38,12...17, 9,10,11,21...26,18,19,20,30...35,27,28,29,39...53
         """
         assert len(destination) == 54  # TODO remove
         assert len(set(destination)) == len(destination)  # TODO remove
