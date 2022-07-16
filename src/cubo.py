@@ -22,12 +22,12 @@ from typing import List
 #             │  │  │  │
 #             └──┴──┴──┘
 class Color(Enum):
-    UP = 0
-    LEFT = 1
-    FRONT = 2
-    RIGHT = 3
-    BACK = 4
-    DOWN = 5
+    UP = "U"
+    LEFT = "L"
+    FRONT = "F"
+    RIGHT = "R"
+    BACK = "B"
+    DOWN = "D"
 
 
 # facelet position
