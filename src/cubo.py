@@ -22,12 +22,12 @@ from typing import List
 #             │  │  │  │
 #             └──┴──┴──┘
 class Color(Enum):
-    YELLOW = 0
-    GREEN = 1
-    ORANGE = 2
-    BLUE = 3
-    RED = 4
-    WHITE = 5
+    UP = 0
+    LEFT = 1
+    FRONT = 2
+    RIGHT = 3
+    BACK = 4
+    DOWN = 5
 
 
 # facelet position
@@ -162,3 +162,4 @@ def test_u_turns():
 
 if __name__ == "__main__":
     test_u_turns()
+    print(RubiksCube())
