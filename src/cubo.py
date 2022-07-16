@@ -110,7 +110,7 @@ def unify_transforms(transforms: List[List[int]]) -> List[int]:
     e.g.: three U turns is the same as one U' turn.
     usage:
     >>> from src.cubo import unify_transforms
-    >>> my_transform = [1,2,0] +[i for i in range(3,54)] # three id cycle 0→1→2→0
+    >>> my_transform = [1,2,0] +[ii for ii in range(3,54)] # three id cycle 0→1→2→0
     >>> unify_transforms([my_transform])
     [1, 2, 0, 3, 4, ..., 53]
     >>> unify_transforms([my_transform, my_transform])
