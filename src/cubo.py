@@ -55,6 +55,8 @@ class Color(Enum):
 class RubiksCube:
     # 54 facelet positions
     pos = "".join([cc.value * 9 for cc in Color])  # Solved cube
+    faces = [[face] * 9 for face in Color]  # Solved cube
+    facelets = [cc for face in faces for cc in face]
 
     def __repr__(self):
         return self.pos
