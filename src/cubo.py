@@ -54,7 +54,7 @@ class Color(Enum):
 #           └──┴──┴──┘
 class RubiksCube:
     # 54 facelet positions
-    pos = "".join([str(c.value) * 9 for c in Color])  # Solved cube
+    pos = "".join([cc.value * 9 for cc in Color])  # Solved cube
 
     def __repr__(self):
         return self.pos
