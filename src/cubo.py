@@ -30,6 +30,8 @@ class Color(Enum):
     DOWN = "D"
 
 
+COLOR_MAP = {cc.value: cc for cc in Color}
+
 # facelet position
 #           ┌──┬──┬──┐
 #           │0 │1 │2 │
@@ -54,10 +56,12 @@ class Color(Enum):
 #           └──┴──┴──┘
 class RubiksCube:
     def __init__(self, facelets=None):
-        if isinstance(facelets, List):
-            pass
-        elif isinstance(facelets, str):
-            pass
+        if facelets and isinstance(facelets, (List, str)):
+            assert len(facelets) == 54, "length of facelets must be 54"
+            assert all(
+                count == 9 for count in [facelets.count(color.value) for color in Color]
+            ), "each color must appear 9 times on a cube"
+            self.facelets = [COLOR_MAP[facelet] for facelet in facelets]
         else:
             faces = [[face] * 9 for face in Color]  # Solved cube
             self.facelets = [facelet for face in faces for facelet in face]
@@ -162,3 +166,9 @@ if __name__ == "__main__":
     print(str(RubiksCube()))
     print(repr(RubiksCube()))
     print(RubiksCube().facelets)
+    print(RubiksCube("U" * 9 + "L" * 9 + "F" * 9 + "R" * 9 + "B" * 9 + "D" * 9))
+    print(
+        RubiksCube(
+            ["U"] * 9 + ["L"] * 9 + ["F"] * 9 + ["R"] * 9 + ["B"] * 9 + ["D"] * 9
+        )
+    )
