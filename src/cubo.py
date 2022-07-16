@@ -90,10 +90,10 @@ class RubiksCube:
         >>> from src.cubo import RubiksCube
         >>> my_cube = RubiksCube()
         >>> print(my_cube)
-        000000000111111111222222222333333333444444444555555555
+        UUUUUUUUULLLLLLLLLFFFFFFFFFRRRRRRRRRBBBBBBBBBDDDDDDDDD
         >>> my_cube.upper_layer_clockwise_turn()
         >>> print(my_cube)
-        000000000222111111333222222444333333111444444555555555
+        UUUUUUUUUFFFLLLLLLRRRFFFFFFBBBRRRRRRLLLBBBBBBDDDDDDDDD
         """
         self._transform(
             [ 2,  5,  8,  1,  4,  7,  0,  3,  6,
