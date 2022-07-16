@@ -53,9 +53,14 @@ class Color(Enum):
 #           │51│52│53│
 #           └──┴──┴──┘
 class RubiksCube:
-    # 54 facelet positions
-    faces = [[face] * 9 for face in Color]  # Solved cube
-    facelets = [cc for face in faces for cc in face]
+    def __init__(self, facelets=None):
+        if isinstance(facelets, List):
+            pass
+        elif isinstance(facelets, str):
+            pass
+        else:
+            faces = [[face] * 9 for face in Color]  # Solved cube
+            self.facelets = [facelet for face in faces for facelet in face]
 
     def __repr__(self):
         return str([fcl.value for fcl in self.facelets])
