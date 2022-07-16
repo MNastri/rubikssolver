@@ -61,6 +61,14 @@ class RubiksCube:
     def __repr__(self):
         return self.pos
 
+    def __str__(self):
+        s = ""
+        for idx in range(54):
+            for color in Color:
+                if self.facelets[idx] == color:
+                    s += color.value
+        return s
+
     def _transform(self, destination):
         """Receives a list of destination for all the facelets and makes the
         corresponding move on the cube.
@@ -174,3 +182,6 @@ if __name__ == "__main__":
     test_transformation()
     test_u_turns()
     print(RubiksCube())
+    print(str(RubiksCube()))
+    print(repr(RubiksCube()))
+    print(RubiksCube().facelets)
