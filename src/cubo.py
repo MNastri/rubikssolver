@@ -80,7 +80,7 @@ class RubiksCube:
              27, 28, 29, 39, 40, 41, 42, 43, 44,
              45, 46, 47, 48, 49, 50, 51, 52, 53, ]
         This represents the transformation that makes the facelet in position 0 go to
-         position 2, the facelet in position 1 go to position 5, the facelet in 3 go to 8
+        position 2, the facelet in position 1 go to position 5, the facelet in 3 go to 8
         , etc.
         Start: 0,1,2,3,4,5,6,7,8, 9,10,11,12...17,18,19,20,21...26,27,28,29,30...35,36,
         37,38,39...53
