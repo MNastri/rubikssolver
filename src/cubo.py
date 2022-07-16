@@ -59,7 +59,7 @@ class RubiksCube:
     facelets = [cc for face in faces for cc in face]
 
     def __repr__(self):
-        return self.pos
+        return str([fcl.value for fcl in self.facelets])
 
     def __str__(self):
         s = ""
