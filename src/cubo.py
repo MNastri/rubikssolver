@@ -160,6 +160,15 @@ def test_u_turns():
     assert u_prime_turn_from_u2 == u_prime_turn_from_u
 
 
+def test_transformation():
+    cube = RubiksCube()
+    print(cube)
+    cube.upper_layer_clockwise_turn()
+    print(cube)
+    assert str(cube) == "UUUUUUUUUFFFLLLLLLRRRFFFFFFBBBRRRRRRLLLBBBBBBDDDDDDDDD"
+
+
 if __name__ == "__main__":
+    test_transformation()
     test_u_turns()
     print(RubiksCube())
