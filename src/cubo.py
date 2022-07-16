@@ -80,10 +80,12 @@ class RubiksCube:
              27, 28, 29, 39, 40, 41, 42, 43, 44,
              45, 46, 47, 48, 49, 50, 51, 52, 53, ]
         This represents the transformation that makes the facelet in position 0 go to
-        position 2, the facelet in position 1 go to position 5, the facelet in 3 go to 8,
-        etc.
-        Start: 0,1,2,3,4,5,6,7,8, 9,10,11,12...17,18,19,20,21...26,27,28,29,30...35,36,37,38,39...53
-        Dest:  2,5,8,1,4,7,0,3,6,36,37,38,12...17, 9,10,11,21...26,18,19,20,30...35,27,28,29,39...53
+         position 2, the facelet in position 1 go to position 5, the facelet in 3 go to 8
+        , etc.
+        Start: 0,1,2,3,4,5,6,7,8, 9,10,11,12...17,18,19,20,21...26,27,28,29,30...35,36,
+        37,38,39...53
+        Dest:  2,5,8,1,4,7,0,3,6,36,37,38,12...17, 9,10,11,21...26,18,19,20,30...35,27,
+        28,29,39...53
         """
         assert len(destination) == 54  # TODO remove
         assert len(set(destination)) == len(destination)  # TODO remove
