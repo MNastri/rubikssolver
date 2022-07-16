@@ -54,7 +54,6 @@ class Color(Enum):
 #           └──┴──┴──┘
 class RubiksCube:
     # 54 facelet positions
-    pos = "".join([cc.value * 9 for cc in Color])  # Solved cube
     faces = [[face] * 9 for face in Color]  # Solved cube
     facelets = [cc for face in faces for cc in face]
 
@@ -88,12 +87,12 @@ class RubiksCube:
         """
         assert len(destination) == 54  # TODO remove
         assert len(set(destination)) == len(destination)  # TODO remove
-        _pos_copy = list(self.pos)
+        facelets_copy = self.facelets[:]
         for idx, dest in enumerate(destination):
-            _pos_copy[dest] = self.pos[idx]
+            facelets_copy[dest] = self.facelets[idx]
             # print(f"[{idx:02}]=",self.pos[idx], "→", f"[{dest:02}]")
-        # print("".join(_pos_copy))
-        self.pos = "".join(_pos_copy)
+        # print("".join(facelets_copy))
+        self.facelets = facelets_copy
 
     def upper_layer_clockwise_turn(self):
         """
