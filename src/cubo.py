@@ -54,7 +54,7 @@ COLOR_MAP = {cc.value: cc for cc in Color}
 #           ├──┼──┼──┤
 #           │51│52│53│
 #           └──┴──┴──┘
-class RubiksCube:
+class FaceletsRubiksCube:
     def __init__(self, facelets=None):
         if facelets and isinstance(facelets, (List, str)):
             assert len(facelets) == 54, "length of facelets must be 54"
