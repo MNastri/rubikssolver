@@ -162,9 +162,9 @@ def unify_transforms(transforms: List[List[int]]) -> List[int]:
 
 
 if __name__ == "__main__":
-    print(RubiksCube())
-    print(str(RubiksCube()))
-    print(repr(RubiksCube()))
-    print(RubiksCube().facelets)
-    print(RubiksCube("U" * 9 + "L" * 9 + "F" * 9 + "R" * 9 + "B" * 9 + "D" * 9))
-    print(RubiksCube(["U", "L", "F", "R", "B", "D"] * 9))
+    print(FaceletsRubiksCube())
+    print(str(FaceletsRubiksCube()))
+    print(repr(FaceletsRubiksCube()))
+    print(FaceletsRubiksCube().facelets)
+    print(FaceletsRubiksCube("U" * 9 + "L" * 9 + "F" * 9 + "R" * 9 + "B" * 9 + "D" * 9))
+    print(FaceletsRubiksCube(["U", "L", "F", "R", "B", "D"] * 9))

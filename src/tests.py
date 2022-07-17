@@ -1,5 +1,5 @@
 def test_u_turns():
-    from cubo import unify_transforms
+    from facelets_rubiks_cube import unify_transforms
 
     u_turn = [
          2,  5,  8,  1,  4,  7,  0,  3,  6,
@@ -20,9 +20,9 @@ def test_u_turns():
 
 
 def test_transformation():
-    from cubo import RubiksCube
+    from facelets_rubiks_cube import FaceletsRubiksCube
 
-    cube = RubiksCube()
+    cube = FaceletsRubiksCube()
     print(cube)
     cube.upper_layer_clockwise_turn()
     print(cube)
