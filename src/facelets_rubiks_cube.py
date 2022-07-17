@@ -68,7 +68,30 @@ class FaceletsRubiksCube:
             self.facelets = [facelet for face in faces for facelet in face]
         else:
             raise TypeError("facelets should be a str, a List or None")
-
+        self.corner_ids = {
+            "ULB": (0, 9, 38),
+            "URB": (2, 29, 36),
+            "URF": (8, 27, 20),
+            "ULF": (6, 11, 18),
+            "DLB": (51, 15, 44),
+            "DRB": (53, 35, 42),
+            "DRF": (47, 33, 26),
+            "DLF": (45, 17, 24),
+        }
+        self.edge_ids = {
+            "UB": (1, 37),
+            "UR": (5, 28),
+            "UF": (7, 19),
+            "UL": (3, 10),
+            "BL": (41, 12),
+            "BR": (39, 32),
+            "FR": (23, 30),
+            "FL": (21, 14),
+            "DB": (52, 43),
+            "DR": (50, 34),
+            "DF": (46, 25),
+            "DL": (48, 16),
+        }
 
     def __repr__(self):
         return str([facelet.value for facelet in self.facelets])
@@ -128,6 +151,26 @@ class FaceletsRubiksCube:
              45, 46, 47, 48, 49, 50, 51, 52, 53, ]
         )
 
+    @property
+    def corners(self):
+        return [self._get_corner_by_key(key) for key in self.corner_ids.keys()]
+
+    def _get_corner_by_key(self, key):
+        first, second, third = self.corner_ids[key]
+        return (
+            self.facelets[first].value,
+            self.facelets[second].value,
+            self.facelets[third].value,
+        )
+
+    @property
+    def edges(self):
+        return [self._get_edges_by_key(key) for key in self.edge_ids.keys()]
+
+    def _get_edges_by_key(self, key):
+        first, second = self.edge_ids[key]
+        return self.facelets[first].value, self.facelets[second].value
+
 
 def unify_transforms(transforms: List[List[int]]) -> List[int]:
     """Unifies the received transformations in a single transformation.
@@ -172,3 +215,5 @@ if __name__ == "__main__":
     print(FaceletsRubiksCube().facelets)
     print(FaceletsRubiksCube("U" * 9 + "L" * 9 + "F" * 9 + "R" * 9 + "B" * 9 + "D" * 9))
     print(FaceletsRubiksCube(["U", "L", "F", "R", "B", "D"] * 9))
+    print(FaceletsRubiksCube().corners)
+    print(FaceletsRubiksCube().edges)
