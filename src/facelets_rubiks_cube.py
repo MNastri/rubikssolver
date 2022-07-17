@@ -32,6 +32,7 @@ class Color(Enum):
 
 COLOR_MAP = {cc.value: cc for cc in Color}
 
+
 # facelet position
 #           ┌──┬──┬──┐
 #           │0 │1 │2 │
@@ -110,8 +111,8 @@ class FaceletsRubiksCube:
 
     def upper_layer_clockwise_turn(self):
         """
-        >>> from src.cubo import RubiksCube
-        >>> my_cube = RubiksCube()
+        >>> from src.facelets_rubiks_cube import FaceletsRubiksCube
+        >>> my_cube = FaceletsRubiksCube()
         >>> print(my_cube)
         UUUUUUUUULLLLLLLLLFFFFFFFFFRRRRRRRRRBBBBBBBBBDDDDDDDDD
         >>> my_cube.upper_layer_clockwise_turn()
@@ -132,7 +133,7 @@ def unify_transforms(transforms: List[List[int]]) -> List[int]:
     """Unifies the received transformations in a single transformation.
     e.g.: three U turns is the same as one U' turn.
     usage:
-    >>> from src.cubo import unify_transforms
+    >>> from src.facelets_rubiks_cube import unify_transforms
     >>> my_transform = [1, 2, 0] +[ii for ii in range(3, 54)] # three id cycle 0→1→2→0
     >>> unify_transforms([my_transform])
     [1, 2, 0, 3, 4, ..., 53]
