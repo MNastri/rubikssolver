@@ -67,7 +67,7 @@ class RubiksCube:
             self.facelets = [facelet for face in faces for facelet in face]
 
     def __repr__(self):
-        return str([fcl.value for fcl in self.facelets])
+        return str([facelet.value for facelet in self.facelets])
 
     def __str__(self):
         s = ""
@@ -167,8 +167,4 @@ if __name__ == "__main__":
     print(repr(RubiksCube()))
     print(RubiksCube().facelets)
     print(RubiksCube("U" * 9 + "L" * 9 + "F" * 9 + "R" * 9 + "B" * 9 + "D" * 9))
-    print(
-        RubiksCube(
-            ["U"] * 9 + ["L"] * 9 + ["F"] * 9 + ["R"] * 9 + ["B"] * 9 + ["D"] * 9
-        )
-    )
+    print(RubiksCube(["U", "L", "F", "R", "B", "D"] * 9))
