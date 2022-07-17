@@ -62,9 +62,12 @@ class FaceletsRubiksCube:
                 count == 9 for count in [facelets.count(color.value) for color in Color]
             ), "each color must appear 9 times on a cube"
             self.facelets = [COLOR_MAP[facelet] for facelet in facelets]
-        else:
+        elif not facelets:
             faces = [[face] * 9 for face in Color]  # Solved cube
             self.facelets = [facelet for face in faces for facelet in face]
+        else:
+            raise TypeError("facelets should be a str, a List or None")
+
 
     def __repr__(self):
         return str([facelet.value for facelet in self.facelets])
