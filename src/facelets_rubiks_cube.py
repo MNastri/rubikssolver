@@ -68,7 +68,7 @@ class FaceletsRubiksCube:
             self.facelets = [facelet for face in faces for facelet in face]
         else:
             raise TypeError("facelets should be a str, a List or None")
-        self.corner_ids = {
+        self._corner_ids = {
             "ULB": (0, 9, 38),
             "URB": (2, 29, 36),
             "URF": (8, 27, 20),
@@ -78,7 +78,7 @@ class FaceletsRubiksCube:
             "DRF": (47, 33, 26),
             "DLF": (45, 17, 24),
         }
-        self.edge_ids = {
+        self._edge_ids = {
             "UB": (1, 37),
             "UR": (5, 28),
             "UF": (7, 19),
@@ -153,23 +153,23 @@ class FaceletsRubiksCube:
 
     @property
     def corners(self):
-        return [self._get_corner_by_key(key) for key in self.corner_ids.keys()]
+        return [self._get_corner_by_key(key) for key in self._corner_ids.keys()]
 
     def _get_corner_by_key(self, key):
-        first, second, third = self.corner_ids[key]
+        first, second, third = self._corner_ids[key]
         return (
-            self.facelets[first].value,
-            self.facelets[second].value,
-            self.facelets[third].value,
+            self.facelets[first].value +
+            self.facelets[second].value +
+            self.facelets[third].value
         )
 
     @property
     def edges(self):
-        return [self._get_edges_by_key(key) for key in self.edge_ids.keys()]
+        return [self._get_edges_by_key(key) for key in self._edge_ids.keys()]
 
     def _get_edges_by_key(self, key):
-        first, second = self.edge_ids[key]
-        return self.facelets[first].value, self.facelets[second].value
+        first, second = self._edge_ids[key]
+        return self.facelets[first].value + self.facelets[second].value
 
 
 def unify_transforms(transforms: List[List[int]]) -> List[int]:
