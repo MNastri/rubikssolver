@@ -1,37 +1,14 @@
 from enum import Enum
 from typing import List
 
+from interface import (
+    Color,
+    COLOR_VALUE_TO_COLOR_NAME,
+    is_number_of_colors_correct,
+    RubiksCube,
+)
 
-# face colors
-#                  ──────── ┌──┬──┬──┐
-#                /        /││  │  │  │
-#               /   0    / │├──┼──┼──┤
-#              /        /  ││  │4 │  │
-# ┌──┬──┬──┐  ┌──┬──┬──┐   │├──┼──┼──┤
-# │  │  │  │  │  │  │  │ 3 ││  │  │  │
-# ├──┼──┼──┤  ├──┼──┼──┤   │└──┴──┴──┘
-# │  │1 │  │  │  │2 │  │  /
-# ├──┼──┼──┤  ├──┼──┼──┤ /
-# │  │  │  │  │  │  │  │/
-# └──┴──┴──┘  └──┴──┴──┘
-#             ┌──┬──┬──┐
-#             │  │  │  │
-#             ├──┼──┼──┤
-#             │  │5 │  │
-#             ├──┼──┼──┤
-#             │  │  │  │
-#             └──┴──┴──┘
-class Color(Enum):
-    UP = "U"
-    LEFT = "L"
-    FRONT = "F"
-    RIGHT = "R"
-    BACK = "B"
-    DOWN = "D"
-
-
-COLOR_MAP = {cc.value: cc for cc in Color}
-
+NUMBER_OF_FACELETS = 54
 
 # facelet position
 #           ┌──┬──┬──┐
@@ -55,53 +32,23 @@ COLOR_MAP = {cc.value: cc for cc in Color}
 #           ├──┼──┼──┤
 #           │51│52│53│
 #           └──┴──┴──┘
-class FaceletsRubiksCube:
+class FaceletsRubiksCube(RubiksCube):
     def __init__(self, facelets=None):
-        if facelets and isinstance(facelets, (List, str)):
-            assert len(facelets) == 54, "length of facelets must be 54"
-            assert all(
-                count == 9 for count in [facelets.count(color.value) for color in Color]
-            ), "each color must appear 9 times on a cube"
-            self.facelets = [COLOR_MAP[facelet] for facelet in facelets]
-        elif not facelets:
-            faces = [[face] * 9 for face in Color]  # Solved cube
-            self.facelets = [facelet for face in faces for facelet in face]
-        else:
-            raise TypeError("facelets should be a str, a List or None")
-        self._corner_locations = {
-            "ULB": (0, 9, 38),
-            "URB": (2, 29, 36),
-            "URF": (8, 27, 20),
-            "ULF": (6, 11, 18),
-            "DLB": (51, 15, 44),
-            "DRB": (53, 35, 42),
-            "DRF": (47, 33, 26),
-            "DLF": (45, 17, 24),
-        }
-        self._edge_locations = {
-            "UB": (1, 37),
-            "UR": (5, 28),
-            "UF": (7, 19),
-            "UL": (3, 10),
-            "BL": (41, 12),
-            "BR": (39, 32),
-            "FR": (23, 30),
-            "FL": (21, 14),
-            "DB": (52, 43),
-            "DR": (50, 34),
-            "DF": (46, 25),
-            "DL": (48, 16),
-        }
+        self._check_facelets(facelets)
+        self._create_corner_locations()
+        self._create_edge_locations()
+        self._create_edge_keys()
 
     def __repr__(self):
-        return str([facelet.value for facelet in self.facelets])
+        return str([f.value for f in self.facelets])
 
     def __str__(self):
         s = ""
-        for idx in range(54):
-            for color in Color:
-                if self.facelets[idx] == color:
-                    s += color.value
+        for idx in range(NUMBER_OF_FACELETS):
+            for c in Color:
+                if self.facelets[idx] == c:
+                    s += c.value
+                    break
         return s
 
     def _transform(self, destination):
@@ -177,41 +124,88 @@ class FaceletsRubiksCube:
         flipped_edges = [edge[::-1] for edge in self.edges]
         return flipped_edges.index(edge)
 
+    def _create_edge_keys(self):
+        self._edge_key = {
+            0: "UB",
+            1: "UR",
+            2: "UF",
+            3: "UL",
+            4: "BL",
+            5: "BR",
+            6: "FR",
+            7: "FL",
+            8: "DB",
+            9: "DR",
+            10: "DF",
+            11: "DL",
+        }
 
-def unify_transforms(transforms: List[List[int]]) -> List[int]:
-    """Unifies the received transformations in a single transformation.
-    e.g.: three U turns is the same as one U' turn.
-    usage:
-    >>> from src.facelets_rubiks_cube import unify_transforms
-    >>> my_transform = [1, 2, 0] +[ii for ii in range(3, 54)] # three id cycle 0→1→2→0
-    >>> unify_transforms([my_transform])
-    [1, 2, 0, 3, 4, ..., 53]
-    >>> unify_transforms([my_transform, my_transform])
-    [2, 0, 1, 3, 4, ..., 53]
-    >>> unify_transforms([my_transform, my_transform, my_transform])
-    [0, 1, 2, 3, 4, ..., 53]
-    """
-    assert all(
-        len(transform) == 54 for transform in transforms
-    ), "length of transform must be 54"
-    assert all(
-        len(set(transform)) == len(transform) for transform in transforms
-    ), "destination in transform must be unique"
-    facelets = {ii: ii for ii in range(54)}
-    # print(list(facelets.values()))
-    for transform in transforms:
-        new_facelets = {ii: None for ii in range(54)}
-        for start_idx, end_idx in enumerate(transform):
-            if start_idx == end_idx:
-                new_facelets[start_idx] = end_idx
-                continue
-            for idx, current_position in facelets.items():
-                if start_idx == current_position:
-                    new_facelets[idx] = end_idx
-                    break
-        facelets = new_facelets
-        # print(list(facelets.values()))
-    return list(facelets.values())
+    def _create_edge_locations(self):
+        self._edge_locations = {
+            "UB": (1, 37),
+            "UR": (5, 28),
+            "UF": (7, 19),
+            "UL": (3, 10),
+            "BL": (41, 12),
+            "BR": (39, 32),
+            "FR": (23, 30),
+            "FL": (21, 14),
+            "DB": (52, 43),
+            "DR": (50, 34),
+            "DF": (46, 25),
+            "DL": (48, 16),
+        }
+
+    def _create_corner_locations(self):
+        self._corner_locations = {
+            "ULB": (0, 9, 38),
+            "URB": (2, 29, 36),
+            "URF": (8, 27, 20),
+            "ULF": (6, 11, 18),
+            "DLB": (51, 15, 44),
+            "DRB": (53, 35, 42),
+            "DRF": (47, 33, 26),
+            "DLF": (45, 17, 24),
+        }
+
+    def _check_facelets(self, facelets):
+        if facelets and isinstance(facelets, (List, str)):
+            assert len(facelets) == NUMBER_OF_FACELETS
+            assert is_number_of_colors_correct(facelets)
+            self._store_facelets_name(facelets)
+        elif not facelets:
+            self._store_solved_cube()
+        else:
+            allowed_types = [str, List, None]
+            raise TypeError(f"facelets should be one of {allowed_types}")
+
+    def _store_solved_cube(self):
+        faces = [[face] * 9 for face in Color]
+        self.facelets = [facelet for face in faces for facelet in face]
+
+    def _store_facelets_name(self, facelets):
+        self.facelets = [COLOR_VALUE_TO_COLOR_NAME[f] for f in facelets]
+
+    def solve_first_cross(self):
+        pass
+
+    def solve_first_face(self):
+        pass
+
+    def solve_middle_layer(self):
+        pass
+
+    def make_cross_in_up_face(self):
+        pass
+
+    def permutate_corners_in_up_face(self):
+        pass
+
+    def orient_corners_in_up_face(self):
+        pass
+
+    def permutate_edges_in_up_face(self):
+        pass
 
 
 if __name__ == "__main__":
