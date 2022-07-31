@@ -1,4 +1,3 @@
-from enum import Enum
 from typing import List
 
 from interface import (
@@ -206,6 +205,42 @@ class FaceletsRubiksCube(RubiksCube):
 
     def permutate_edges_in_up_face(self):
         pass
+
+
+def unify_transforms(transforms: List[List[int]]) -> List[int]:
+    """Unifies the received transformations in a single transformation.
+    e.g.: three U turns is the same as one U' turn.
+    usage:
+    >>> from src.facelets_rubiks_cube import unify_transforms
+    >>> my_transform = [1, 2, 0] +[ii for ii in range(3, 54)] # three id cycle 0→1→2→0
+    >>> unify_transforms([my_transform])
+    [1, 2, 0, 3, 4, ..., 53]
+    >>> unify_transforms([my_transform, my_transform])
+    [2, 0, 1, 3, 4, ..., 53]
+    >>> unify_transforms([my_transform, my_transform, my_transform])
+    [0, 1, 2, 3, 4, ..., 53]
+    """
+    assert all(
+        len(transform) == 54 for transform in transforms
+    ), "length of transform must be 54"
+    assert all(
+        len(set(transform)) == len(transform) for transform in transforms
+    ), "destination in transform must be unique"
+    facelets = {ii: ii for ii in range(54)}
+    # print(list(facelets.values()))
+    for transform in transforms:
+        new_facelets = {ii: None for ii in range(54)}
+        for start_idx, end_idx in enumerate(transform):
+            if start_idx == end_idx:
+                new_facelets[start_idx] = end_idx
+                continue
+            for idx, current_position in facelets.items():
+                if start_idx == current_position:
+                    new_facelets[idx] = end_idx
+                    break
+        facelets = new_facelets
+        # print(list(facelets.values()))
+    return list(facelets.values())
 
 
 if __name__ == "__main__":
