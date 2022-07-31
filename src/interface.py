@@ -52,6 +52,7 @@ class RubiksCube(ABC):
         """returns the solved cube"""
         raise NotImplementedError
 
+
 # face colors
 #                  ──────── ┌──┬──┬──┐
 #                /        /││  │  │  │
