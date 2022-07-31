@@ -3,6 +3,13 @@ from abc import ABC, abstractmethod
 
 class RubiksCube(ABC):
     @abstractmethod
+    def __init__(self, facelets=None):
+        if facelets:
+            self.facelets = facelets
+        else:
+            self.facelets = ""
+
+    @abstractmethod
     def solve_first_cross(self):
         """solves the cross on the first face"""
         raise NotImplementedError
