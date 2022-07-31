@@ -1,4 +1,8 @@
-from abc import ABC, abstractmethod
+from abc import (
+    ABC,
+    abstractmethod,
+)
+from enum import Enum
 
 
 class RubiksCube(ABC):
@@ -47,3 +51,40 @@ class RubiksCube(ABC):
     def permutate_edges_in_up_face(self):
         """returns the solved cube"""
         raise NotImplementedError
+
+# face colors
+#                  ──────── ┌──┬──┬──┐
+#                /        /││  │  │  │
+#               /   0    / │├──┼──┼──┤
+#              /        /  ││  │4 │  │
+# ┌──┬──┬──┐  ┌──┬──┬──┐   │├──┼──┼──┤
+# │  │  │  │  │  │  │  │ 3 ││  │  │  │
+# ├──┼──┼──┤  ├──┼──┼──┤   │└──┴──┴──┘
+# │  │1 │  │  │  │2 │  │  /
+# ├──┼──┼──┤  ├──┼──┼──┤ /
+# │  │  │  │  │  │  │  │/
+# └──┴──┴──┘  └──┴──┴──┘
+#             ┌──┬──┬──┐
+#             │  │  │  │
+#             ├──┼──┼──┤
+#             │  │5 │  │
+#             ├──┼──┼──┤
+#             │  │  │  │
+#
+class Color(Enum):
+    """The colors present on each face of a Rubik's cube"""
+
+    UP = "U"
+    LEFT = "L"
+    FRONT = "F"
+    RIGHT = "R"
+    BACK = "B"
+    DOWN = "D"
+
+
+COLOR_VALUE_TO_COLOR_NAME = {c.value: c for c in Color}
+
+
+def is_number_of_colors_correct(facelets):
+    color_count = [facelets.count(c.value) for c in Color]
+    return all(count == 9 for count in color_count)
