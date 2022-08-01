@@ -99,10 +99,13 @@ class FaceletsRubiksCube(RubiksCube):
 
     @property
     def corners(self):
-        return [self._get_corner_by_key(key) for key in self._corner_locations.keys()]
+        return [
+            self._get_corner_by_key(key)
+            for key in self._corner_key_to_corner_locations.keys()
+        ]
 
     def _get_corner_by_key(self, key):
-        first, second, third = self._corner_locations[key]
+        first, second, third = self._corner_key_to_corner_locations[key]
         return (
             self.facelets[first].value
             + self.facelets[second].value
@@ -111,10 +114,13 @@ class FaceletsRubiksCube(RubiksCube):
 
     @property
     def edges(self):
-        return [self._get_edges_by_key(key) for key in self._edge_locations.keys()]
+        return [
+            self._get_edges_by_key(key)
+            for key in self._edge_key_to_edge_locations.keys()
+        ]
 
     def _get_edges_by_key(self, key):
-        first, second = self._edge_locations[key]
+        first, second = self._edge_key_to_edge_locations[key]
         return self.facelets[first].value + self.facelets[second].value
 
     def find_location_of_edge(self, edge):
@@ -128,7 +134,7 @@ class FaceletsRubiksCube(RubiksCube):
         self._create_edge_locations()
 
     def _create_edge_keys(self):
-        self._edge_key = {
+        self._edge_number_to_edge_key = {
             0: "UB",
             1: "UR",
             2: "UF",
@@ -144,7 +150,7 @@ class FaceletsRubiksCube(RubiksCube):
         }
 
     def _create_edge_locations(self):
-        self._edge_locations = {
+        self._edge_key_to_edge_locations = {
             "UB": (1, 37),
             "UR": (5, 28),
             "UF": (7, 19),
@@ -176,7 +182,7 @@ class FaceletsRubiksCube(RubiksCube):
         }
 
     def _create_corner_locations(self):
-        self._corner_locations = {
+        self._corner_key_to_corner_locations = {
             "ULB": (0, 9, 38),
             "URB": (2, 29, 36),
             "URF": (8, 27, 20),
