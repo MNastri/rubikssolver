@@ -35,9 +35,8 @@ NUMBER_OF_FACELETS = 54
 class FaceletsRubiksCube(RubiksCube):
     def __init__(self, facelets=None):
         self._check_facelets(facelets)
-        self._create_corner_locations()
-        self._create_edge_locations()
-        self._create_edge_keys()
+        self._create_edge_mappings()
+        self._create_corner_mappings()
 
     def __repr__(self):
         return str([f.value for f in self.facelets])
@@ -124,6 +123,10 @@ class FaceletsRubiksCube(RubiksCube):
         flipped_edges = [edge[::-1] for edge in self.edges]
         return flipped_edges.index(edge)
 
+    def _create_edge_mappings(self):
+        self._create_edge_keys()
+        self._create_edge_locations()
+
     def _create_edge_keys(self):
         self._edge_key = {
             0: "UB",
@@ -154,6 +157,22 @@ class FaceletsRubiksCube(RubiksCube):
             "DR": (50, 34),
             "DF": (46, 25),
             "DL": (48, 16),
+        }
+
+    def _create_corner_mappings(self):
+        self._create_corner_keys()
+        self._create_corner_locations()
+
+    def _create_corner_keys(self):
+        self._corner_number_to_corner_key = {
+            0: "ULB",
+            1: "URB",
+            2: "URF",
+            3: "ULF",
+            4: "DLB",
+            5: "DRB",
+            6: "DRF",
+            7: "DLF",
         }
 
     def _create_corner_locations(self):
