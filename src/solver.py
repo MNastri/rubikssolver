@@ -1,17 +1,12 @@
-from interface import RubiksCube
+from facelets_rubiks_cube import FaceletsRubiksCube
+from interface import solve_rubiks_cube
 
 
-def solve_rubiks_cube(cube: RubiksCube):
-    cube.solve_first_cross()
-    cube.solve_first_face()
-    cube.solve_middle_layer()
-    cube.make_cross_in_up_face()
-    cube.permutate_corners_in_up_face()
-    cube.orient_corners_in_up_face()
-    cube.permutate_edges_in_up_face()
+def solve_cube_string(cube_string):
+    cube = FaceletsRubiksCube(cube_string)
+    solve_rubiks_cube(cube)
 
 
 if __name__ == "__main__":
-    cube_string = "DUUBULDBFRULBLUFDUBRDFFFBLURBFRRULLLRRBLBDUDLRDBFDFDRF"
-    cube = RubiksCube(cube_string)
-    solve_rubiks_cube(cube=cube)
+    cube_str = "DUUBULDBFRULBLUFDUBRDFFFBLURBFRRULLLRRBLBDUDLRDBFDFDRF"
+    solve_cube_string(cube_str)
