@@ -70,7 +70,7 @@ class FaceletsRubiksCube(RubiksCube):
         Dest:  2,5,8,1,4,7,0,3,6,36,37,38,12...17, 9,10,11,21...26,18,19,20,30...35,27,
         28,29,39...53
         """
-        assert len(destination) == 54  # TODO remove
+        assert len(destination) == NUMBER_OF_FACELETS  # TODO remove
         assert len(set(destination)) == len(destination)  # TODO remove
         facelets_copy = self.facelets[:]
         for idx, dest in enumerate(destination):
@@ -222,15 +222,15 @@ def unify_transforms(transforms: List[List[int]]) -> List[int]:
     [0, 1, 2, 3, 4, ..., 53]
     """
     assert all(
-        len(transform) == 54 for transform in transforms
-    ), "length of transform must be 54"
+        len(transform) == NUMBER_OF_FACELETS for transform in transforms
+    ), f"length of transform must be {NUMBER_OF_FACELETS}"
     assert all(
         len(set(transform)) == len(transform) for transform in transforms
     ), "destination in transform must be unique"
-    facelets = {ii: ii for ii in range(54)}
+    facelets = {ii: ii for ii in range(NUMBER_OF_FACELETS)}
     # print(list(facelets.values()))
     for transform in transforms:
-        new_facelets = {ii: None for ii in range(54)}
+        new_facelets = {ii: None for ii in range(NUMBER_OF_FACELETS)}
         for start_idx, end_idx in enumerate(transform):
             if start_idx == end_idx:
                 new_facelets[start_idx] = end_idx
