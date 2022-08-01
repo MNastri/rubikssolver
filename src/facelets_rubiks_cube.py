@@ -187,25 +187,25 @@ class FaceletsRubiksCube(RubiksCube):
         self.facelets = [COLOR_VALUE_TO_COLOR_NAME[f] for f in facelets]
 
     def solve_first_cross(self):
-        pass
+        raise NotImplementedError  # TODO
 
     def solve_first_face(self):
-        pass
+        raise NotImplementedError  # TODO
 
     def solve_middle_layer(self):
-        pass
+        raise NotImplementedError  # TODO
 
     def make_cross_in_up_face(self):
-        pass
+        raise NotImplementedError  # TODO
 
     def permutate_corners_in_up_face(self):
-        pass
+        raise NotImplementedError  # TODO
 
     def orient_corners_in_up_face(self):
-        pass
+        raise NotImplementedError  # TODO
 
     def permutate_edges_in_up_face(self):
-        pass
+        raise NotImplementedError  # TODO
 
 
 def unify_transforms(transforms: List[List[int]]) -> List[int]:
