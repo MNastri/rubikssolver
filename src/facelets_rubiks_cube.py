@@ -3,6 +3,10 @@ from typing import List
 from interface import (
     Color,
     COLOR_VALUE_TO_COLOR_NAME,
+    Corner,
+    CornerPositions,
+    Edge,
+    EdgePositions,
     is_number_of_colors_correct,
     RubiksCube,
 )
@@ -39,8 +43,8 @@ class FaceletsRubiksCube(RubiksCube):
         else:
             self._check_facelets(facelets)
             self._store_color_names(facelets)
-        self._create_edge_mappings()
-        self._create_corner_mappings()
+        self._create_edges_data()
+        self._create_corners_data()
 
     def __repr__(self):
         return str([f.value for f in self.facelets])
@@ -102,99 +106,55 @@ class FaceletsRubiksCube(RubiksCube):
         )
 
     @property
-    def corners(self):
-        return [
-            self._get_corner_by_key(key)
-            for key in self._corner_key_to_corner_locations.keys()
-        ]
+    def edges(self):
+        return [self._get_edge(val.positions) for val in self._edges_data.values()]
 
-    def _get_corner_by_key(self, key):
-        first, second, third = self._corner_key_to_corner_locations[key]
-        return (
-            self.facelets[first].value
-            + self.facelets[second].value
-            + self.facelets[third].value
-        )
+    def _get_edge(self, pos: EdgePositions):
+        return self.facelets[pos.first].value + self.facelets[pos.second].value
+
+    def find_location_of_edge(self, edge_key):
+        if edge_key in self.edges:
+            return self.edges.index(edge_key)
+        reoriented_edges = [edge[::-1] for edge in self.edges]
+        return reoriented_edges.index(edge_key)
+
+    def _create_edges_data(self):
+        self._edges_data = {
+            "UB": Edge(0, EdgePositions(1, 37)),
+            "UR": Edge(1, EdgePositions(5, 28)),
+            "UF": Edge(2, EdgePositions(7, 19)),
+            "UL": Edge(3, EdgePositions(3, 10)),
+            "BL": Edge(4, EdgePositions(41, 12)),
+            "BR": Edge(5, EdgePositions(39, 32)),
+            "FR": Edge(6, EdgePositions(23, 30)),
+            "FL": Edge(7, EdgePositions(21, 14)),
+            "DB": Edge(8, EdgePositions(52, 43)),
+            "DR": Edge(9, EdgePositions(50, 34)),
+            "DF": Edge(10, EdgePositions(46, 25)),
+            "DL": Edge(11, EdgePositions(48, 16)),
+        }
 
     @property
-    def edges(self):
-        return [
-            self._get_edges_by_key(key)
-            for key in self._edge_key_to_edge_locations.keys()
-        ]
+    def corners(self):
+        return [self._get_corner(val.positions) for val in self._corners_data.values()]
 
-    def _get_edges_by_key(self, key):
-        first, second = self._edge_key_to_edge_locations[key]
-        return self.facelets[first].value + self.facelets[second].value
+    def _get_corner(self, pos: CornerPositions):
+        return (
+            self.facelets[pos.first].value
+            + self.facelets[pos.second].value
+            + self.facelets[pos.third].value
+        )
 
-    def find_location_of_edge(self, edge):
-        if edge in self.edges:
-            return self.edges.index(edge)
-        flipped_edges = [edge[::-1] for edge in self.edges]
-        return flipped_edges.index(edge)
-
-    def _create_edge_mappings(self):
-        self._create_edge_keys()
-        self._create_edge_locations()
-
-    def _create_edge_keys(self):
-        self._edge_number_to_edge_key = {
-            0: "UB",
-            1: "UR",
-            2: "UF",
-            3: "UL",
-            4: "BL",
-            5: "BR",
-            6: "FR",
-            7: "FL",
-            8: "DB",
-            9: "DR",
-            10: "DF",
-            11: "DL",
-        }
-
-    def _create_edge_locations(self):
-        self._edge_key_to_edge_locations = {
-            "UB": (1, 37),
-            "UR": (5, 28),
-            "UF": (7, 19),
-            "UL": (3, 10),
-            "BL": (41, 12),
-            "BR": (39, 32),
-            "FR": (23, 30),
-            "FL": (21, 14),
-            "DB": (52, 43),
-            "DR": (50, 34),
-            "DF": (46, 25),
-            "DL": (48, 16),
-        }
-
-    def _create_corner_mappings(self):
-        self._create_corner_keys()
-        self._create_corner_locations()
-
-    def _create_corner_keys(self):
-        self._corner_number_to_corner_key = {
-            0: "ULB",
-            1: "URB",
-            2: "URF",
-            3: "ULF",
-            4: "DLB",
-            5: "DRB",
-            6: "DRF",
-            7: "DLF",
-        }
-
-    def _create_corner_locations(self):
-        self._corner_key_to_corner_locations = {
-            "ULB": (0, 9, 38),
-            "URB": (2, 29, 36),
-            "URF": (8, 27, 20),
-            "ULF": (6, 11, 18),
-            "DLB": (51, 15, 44),
-            "DRB": (53, 35, 42),
-            "DRF": (47, 33, 26),
-            "DLF": (45, 17, 24),
+    def _create_corners_data(self):
+        self._corners_data = {
+            "ULB": Corner(0, CornerPositions(0, 9, 38)),
+            "URB": Corner(1, CornerPositions(2, 29, 36)),
+            "URF": Corner(2, CornerPositions(8, 27, 20)),
+            "ULF": Corner(3, CornerPositions(6, 11, 18)),
+            "DLB": Corner(4, CornerPositions(51, 15, 44)),
+            "DRB": Corner(5, CornerPositions(53, 35, 42)),
+            "DRF": Corner(6, CornerPositions(47, 33, 26)),
+            "DLF": Corner(7, CornerPositions(45, 17, 24)),
         }
 
     def _check_facelets(self, facelets):
