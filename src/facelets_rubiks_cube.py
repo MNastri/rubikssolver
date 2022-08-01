@@ -34,7 +34,11 @@ NUMBER_OF_FACELETS = 54
 #           └──┴──┴──┘
 class FaceletsRubiksCube(RubiksCube):
     def __init__(self, facelets=None):
-        self._check_facelets(facelets)
+        if facelets is None:
+            self._store_solved_cube()
+        else:
+            self._check_facelets(facelets)
+            self._store_color_names(facelets)
         self._create_edge_mappings()
         self._create_corner_mappings()
 
@@ -194,12 +198,9 @@ class FaceletsRubiksCube(RubiksCube):
         }
 
     def _check_facelets(self, facelets):
-        if facelets and isinstance(facelets, (List, str)):
+        if isinstance(facelets, (List, str)):
             assert len(facelets) == NUMBER_OF_FACELETS
             assert is_number_of_colors_correct(facelets)
-            self._store_facelets_name(facelets)
-        elif not facelets:
-            self._store_solved_cube()
         else:
             allowed_types = [str, List, None]
             raise TypeError(f"facelets should be one of {allowed_types}")
@@ -208,7 +209,7 @@ class FaceletsRubiksCube(RubiksCube):
         faces = [[face] * 9 for face in Color]
         self.facelets = [facelet for face in faces for facelet in face]
 
-    def _store_facelets_name(self, facelets):
+    def _store_color_names(self, facelets):
         self.facelets = [COLOR_VALUE_TO_COLOR_NAME[f] for f in facelets]
 
     def solve_first_cross(self):
