@@ -9,6 +9,7 @@ from interface import (
 
 NUMBER_OF_FACELETS = 54
 
+
 # facelet position
 #           ┌──┬──┬──┐
 #           │0 │1 │2 │
