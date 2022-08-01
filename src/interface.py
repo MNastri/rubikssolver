@@ -71,7 +71,7 @@ class RubiksCube(ABC):
 #             │  │5 │  │
 #             ├──┼──┼──┤
 #             │  │  │  │
-#
+#             └──┴──┴──┘
 class Color(Enum):
     """The colors present on each face of a Rubik's cube"""
 
