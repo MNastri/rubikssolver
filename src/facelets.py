@@ -1,5 +1,7 @@
 from enum import Enum
 
+NUMBER_OF_FACELETS = 54
+
 
 class Facelet(Enum):
     U_corner0 = 0
