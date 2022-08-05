@@ -40,7 +40,7 @@ class Edge(Enum):
     # └──┴──┴──┘
 
 
-class Orientation(Enum):
+class SingleEdgeOrientation(Enum):
     normal = 0
     fliped = 1
 

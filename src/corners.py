@@ -36,7 +36,7 @@ class Corner(Enum):
     # └──┴──┴──┘
 
 
-class Orientation(Enum):
+class SingleCornerOrientation(Enum):
     normal = 0
     turned_once = 1
     turned_twice = 2

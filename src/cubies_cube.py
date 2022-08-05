@@ -2,12 +2,12 @@ from corners import Corner
 from corners import CornersOrientation as CO
 from corners import CornersPermutation as CP
 from corners import NUMBER_OF_CORNERS
-from corners import Orientation as single_corner_orientation
+from corners import SingleCornerOrientation
 from edges import Edge
 from edges import EdgesOrientation as EO
 from edges import EdgesPermutation as EP
 from edges import NUMBER_OF_EDGES
-from edges import Orientation as single_edge_orientation
+from edges import SingleEdgeOrientation
 from interface import RubiksCube
 
 
@@ -19,12 +19,12 @@ class CubieCube(RubiksCube):
     def _store_solved_corners(self):
         corners = lambda: range(NUMBER_OF_CORNERS)
         self.corner_permutation = CP(Corner(id) for id in corners())
-        self.corner_orientation = CO(single_corner_orientation(0) for _ in corners())
+        self.corner_orientation = CO(SingleCornerOrientation(0) for _ in corners())
 
     def _store_solved_edges(self):
         edges = lambda: range(NUMBER_OF_EDGES)
         self.edge_permutation = EP(Edge(id) for id in edges())
-        self.edge_orientation = EO(single_edge_orientation(0) for _ in edges())
+        self.edge_orientation = EO(SingleEdgeOrientation(0) for _ in edges())
 
     def __str__(self):
         corners = range(NUMBER_OF_CORNERS)
