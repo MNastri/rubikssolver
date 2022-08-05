@@ -27,7 +27,7 @@ class CubieCube(RubiksCube):
 
     def _store_solved_edges(self):
         edges = lambda: range(NUMBER_OF_EDGES)
-        self.edge_permutation = EP(Edge(id) for id in edges())
+        self.edge_permutation = EP(Edge(idx) for idx in edges())
         self.edge_orientation = EO(SingleEdgeOrientation(0) for _ in edges())
 
     def __str__(self):
