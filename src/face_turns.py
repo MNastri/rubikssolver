@@ -37,11 +37,28 @@ class UTurn(CubeTransformation):
 
 class RTurn(CubeTransformation):
     def __init__(self):
-        corner_permutation = CP([Co.DFR, Co.UFL, Co.ULB, Co.URF, Co.DRB, Co.DLF, Co.DBL, Co.UBR])
-        corner_orientation = CO([2, 0, 0, 1, 1, 0, 0, 2])
-        edge_permutation = EP([Ed.FR, Ed.UF, Ed.UL, Ed.UB, Ed.BR, Ed.DF, Ed.DL, Ed.DB, Ed.DR, Ed.FL, Ed.BL, Ed.UR])
-        edge_orientation = EO([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-        super(RTurn, self).__init__(corner_permutation, corner_orientation, edge_permutation, edge_orientation)
+        corner_permutation = CP([
+            Co.DFR, Co.UFL, Co.ULB, Co.URF,
+            Co.DRB, Co.DLF, Co.DBL, Co.UBR
+        ])
+        corner_orientation = CO([
+            CorOri.turned_twice, CorOri.normal, CorOri.normal, CorOri.turned_once,
+            CorOri.turned_once, CorOri.normal, CorOri.normal, CorOri.turned_twice,
+        ])
+        edge_permutation = EP([
+            Ed.FR, Ed.UF, Ed.UL, Ed.UB,
+            Ed.BR, Ed.DF, Ed.DL, Ed.DB,
+            Ed.DR, Ed.FL, Ed.BL, Ed.UR
+        ])
+        edge_orientation = EO([
+            EdgOri.normal, EdgOri.normal, EdgOri.normal, EdgOri.normal,
+            EdgOri.normal, EdgOri.normal, EdgOri.normal, EdgOri.normal,
+            EdgOri.normal, EdgOri.normal, EdgOri.normal, EdgOri.normal,
+        ])
+        super(RTurn, self).__init__(
+            corner_permutation, corner_orientation,
+            edge_permutation, edge_orientation
+        )
 
 
 class FTurn(CubeTransformation):
