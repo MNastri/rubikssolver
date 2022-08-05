@@ -1,6 +1,7 @@
 from colors import (
     Color,
     FACELETS_PER_COLOR,
+    get_color_from,
 )
 from facelets import (
     FACELETS_PER_FACE,
@@ -41,12 +42,6 @@ class FaceletsRubiksCube(RubiksCube):
     def _has_all_the_colors(self, facelets):
         unique_count = [facelets.count(col) for col in Color]
         return all(count == FACELETS_PER_COLOR for count in unique_count)
-
-
-def get_color_from(character: str):
-    character = character.upper()
-    assert character in Color.__dict__
-    return Color.__getattr__(character)
 
 
 if __name__ == "__main__":

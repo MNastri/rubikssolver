@@ -28,3 +28,9 @@ class Color(Enum):
     #             ├──┼──┼──┤
     #             │  │  │  │
     #             └──┴──┴──┘
+
+
+def get_color_from(character: str):
+    character = character.upper()
+    assert character in Color.__dict__
+    return Color.__getattr__(character)
