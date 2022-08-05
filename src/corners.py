@@ -36,9 +36,9 @@ class Corner(Enum):
     # └──┴──┴──┘
 
 
-class CornerPermutation(List):
+class CornersPermutation(List):
     def __init__(self, *args, **kwargs):
-        super(CornerPermutation, self).__init__(*args, **kwargs)
+        super(CornersPermutation, self).__init__(*args, **kwargs)
         assert len(self) == NUMBER_OF_CORNERS
         self.permutated_to_URF = self.__getitem__(0)
         self.permutated_to_UFL = self.__getitem__(1)
@@ -51,14 +51,14 @@ class CornerPermutation(List):
 
 
 if __name__ == "__main__":
-    test_permutation = CornerPermutation([10, 11, 12, 13, 14, 15, 16, 17])
+    test_permutation = CornersPermutation([10, 11, 12, 13, 14, 15, 16, 17])
     print(test_permutation)
     print(test_permutation.permutated_to_URF)
 
 
-class CornerOrientation(List):
+class CornersOrientation(List):
     def __init__(self, *args, **kwargs):
-        super(CornerOrientation, self).__init__(*args, **kwargs)
+        super(CornersOrientation, self).__init__(*args, **kwargs)
         assert len(self) == NUMBER_OF_CORNERS
         self.orientation_of_URF = self.__getitem__(0)
         self.orientation_of_UFL = self.__getitem__(1)
@@ -71,6 +71,6 @@ class CornerOrientation(List):
 
 
 if __name__ == "__main__":
-    test_orientation = CornerOrientation([20, 21, 22, 23, 24, 25, 26, 27])
+    test_orientation = CornersOrientation([20, 21, 22, 23, 24, 25, 26, 27])
     print(test_orientation)
     print(test_orientation.orientation_of_URF)
