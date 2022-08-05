@@ -36,6 +36,7 @@ class CubieCube(RubiksCube):
         ss = ""
         for cor in corners:
             ss += f"({self.corner_permutation[cor]},{self.corner_orientation[cor]})"
+        ss += "\n"
         for edg in edges:
             ss += f"({self.edge_permutation[edg]},{self.edge_orientation[edg]})"
         return ss
