@@ -40,10 +40,9 @@ class Edge(Enum):
     # └──┴──┴──┘
 
 
-class EdgePermutation(List):
-    # TODO check if args/kwargs are necessary when calling super
+class EdgesPermutation(List):
     def __init__(self, *args, **kwargs):
-        super(EdgePermutation, self).__init__(*args, **kwargs)
+        super(EdgesPermutation, self).__init__(*args, **kwargs)
         assert len(self) == NUMBER_OF_EDGES
         self.permutated_to_UR = self.__getitem__(0)
         self.permutated_to_UF = self.__getitem__(1)
@@ -60,19 +59,15 @@ class EdgePermutation(List):
 
 
 if __name__ == "__main__":
-    # fmt: off
-    # TODO ↑ remover ↑
-    test_permutation = EdgePermutation([100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111])
-    # TODO ↓ remover ↓
-    # fmt: on
+    test_permutation = EdgesPermutation([100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111])
     print(test_permutation)
     print(test_permutation.permutated_to_UR)
 
 
-class EdgeOrientation(List):
+class EdgesOrientation(List):
     # TODO check if args/kwargs are necessary when calling super
     def __init__(self, *args, **kwargs):
-        super(EdgeOrientation, self).__init__(*args, **kwargs)
+        super(EdgesOrientation, self).__init__(*args, **kwargs)
         assert len(self) == NUMBER_OF_EDGES
         self.orientation_of_UR = self.__getitem__(0)
         self.orientation_of_UF = self.__getitem__(1)
@@ -89,6 +84,6 @@ class EdgeOrientation(List):
 
 
 if __name__ == "__main__":
-    test_orientation = EdgeOrientation([200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211])
+    test_orientation = EdgesOrientation([200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211])
     print(test_orientation)
     print(test_orientation.orientation_of_UR)

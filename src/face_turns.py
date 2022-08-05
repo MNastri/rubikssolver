@@ -3,8 +3,8 @@ from corners import CornersOrientation as CO
 from corners import CornersPermutation as CP
 from cube_transformations import CubeTransformation
 from edges import Edge as Ed
-from edges import EdgeOrientation as EO
-from edges import EdgePermutation as EP
+from edges import EdgesOrientation as EO
+from edges import EdgesPermutation as EP
 
 
 class UTurn(CubeTransformation):
