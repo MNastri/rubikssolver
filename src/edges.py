@@ -89,10 +89,6 @@ class EdgeOrientation(List):
 
 
 if __name__ == "__main__":
-    # fmt: off
-    # TODO ↑ remover ↑
     test_orientation = EdgeOrientation([200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211])
-    # TODO ↓ remover ↓
-    # fmt: on
     print(test_orientation)
     print(test_orientation.orientation_of_UR)

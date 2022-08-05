@@ -37,7 +37,6 @@ class Corner(Enum):
 
 
 class CornerPermutation(List):
-    # TODO check if args/kwargs are necessary when calling super
     def __init__(self, *args, **kwargs):
         super(CornerPermutation, self).__init__(*args, **kwargs)
         assert len(self) == NUMBER_OF_CORNERS
@@ -58,7 +57,6 @@ if __name__ == "__main__":
 
 
 class CornerOrientation(List):
-    # TODO check if args/kwargs are necessary when calling super
     def __init__(self, *args, **kwargs):
         super(CornerOrientation, self).__init__(*args, **kwargs)
         assert len(self) == NUMBER_OF_CORNERS
