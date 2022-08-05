@@ -1,13 +1,17 @@
 from corners import Corner
 from corners import CornersOrientation as CO
 from corners import CornersPermutation as CP
-from corners import NUMBER_OF_CORNERS
-from corners import SingleCornerOrientation
+from corners import (
+    NUMBER_OF_CORNERS,
+    SingleCornerOrientation,
+)
 from edges import Edge
 from edges import EdgesOrientation as EO
 from edges import EdgesPermutation as EP
-from edges import NUMBER_OF_EDGES
-from edges import SingleEdgeOrientation
+from edges import (
+    NUMBER_OF_EDGES,
+    SingleEdgeOrientation,
+)
 from interface import RubiksCube
 
 
