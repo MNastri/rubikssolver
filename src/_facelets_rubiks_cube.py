@@ -10,7 +10,7 @@ from facelets import (
 from interface import RubiksCube
 
 
-class FaceletsRubiksCube(RubiksCube):
+class FaceletsCube(RubiksCube):
     def __init__(self):
         self._store_solved_cube()
 
@@ -45,9 +45,9 @@ class FaceletsRubiksCube(RubiksCube):
 
 
 if __name__ == "__main__":
-    # print(FaceletsRubiksCube())
-    # print(FaceletsRubiksCube().facelets)
+    print(FaceletsCube())
+    print(FaceletsCube().facelets)
     cube_str = "DUUBULDBFRULBLUFDUBRDFFFBLURBFRRULLLRRBLBDUDLRDBFDFDRF"
-    test_string_cube = FaceletsRubiksCube()
+    test_string_cube = FaceletsCube()
     test_string_cube.from_string(cube_str)
     print(test_string_cube)
