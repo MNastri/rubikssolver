@@ -1,4 +1,7 @@
-from colors import Color
+from colors import (
+    Color,
+    FACELETS_PER_COLOR,
+)
 from facelets import (
     FACELETS_PER_FACE,
     NUMBER_OF_FACELETS,
@@ -32,7 +35,12 @@ class FaceletsRubiksCube(RubiksCube):
         for pos in positions:
             col = get_color_from(character=s[pos])
             facelets += (col,)
+        assert self._has_all_the_colors(facelets)
         self.facelets = facelets
+
+    def _has_all_the_colors(self, facelets):
+        unique_count = [facelets.count(col) for col in Color]
+        return all(count == FACELETS_PER_COLOR for count in unique_count)
 
 
 def get_color_from(character: str):
@@ -42,8 +50,8 @@ def get_color_from(character: str):
 
 
 if __name__ == "__main__":
-    print(FaceletsRubiksCube())
-    print(FaceletsRubiksCube().facelets)
+    # print(FaceletsRubiksCube())
+    # print(FaceletsRubiksCube().facelets)
     cube_str = "DUUBULDBFRULBLUFDUBRDFFFBLURBFRRULLLRRBLBDUDLRDBFDFDRF"
     test_string_cube = FaceletsRubiksCube()
     test_string_cube.from_string(cube_str)

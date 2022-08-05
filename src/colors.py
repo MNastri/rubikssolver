@@ -1,5 +1,7 @@
 from enum import Enum
 
+FACELETS_PER_COLOR = 9
+
 
 class Color(Enum):
     U = 0
