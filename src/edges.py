@@ -42,8 +42,7 @@ class Edge(Enum):
 
 class Orientation(Enum):
     normal = 0
-    turned_once = 1
-    turned_twice = 2
+    fliped = 1
 
 
 class EdgesPermutation(List):
