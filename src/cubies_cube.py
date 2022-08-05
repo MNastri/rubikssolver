@@ -22,7 +22,7 @@ class CubieCube(RubiksCube):
 
     def _store_solved_corners(self):
         corners = lambda: range(NUMBER_OF_CORNERS)
-        self.corner_permutation = CP(Corner(id) for id in corners())
+        self.corner_permutation = CP(Corner(idx) for idx in corners())
         self.corner_orientation = CO(SingleCornerOrientation(0) for _ in corners())
 
     def _store_solved_edges(self):
