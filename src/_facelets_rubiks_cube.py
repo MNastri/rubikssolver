@@ -1,5 +1,5 @@
 from colors import Color
-from facelets import FACELETS_PER_FACE
+from facelets import FACELETS_PER_FACE, NUMBER_OF_FACELETS
 from interface import RubiksCube
 
 
@@ -15,6 +15,14 @@ class FaceletsRubiksCube(RubiksCube):
                 facelets += (clr,)
         self.facelets = facelets
 
+    def __str__(self):
+        ss = ""
+        positions = range(NUMBER_OF_FACELETS)
+        for pos in positions:
+            ss += self.facelets[pos].name
+        return ss
+
 
 if __name__ == "__main__":
+    print(FaceletsRubiksCube())
     print(FaceletsRubiksCube().facelets)
