@@ -30,7 +30,7 @@ class FaceletsRubiksCube(RubiksCube):
         positions = range(NUMBER_OF_FACELETS)
         facelets = []
         for pos in positions:
-            col = get_color_from(s[pos])
+            col = get_color_from(character=s[pos])
             facelets += (col,)
         self.facelets = facelets
 
