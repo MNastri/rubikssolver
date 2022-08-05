@@ -1,6 +1,6 @@
 from corners import Corner as Co
-from corners import CornerOrientation as CO
-from corners import CornerPermutation as CP
+from corners import CornersOrientation as CO
+from corners import CornersPermutation as CP
 from cube_transformations import CubeTransformation
 from edges import Edge as Ed
 from edges import EdgeOrientation as EO
