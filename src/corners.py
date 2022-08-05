@@ -36,6 +36,12 @@ class Corner(Enum):
     # └──┴──┴──┘
 
 
+class Orientation(Enum):
+    normal = 0
+    turned_once = 1
+    turned_twice = 2
+
+
 class CornersPermutation(List):
     def __init__(self, *args, **kwargs):
         super(CornersPermutation, self).__init__(*args, **kwargs)
