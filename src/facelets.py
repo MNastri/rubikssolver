@@ -1,6 +1,7 @@
 from enum import Enum
 
 NUMBER_OF_FACELETS = 54
+FACELETS_PER_FACE = 9
 
 
 class Facelet(Enum):
