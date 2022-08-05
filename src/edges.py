@@ -40,6 +40,12 @@ class Edge(Enum):
     # └──┴──┴──┘
 
 
+class Orientation(Enum):
+    normal = 0
+    turned_once = 1
+    turned_twice = 2
+
+
 class EdgesPermutation(List):
     def __init__(self, *args, **kwargs):
         super(EdgesPermutation, self).__init__(*args, **kwargs)
