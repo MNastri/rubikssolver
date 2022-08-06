@@ -7,6 +7,7 @@ from typing import NamedTuple
 
 
 class RubiksCube(ABC):
+    # TODO verificar se @abstractmethod pode ser usado com __init__
     @abstractmethod
     def __init__(self, facelets=None):
         if facelets:
