@@ -38,31 +38,39 @@ class Corner(IntEnum):
 
 class SingleCornerOrientation(IntEnum):
     """The U and D facelets are the reference for orientation on the corner as
-    well as for the positions.
+    well as for the corner positions.
     If the reference facelet for the corner matches the reference facelet of the
-    cube, we define this a normal orientation. The clockwised and
-    anticlockwised means the reference facelet of the corner was turned to get
-    to its current position, if it was turned clockwise its orientation is
-    clockwised.
+    corner position, we define this a normal orientation. If the reference
+    facelet of the corner is found after turning clockwise the reference facelet
+    of the corner position, then the orientation is called clockwised.
+
     --------
     EXAMPLES
     --------
-    URF corner is in the UFL position
-        U corner facelet in the U facelet position => NORMAL ORIENTATION
-        R corner facelet in the F facelet position
-        F corner facelet in the L facelet position
-    URF corner is in the UFL position
-        F corner facelet in the U facelet position
-        U corner facelet in the F facelet position => CLOCKWISED
-        R corner facelet in the L facelet position
-    URF corner is in the UFL position
-        R corner facelet in the U facelet position
-        F corner facelet in the F facelet position
-        U corner facelet in the L facelet position => ANTICLOCKWISED
-    DRF corner is in the URF position = normal orientation
-        D corner facelet in the U facelet position => NORMAL
-        R corner facelet in the F facelet position
-        F corner facelet in the L facelet position
+    URF corner in URF positions:
+        U facelet in U position => NORMAL ORIENTATION
+        R facelet in R position
+        F facelet in F position
+    URF corner in URF positions:
+        F facelet in U position
+        U facelet in R position => CLOCKWISED
+        R facelet in F position
+    URF corner in UFL positions:
+        U facelet in U position => NORMAL ORIENTATION
+        R facelet in F position
+        F facelet in L position
+    URF corner in UFL positions
+        F facelet in U position
+        U facelet in F position => CLOCKWISED
+        R facelet in L position
+    URF corner in UFL position
+        R facelet in U position
+        F facelet in F position
+        U facelet in L position => ANTICLOCKWISED
+    DRF corner in UFL position = normal orientation
+        D facelet in U position => NORMAL
+        F facelet in F position
+        R facelet in L position
     """
     normal = 0
     clockwised = 1
