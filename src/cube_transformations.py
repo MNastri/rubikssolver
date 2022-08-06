@@ -12,6 +12,7 @@ class CubeTransformation(ABC):
     ):
         if not all([corner_permutation, corner_orientation, edge_permutation, edge_orientation]):
             raise AttributeError
+        # TODO check for other errors? it currently only checks if they are not None
         self.corner_permutation = corner_permutation
         self.corner_orientation = corner_orientation
         self.edge_permutation = edge_permutation
