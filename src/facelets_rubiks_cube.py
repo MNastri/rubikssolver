@@ -112,7 +112,8 @@ class FaceletsRubiksCube(RubiksCube):
     def _get_edge(self, pos: EdgePositions):
         return self.facelets[pos.first].value + self.facelets[pos.second].value
 
-    def find_location_of_edge(self, edge_key):
+    def find_edge(self, edge_key):
+        # TODO não informa direito sobre a aresta. passa a posição sem orientação
         if edge_key in self.edges:
             return self.edges.index(edge_key)
         reoriented_edges = [edge[::-1] for edge in self.edges]
@@ -173,6 +174,12 @@ class FaceletsRubiksCube(RubiksCube):
         self.facelets = [COLOR_VALUE_TO_COLOR_NAME[f] for f in facelets]
 
     def solve_first_cross(self):
+        edges_to_solve = ["DB", "DR", "DF", "DL"]
+        for edge in edges_to_solve:
+            location = self.find_edge(edge)
+            print(location)
+            # TODO solve edge and repeat?
+        # TODO solve all edge at once?
         raise NotImplementedError  # TODO
 
     def solve_first_face(self):
