@@ -41,6 +41,14 @@ class Edge(IntEnum):
 
 
 class SingleEdgeOrientation(IntEnum):
+    """The U and D facelets and the F and B facelets of the FR, FL, BL and BR
+    edges are the reference for orientation on the edge as well as for the edge
+    positions.
+    If the reference facelet for the edge matches the reference facelet of the
+    edge position, we define this a normal orientation. If the reference
+    facelet of the edge is found after flipping the reference facelet of the
+    edge position, then the orientation is called fliped.
+    """
     normal = 0
     fliped = 1
 
