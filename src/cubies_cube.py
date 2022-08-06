@@ -21,12 +21,12 @@ class CubieCube(RubiksCube):
         self._store_solved_edges()
 
     def _store_solved_corners(self):
-        corners = lambda: range(NUMBER_OF_CORNERS)
+        corners = lambda: range(NUMBER_OF_CORNERS)  # reusable range
         self.corner_permutation = CsP(Corner(idx) for idx in corners())
         self.corner_orientation = CsO(SingleCornerOrientation(0) for _ in corners())
 
     def _store_solved_edges(self):
-        edges = lambda: range(NUMBER_OF_EDGES)
+        edges = lambda: range(NUMBER_OF_EDGES)  # reusable range
         self.edge_permutation = EsP(Edge(idx) for idx in edges())
         self.edge_orientation = EsO(SingleEdgeOrientation(0) for _ in edges())
 
