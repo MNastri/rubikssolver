@@ -10,6 +10,12 @@ class Color(Enum):
     D = 3
     L = 4
     B = 5
+
+    def get_color_from(self, character: str):
+        character = character.upper()
+        assert character in Color.__dict__
+        return Color.__getattr__(character)
+
     #                  ──────── ┌──┬──┬──┐
     #                /        /││  │  │  │
     #               /   0    / │├──┼──┼──┤
@@ -28,9 +34,3 @@ class Color(Enum):
     #             ├──┼──┼──┤
     #             │  │  │  │
     #             └──┴──┴──┘
-
-
-def get_color_from(character: str):
-    character = character.upper()
-    assert character in Color.__dict__
-    return Color.__getattr__(character)
