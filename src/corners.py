@@ -1,10 +1,10 @@
-from enum import Enum
+from enum import IntEnum
 from typing import List
 
 NUMBER_OF_CORNERS = 8
 
 
-class Corner(Enum):
+class Corner(IntEnum):
     URF = 0
     UFL = 1
     ULB = 2
@@ -36,7 +36,7 @@ class Corner(Enum):
     # └──┴──┴──┘
 
 
-class SingleCornerOrientation(Enum):
+class SingleCornerOrientation(IntEnum):
     normal = 0
     turned_once = 1
     turned_twice = 2

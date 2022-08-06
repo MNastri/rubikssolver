@@ -1,10 +1,10 @@
-from enum import Enum
+from enum import IntEnum
 from typing import List
 
 NUMBER_OF_EDGES = 12
 
 
-class Edge(Enum):
+class Edge(IntEnum):
     UR = 0
     UF = 1
     UL = 2
@@ -40,7 +40,7 @@ class Edge(Enum):
     # └──┴──┴──┘
 
 
-class SingleEdgeOrientation(Enum):
+class SingleEdgeOrientation(IntEnum):
     normal = 0
     fliped = 1
 
