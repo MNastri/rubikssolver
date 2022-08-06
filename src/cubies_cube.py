@@ -2,6 +2,7 @@ from corners import Corner
 from corners import CornersOrientation as CsO
 from corners import CornersPermutation as CsP
 from corners import (
+    NUMBER_OF_CORNER_ORIENTATIONS,
     NUMBER_OF_CORNERS,
     SingleCornerOrientation,
 )
@@ -40,6 +41,36 @@ class CubieCube(RubiksCube):
         for edg in edges:
             ss += f"({self.edge_permutation[edg]},{self.edge_orientation[edg]})"
         return ss
+
+    def __mul__(self, other):
+        # TODO docs. motivation? how it works?
+        self._corner_multiply(other)
+        # TODO EDGE MULTIPLY
+
+    def _corner_multiply(self, other):
+        new_corner_permutation = self._new_corner_permutation(other)  # TODO necessary?
+        new_corner_orientation = self._new_corner_orientation(other)  # TODO necessary?
+        for cor in Corner:
+            self.corner_permutation[cor] = new_corner_permutation[cor]
+            self.corner_orientation[cor] = new_corner_orientation[cor]
+
+    def _new_corner_permutation(self, other):
+        new_corner_permutation = [Corner.URF] * NUMBER_OF_CORNERS  # TODO necessary?
+        for cor in Corner:
+            corner_in_destination = other.corner_permutation[cor]
+            corner_in_origin = self.corner_permutation[corner_in_destination]
+            new_corner_permutation[cor] = corner_in_origin
+        return new_corner_permutation
+
+    def _new_corner_orientation(self, other):
+        new_corner_orientation = [SingleCornerOrientation.normal] * NUMBER_OF_CORNERS  # TODO necessary?
+        for cor in Corner:
+            corner_in_destination = other.corner_permutation[cor]
+            orientation_in_origin = self.corner_orientation[corner_in_destination]
+            orientation_in_destination = other.corner_orientation[cor]
+            orientation = orientation_in_origin + orientation_in_destination
+            new_corner_orientation[cor] = orientation % NUMBER_OF_CORNER_ORIENTATIONS
+        return new_corner_orientation
 
 
 if __name__ == "__main__":
