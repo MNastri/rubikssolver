@@ -44,6 +44,10 @@ class SingleCornerOrientation(IntEnum):
     facelet of the corner is found after turning clockwise the reference facelet
     of the corner position, then the orientation is called clockwised.
 
+    When the orientations of all edges and corners are 0 the used reference
+    frame has the property that 10 of the 18 possible cube moves do not change
+    these orientations.
+
     --------
     EXAMPLES
     --------

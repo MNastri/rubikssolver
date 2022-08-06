@@ -48,6 +48,10 @@ class SingleEdgeOrientation(IntEnum):
     edge position, we define this a normal orientation. If the reference
     facelet of the edge is found after flipping the reference facelet of the
     edge position, then the orientation is called fliped.
+
+    When the orientations of all edges and corners are 0 the used reference
+    frame has the property that 10 of the 18 possible cube moves do not change
+    these orientations.
     """
     normal = 0
     fliped = 1
