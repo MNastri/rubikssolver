@@ -1,7 +1,6 @@
 from colors import (
     Color,
     FACELETS_PER_COLOR,
-    get_color_from,
 )
 from facelets import (
     FACELETS_PER_FACE,
@@ -34,7 +33,7 @@ class FaceletsCube(RubiksCube):
         positions = range(NUMBER_OF_FACELETS)
         facelets = []
         for pos in positions:
-            col = get_color_from(character=s[pos])
+            col = Color.get_color_from(character=s[pos])
             facelets += (col,)
         assert self._has_all_the_colors(facelets)
         self.facelets = facelets
