@@ -42,8 +42,8 @@ class RTurn(CubeTransformation):
             Co.DRB, Co.DLF, Co.DBL, Co.UBR
         ])
         corner_orientation = CO([
-            CorOri.turned_twice, CorOri.normal, CorOri.normal, CorOri.turned_once,
-            CorOri.turned_once, CorOri.normal, CorOri.normal, CorOri.turned_twice,
+            CorOri.anticlockwised, CorOri.normal, CorOri.normal, CorOri.clockwised,
+            CorOri.clockwised, CorOri.normal, CorOri.normal, CorOri.anticlockwised,
         ])
         edge_permutation = EP([
             Ed.FR, Ed.UF, Ed.UL, Ed.UB,
@@ -68,8 +68,8 @@ class FTurn(CubeTransformation):
             Co.URF, Co.DFR, Co.DBL, Co.DRB
         ])
         corner_orientation = CO([
-            CorOri.turned_once, CorOri.turned_twice, CorOri.normal, CorOri.normal,
-            CorOri.turned_twice, CorOri.turned_once, CorOri.normal, CorOri.normal,
+            CorOri.clockwised, CorOri.anticlockwised, CorOri.normal, CorOri.normal,
+            CorOri.anticlockwised, CorOri.clockwised, CorOri.normal, CorOri.normal,
         ])
         edge_permutation = EP([
             Ed.UR, Ed.FL, Ed.UL, Ed.UB,
@@ -120,8 +120,8 @@ class LTurn(CubeTransformation):
             Co.DFR, Co.UFL, Co.DLF, Co.DRB
         ])
         corner_orientation = CO([
-            CorOri.normal, CorOri.turned_once, CorOri.turned_twice, CorOri.normal,
-            CorOri.normal, CorOri.turned_twice, CorOri.turned_once, CorOri.normal,
+            CorOri.normal, CorOri.clockwised, CorOri.anticlockwised, CorOri.normal,
+            CorOri.normal, CorOri.anticlockwised, CorOri.clockwised, CorOri.normal,
         ])
         edge_permutation = EP([
             Ed.UR, Ed.UF, Ed.BL, Ed.UB,
@@ -146,8 +146,8 @@ class BTurn(CubeTransformation):
             Co.DFR, Co.DLF, Co.ULB, Co.DBL
         ])
         corner_orientation = CO([
-            CorOri.normal, CorOri.normal, CorOri.turned_once, CorOri.turned_twice,
-            CorOri.normal, CorOri.normal, CorOri.turned_twice, CorOri.turned_once,
+            CorOri.normal, CorOri.normal, CorOri.clockwised, CorOri.anticlockwised,
+            CorOri.normal, CorOri.normal, CorOri.anticlockwised, CorOri.clockwised,
         ])
         edge_permutation = EP([
             Ed.UR, Ed.UF, Ed.UL, Ed.BR,

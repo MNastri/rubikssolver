@@ -38,8 +38,8 @@ class Corner(IntEnum):
 
 class SingleCornerOrientation(IntEnum):
     normal = 0
-    turned_once = 1
-    turned_twice = 2
+    clockwised = 1
+    anticlockwised = 2
 
 
 class CornersPermutation(List):
