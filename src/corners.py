@@ -1,6 +1,7 @@
 from enum import IntEnum
 from typing import List
 
+NUMBER_OF_CORNER_ORIENTATIONS = 3
 NUMBER_OF_CORNERS = 8
 
 
