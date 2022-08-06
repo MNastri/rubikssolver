@@ -37,6 +37,33 @@ class Corner(IntEnum):
 
 
 class SingleCornerOrientation(IntEnum):
+    """The U and D facelets are the reference for orientation on the corner as
+    well as for the positions.
+    If the reference facelet for the corner matches the reference facelet of the
+    cube, we define this a normal orientation. The clockwised and
+    anticlockwised means the reference facelet of the corner was turned to get
+    to its current position, if it was turned clockwise its orientation is
+    clockwised.
+    --------
+    EXAMPLES
+    --------
+    URF corner is in the UFL position
+        U corner facelet in the U facelet position => NORMAL ORIENTATION
+        R corner facelet in the F facelet position
+        F corner facelet in the L facelet position
+    URF corner is in the UFL position
+        F corner facelet in the U facelet position
+        U corner facelet in the F facelet position => CLOCKWISED
+        R corner facelet in the L facelet position
+    URF corner is in the UFL position
+        R corner facelet in the U facelet position
+        F corner facelet in the F facelet position
+        U corner facelet in the L facelet position => ANTICLOCKWISED
+    DRF corner is in the URF position = normal orientation
+        D corner facelet in the U facelet position => NORMAL
+        R corner facelet in the F facelet position
+        F corner facelet in the L facelet position
+    """
     normal = 0
     clockwised = 1
     anticlockwised = 2
