@@ -14,6 +14,7 @@ from edges import (
     NUMBER_OF_EDGES_ORIENTATIONS,
     SingleEdgeOrientation,
 )
+from rubiks_definitions import CORNER_FACELETS
 
 
 class CubieCube:
@@ -41,6 +42,47 @@ class CubieCube:
         for edg in edges:
             ss += f"({self.edges_permutation[edg]},{self.edges_orientation[edg]})"
         return ss
+
+    def from_string(self, s):  # TODO
+        #TODO make some checks, number of colors, length of string, etc
+        corner_characters = self._get_corners_names_from(s)
+        print(corner_characters)
+        reference_facelets = self._get_reference_facelets_from(corner_characters)
+        print(reference_facelets)
+        corner_names = self._get_corners_from(corner_characters, reference_facelets)
+        print(corner_names)
+        corner_permutation = [Corner.get_corner_from(name) for name in corner_names]
+        print(corner_permutation)
+        corner_orientation = [SingleCornerOrientation(value) for value in reference_facelets]
+        print(corner_orientation)
+        # self._check_the_edge_facelets_from(s)  # TODO EDGES
+
+    def _get_corners_names_from(self, s: str):  # TODO renaming overhaul?
+        corners = []
+        for corner in CORNER_FACELETS:
+            character_in_string = lambda facelet: s[facelet]
+            mapped_corners = map(character_in_string, corner)
+            corners += (list(mapped_corners),)
+        return corners
+
+    def _get_reference_facelets_from(self, corner_names):  # TODO renaming overhaul!
+        new_list = []
+        for sublist in corner_names:
+            new_list += (
+                (sublist.index("U") if "U" in sublist else sublist.index("D")),
+            )
+        return new_list
+
+    def _get_corners_from(self, corner_names, reference_facelets):  # TODO renaming overhaul?
+        corners = []
+        for cor, ref in zip(corner_names, reference_facelets):
+            reference_facelet = cor[ref]
+            clockwised_facelet = cor[(ref + 1) % 3]
+            anticlockwised_facelet = cor[(ref + 2) % 3]
+            corners += (
+                (reference_facelet + clockwised_facelet + anticlockwised_facelet),
+            )
+        return corners
 
     def __mul__(self, other):
         """
@@ -160,3 +202,5 @@ if __name__ == "__main__":
     print(my_cube.corners_permutation.replaces_URF)
     print(my_cube.corners_permutation)
     print(my_cube)
+    cube_str = "DUUBULDBFRBFRRULLLBRDFFFBLURDBFDFDRFRULBLUFDURRBLBDUDL"
+    CubieCube().from_string(cube_str)
