@@ -48,6 +48,7 @@ class CubieCube():
         """
         self._corners_multiply(other)
         self._edges_multiply(other)
+        return self
 
     def _corners_multiply(self, other):
         self.corners_permutation = self._multiply_corners_permutation(other)
