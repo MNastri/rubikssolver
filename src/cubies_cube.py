@@ -102,6 +102,11 @@ class CubieCube(RubiksCube):
             new_corners_orientation[cor] = orientation % NUMBER_OF_CORNER_ORIENTATIONS
         return new_corners_orientation
 
+    def _edges_multiply(self, other):
+        self.edge_permutation = self._multiply_edges_permutation(other)
+        self.edge_orientation = self._multiply_edges_orientation(other)
+
+
 
 if __name__ == "__main__":
     my_cube = CubieCube()
