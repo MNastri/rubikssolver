@@ -44,7 +44,7 @@ class CubieCube(RubiksCube):
 
     def __mul__(self, other):
         """
-        applies corner and edge multiplication to this cube.
+        applies corners and edges multiplication to this cube.
         """
         self._corners_multiply(other)
         self._edges_multiply(other)
@@ -64,10 +64,10 @@ class CubieCube(RubiksCube):
         then
         M[c] = A[B[c]]
 
-        EXAMPLE: if "Y move = F turn * R turn", what corner replaces UBR? Answer: UFL"
-            M[c] = A[B[c]]  →    Y[UBR] = F[R[UBR]]
-          R[UBR] = URF      →    Y[UBR] = F[URF]
-          F[URF] = UFL      →    Y[UBR] = UFL
+        EXAMPLE: if "Y move = F turn * R turn", what corner replaces UBR? Answer: UFL
+          M[c] = A[B[c]]  →    Y[UBR] = F[R[UBR]]
+        R[UBR] = URF      →    Y[UBR] = F[URF]
+        F[URF] = UFL      →    Y[UBR] = UFL
         """
         new_corners_permutation = [Corner.URF] * NUMBER_OF_CORNERS
         for cor in Corner:
@@ -85,7 +85,7 @@ class CubieCube(RubiksCube):
         A[c] = "corner that replaces corner c in permutation A"
         A[c].ori = "orientation of corner A[c]"
         then
-        M[c].ori = (A[B[c]].ori + B[c].ori) % 3
+        M[c].ori = (A[B[c]].ori + B[c].ori) mod 3
 
         EXAMPLE: if "Y move = F turn * R turn", what is the orientation of the corner
         that replaces UBR? Answer: 2"
