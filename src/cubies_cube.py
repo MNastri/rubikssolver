@@ -23,8 +23,8 @@ class CubieCube(RubiksCube):
 
     def _store_solved_corners(self):
         corners = lambda: range(NUMBER_OF_CORNERS)  # reusable range
-        self.corner_permutation = CsP(Corner(idx) for idx in corners())
-        self.corner_orientation = CsO(SingleCornerOrientation(0) for _ in corners())
+        self.corners_permutation = CsP(Corner(idx) for idx in corners())
+        self.corners_orientation = CsO(SingleCornerOrientation(0) for _ in corners())
 
     def _store_solved_edges(self):
         edges = lambda: range(NUMBER_OF_EDGES)  # reusable range
@@ -36,7 +36,7 @@ class CubieCube(RubiksCube):
         edges = range(NUMBER_OF_EDGES)
         ss = ""
         for cor in corners:
-            ss += f"({self.corner_permutation[cor]},{self.corner_orientation[cor]})"
+            ss += f"({self.corners_permutation[cor]},{self.corners_orientation[cor]})"
         ss += "\n"
         for edg in edges:
             ss += f"({self.edge_permutation[edg]},{self.edge_orientation[edg]})"
@@ -48,29 +48,29 @@ class CubieCube(RubiksCube):
         # TODO EDGE MULTIPLY
 
     def _corner_multiply(self, other):
-        new_corner_permutation = self._new_corner_permutation(other)  # TODO necessary?
-        new_corner_orientation = self._new_corner_orientation(other)  # TODO necessary?
+        new_corners_permutation = self._new_corners_permutation(other)  # TODO necessary?
+        new_corners_orientation = self._new_corners_orientation(other)  # TODO necessary?
         for cor in Corner:
-            self.corner_permutation[cor] = new_corner_permutation[cor]
-            self.corner_orientation[cor] = new_corner_orientation[cor]
+            self.corners_permutation[cor] = new_corners_permutation[cor]
+            self.corners_orientation[cor] = new_corners_orientation[cor]
 
-    def _new_corner_permutation(self, other):
-        new_corner_permutation = [Corner.URF] * NUMBER_OF_CORNERS  # TODO necessary?
+    def _new_corners_permutation(self, other):
+        new_corners_permutation = [Corner.URF] * NUMBER_OF_CORNERS
         for cor in Corner:
-            corner_in_destination = other.corner_permutation[cor]
-            corner_in_origin = self.corner_permutation[corner_in_destination]
-            new_corner_permutation[cor] = corner_in_origin
-        return new_corner_permutation
+            corner_in_destination = other.corners_permutation[cor]
+            corner_in_origin = self.corners_permutation[corner_in_destination]
+            new_corners_permutation[cor] = corner_in_origin
+        return new_corners_permutation
 
-    def _new_corner_orientation(self, other):
-        new_corner_orientation = [SingleCornerOrientation.normal] * NUMBER_OF_CORNERS  # TODO necessary?
+    def _new_corners_orientation(self, other):
+        new_corners_orientation = [SingleCornerOrientation.normal] * NUMBER_OF_CORNERS  # TODO necessary?
         for cor in Corner:
-            corner_in_destination = other.corner_permutation[cor]
-            orientation_in_origin = self.corner_orientation[corner_in_destination]
-            orientation_in_destination = other.corner_orientation[cor]
+            corner_in_destination = other.corners_permutation[cor]
+            orientation_in_origin = self.corners_orientation[corner_in_destination]
+            orientation_in_destination = other.corners_orientation[cor]
             orientation = orientation_in_origin + orientation_in_destination
-            new_corner_orientation[cor] = orientation % NUMBER_OF_CORNER_ORIENTATIONS
-        return new_corner_orientation
+            new_corners_orientation[cor] = orientation % NUMBER_OF_CORNER_ORIENTATIONS
+        return new_corners_orientation
 
 
 if __name__ == "__main__":
