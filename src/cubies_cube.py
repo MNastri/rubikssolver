@@ -106,6 +106,27 @@ class CubieCube(RubiksCube):
         self.edge_permutation = self._multiply_edges_permutation(other)
         self.edge_orientation = self._multiply_edges_orientation(other)
 
+    def _multiply_edges_permutation(self, other):
+        """
+        let
+        A = "some permutation of edges"
+        B = "some permutation of edges"
+        M = A * B
+        A[e] = "edge that replaces edge c in permutation A"
+        then
+        M[e] = A[B[e]]
+
+        EXAMPLE: if "Y move = F turn * R turn", what edge replaces UR? Answer: UF
+         M[e] = A[B[e]] →    Y[UR] = F[R[UR]]
+        R[UR] = FR      →    Y[UR] = F[FR]
+        F[FR] = UF      →    Y[UR] = UF
+        """
+        new_edges_permutation = [Edge.UR] * NUMBER_OF_EDGES
+        for edg in Edge:
+            edge_in_destination = other.edge_permutation[edg]
+            edge_in_origin = self.edge_permutation[edge_in_destination]
+            new_edges_permutation[edg] = edge_in_origin
+        return new_edges_permutation
 
 
 if __name__ == "__main__":
