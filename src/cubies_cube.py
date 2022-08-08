@@ -57,22 +57,17 @@ class CubieCube(RubiksCube):
     def _multiply_corner_permutation(self, other):
         """
         let
-        A = "corners in a certain permutation"
-        B = "corners in a certain permutation"
+        A = "some permutation of corners"
+        B = "some permutation of corners"
         M = A * B
+        X[c] = "corner that replaces c in permutation X
         then
-        M[corner] = A[B[corner]]
+        M[c] = A[B[c]]
 
-        EXAMPLE
-        A move = F turn then R turn
-        1) checking on what corner replaces UBR after both turns:
-        A[UBR] = F[R[UBR]]
-        2) checking on what corner replaces UBR after R turn:
-        R[UBR] = URF
-        3) checking on what corner replaces URF after F turn:
-        F[URF] = UFL
-
-        A[UBR] = F[R[UBR]]= F[URF] = UFL
+        EXAMPLE: if "Y move = F turn * R turn", what corner replaces UBR? Answer: UFL"
+            M[c] = A[B[c]]  →    Y[UBR] = F[R[UBR]]
+          R[UBR] = URF      → F[R[UBR]] = F[URF]
+          F[URF] = UFL      →    Y[UBR] = UFL
         """
         new_corners_permutation = [Corner.URF] * NUMBER_OF_CORNERS
         for cor in Corner:
