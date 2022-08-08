@@ -84,9 +84,16 @@ class SingleCornerOrientation(IntEnum):
         F facelet in F position
         R facelet in L position
     """
+
     normal = 0
     clockwised = 1
     anticlockwised = 2
+
+    @classmethod
+    def get_corner_orientation_from(cls, name: str):
+        name = name.upper()
+        assert name in Corner.__dict__
+        return Corner.__getattr__(name)
 
 
 class CornersPermutation(List):
