@@ -11,6 +11,7 @@ from edges import EdgesOrientation as EsO
 from edges import EdgesPermutation as EsP
 from edges import (
     NUMBER_OF_EDGES,
+    NUMBER_OF_EDGES_ORIENTATIONS,
     SingleEdgeOrientation,
 )
 from interface import RubiksCube
@@ -48,7 +49,6 @@ class CubieCube(RubiksCube):
         """
         self._corners_multiply(other)
         self._edges_multiply(other)
-        # TODO EDGE MULTIPLY
 
     def _corners_multiply(self, other):
         self.corners_permutation = self._multiply_corners_permutation(other)
@@ -89,9 +89,9 @@ class CubieCube(RubiksCube):
 
         EXAMPLE: if "Y move = F turn * R turn", what is the orientation of the corner
         that replaces UBR? Answer: 2"
-        M[c].ori = A[B[c]].ori + B[c].ori   →   Y[UBR].ori = F[R[UBR]].ori+R[UBR].ori
-        R[UBR]=UFR  and  R[UBR].ori=1       →   Y[UBR].ori = F[UFR].ori+R[UBR].ori
-        F[UFR].ori=1  and  R[UBR].ori=1     →   Y[UBR].ori = 2
+          M[c].ori = A[B[c]].ori + B[c].ori     → Y[UBR].ori = F[R[UBR]].ori+R[UBR].ori
+            R[UBR] = UFR  and  R[UBR].ori = 1   → Y[UBR].ori = F[UFR].ori+R[UBR].ori
+        F[UFR].ori = 1    and  R[UBR].ori = 1   → Y[UBR].ori = 2
         """
         new_corners_orientation = [SingleCornerOrientation.normal] * NUMBER_OF_CORNERS
         for cor in Corner:
@@ -127,6 +127,32 @@ class CubieCube(RubiksCube):
             edge_in_origin = self.edge_permutation[edge_in_destination]
             new_edges_permutation[edg] = edge_in_origin
         return new_edges_permutation
+
+    def _multiply_edges_orientation(self, other):
+        """
+        let
+        A = "some permutation of edges"
+        B = "some permutation of edges"
+        M = A * B
+        A[e] = "edge that replaces edge e in permutation A"
+        A[e].ori = "orientation of edge A[e]"
+        then
+        M[e].ori = (A[B[e]].ori + B[e].ori) mod 2
+
+        EXAMPLE: if "Y move = F turn * R turn", what is the orientation of the edge
+        that replaces UR? Answer: 1"
+         M[e].ori = A[B[e]].ori + B[e].ori  →   Y[UR].ori = F[R[UR]].ori+R[UR].ori
+            R[UR] = FR  and  R[UR].ori=0    →   Y[UR].ori = F[FR].ori+R[UR].ori
+        F[FR].ori = 1   and  R[UR].ori=0    →  Y[UBR].ori = 1
+        """
+        new_edges_orientation = [SingleEdgeOrientation.normal] * NUMBER_OF_EDGES
+        for edg in Edge:
+            edge_in_destination = other.edge_permutation[edg]
+            orientation_in_origin = self.edge_orientation[edge_in_destination]
+            orientation_in_destination = other.edge_orientation[edg]
+            orientation = orientation_in_origin + orientation_in_destination
+            new_edges_orientation[edg] = orientation % NUMBER_OF_EDGES_ORIENTATIONS
+        return new_edges_orientation
 
 
 if __name__ == "__main__":
