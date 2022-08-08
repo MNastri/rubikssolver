@@ -86,20 +86,20 @@ class CornersPermutation(List):
     def __init__(self, *args, **kwargs):
         super(CornersPermutation, self).__init__(*args, **kwargs)
         assert len(self) == NUMBER_OF_CORNERS
-        self.permutated_to_URF = self.__getitem__(0)
-        self.permutated_to_UFL = self.__getitem__(1)
-        self.permutated_to_ULB = self.__getitem__(2)
-        self.permutated_to_UBR = self.__getitem__(3)
-        self.permutated_to_DFR = self.__getitem__(4)
-        self.permutated_to_DLF = self.__getitem__(5)
-        self.permutated_to_DBL = self.__getitem__(6)
-        self.permutated_to_DRB = self.__getitem__(7)
+        self.replaces_URF = self.__getitem__(0)
+        self.replaces_UFL = self.__getitem__(1)
+        self.replaces_ULB = self.__getitem__(2)
+        self.replaces_UBR = self.__getitem__(3)
+        self.replaces_DFR = self.__getitem__(4)
+        self.replaces_DLF = self.__getitem__(5)
+        self.replaces_DBL = self.__getitem__(6)
+        self.replaces_DRB = self.__getitem__(7)
 
 
 if __name__ == "__main__":
     test_permutation = CornersPermutation([10, 11, 12, 13, 14, 15, 16, 17])
     print(test_permutation)
-    print(test_permutation.permutated_to_URF)
+    print(test_permutation.replaces_URF)
 
 
 class CornersOrientation(List):
