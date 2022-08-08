@@ -16,7 +16,7 @@ from edges import (
 )
 
 
-class CubieCube():
+class CubieCube:
     def __init__(self):
         self._store_solved_corners()
         self._store_solved_edges()
