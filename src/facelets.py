@@ -1,10 +1,10 @@
-from enum import Enum
+from enum import IntEnum
 
 NUMBER_OF_FACELETS = 54
 FACELETS_PER_FACE = 9
 
 
-class Facelet(Enum):
+class Facelet(IntEnum):
     U_corner0 = 0
     U_edge0 = 1
     U_corner1 = 2
