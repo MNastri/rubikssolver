@@ -14,10 +14,9 @@ from edges import (
     NUMBER_OF_EDGES_ORIENTATIONS,
     SingleEdgeOrientation,
 )
-from interface import RubiksCube
 
 
-class CubieCube(RubiksCube):
+class CubieCube():
     def __init__(self):
         self._store_solved_corners()
         self._store_solved_edges()
@@ -29,8 +28,8 @@ class CubieCube(RubiksCube):
 
     def _store_solved_edges(self):
         edges = lambda: range(NUMBER_OF_EDGES)  # reusable range
-        self.edge_permutation = EsP(Edge(idx) for idx in edges())
-        self.edge_orientation = EsO(SingleEdgeOrientation(0) for _ in edges())
+        self.edges_permutation = EsP(Edge(idx) for idx in edges())
+        self.edges_orientation = EsO(SingleEdgeOrientation(0) for _ in edges())
 
     def __str__(self):
         corners = range(NUMBER_OF_CORNERS)
@@ -40,7 +39,7 @@ class CubieCube(RubiksCube):
             ss += f"({self.corners_permutation[cor]},{self.corners_orientation[cor]})"
         ss += "\n"
         for edg in edges:
-            ss += f"({self.edge_permutation[edg]},{self.edge_orientation[edg]})"
+            ss += f"({self.edges_permutation[edg]},{self.edges_orientation[edg]})"
         return ss
 
     def __mul__(self, other):
@@ -103,8 +102,8 @@ class CubieCube(RubiksCube):
         return new_corners_orientation
 
     def _edges_multiply(self, other):
-        self.edge_permutation = self._multiply_edges_permutation(other)
-        self.edge_orientation = self._multiply_edges_orientation(other)
+        self.edges_permutation = self._multiply_edges_permutation(other)
+        self.edges_orientation = self._multiply_edges_orientation(other)
 
     def _multiply_edges_permutation(self, other):
         """
@@ -123,8 +122,8 @@ class CubieCube(RubiksCube):
         """
         new_edges_permutation = [Edge.UR] * NUMBER_OF_EDGES
         for edg in Edge:
-            edge_in_destination = other.edge_permutation[edg]
-            edge_in_origin = self.edge_permutation[edge_in_destination]
+            edge_in_destination = other.edges_permutation[edg]
+            edge_in_origin = self.edges_permutation[edge_in_destination]
             new_edges_permutation[edg] = edge_in_origin
         return new_edges_permutation
 
@@ -147,9 +146,9 @@ class CubieCube(RubiksCube):
         """
         new_edges_orientation = [SingleEdgeOrientation.normal] * NUMBER_OF_EDGES
         for edg in Edge:
-            edge_in_destination = other.edge_permutation[edg]
-            orientation_in_origin = self.edge_orientation[edge_in_destination]
-            orientation_in_destination = other.edge_orientation[edg]
+            edge_in_destination = other.edges_permutation[edg]
+            orientation_in_origin = self.edges_orientation[edge_in_destination]
+            orientation_in_destination = other.edges_orientation[edg]
             orientation = orientation_in_origin + orientation_in_destination
             new_edges_orientation[edg] = orientation % NUMBER_OF_EDGES_ORIENTATIONS
         return new_edges_orientation
@@ -157,6 +156,6 @@ class CubieCube(RubiksCube):
 
 if __name__ == "__main__":
     my_cube = CubieCube()
-    print(my_cube.corner_permutation.permutated_to_URF)
-    print(my_cube.corner_permutation)
+    print(my_cube.corners_permutation.replaces_URF)
+    print(my_cube.corners_permutation)
     print(my_cube)
