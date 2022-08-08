@@ -11,7 +11,8 @@ class Color(Enum):
     L = 4
     B = 5
 
-    def get_color_from(self, character: str):
+    @classmethod
+    def get_color_from(cls, character: str):
         character = character.upper()
         assert character in Color.__dict__
         return Color.__getattr__(character)
