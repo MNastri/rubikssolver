@@ -49,31 +49,6 @@ class RubiksCube(ABC):
          first two layers"""
         raise NotImplementedError
 
-    @abstractmethod
-    def permutate_edges_in_up_face(self):
-        """returns the solved cube"""
-        raise NotImplementedError
-
-
-# face colors
-#                  ──────── ┌──┬──┬──┐
-#                /        /││  │  │  │
-#               /   0    / │├──┼──┼──┤
-#              /        /  ││  │4 │  │
-# ┌──┬──┬──┐  ┌──┬──┬──┐   │├──┼──┼──┤
-# │  │  │  │  │  │  │  │ 3 ││  │  │  │
-# ├──┼──┼──┤  ├──┼──┼──┤   │└──┴──┴──┘
-# │  │1 │  │  │  │2 │  │  /
-# ├──┼──┼──┤  ├──┼──┼──┤ /
-# │  │  │  │  │  │  │  │/
-# └──┴──┴──┘  └──┴──┴──┘
-#             ┌──┬──┬──┐
-#             │  │  │  │
-#             ├──┼──┼──┤
-#             │  │5 │  │
-#             ├──┼──┼──┤
-#             │  │  │  │
-#             └──┴──┴──┘
 class Color(Enum):
     """The colors present on each face of a Rubik's cube"""
 
@@ -83,6 +58,24 @@ class Color(Enum):
     RIGHT = "R"
     BACK = "B"
     DOWN = "D"
+    #                  ──────── ┌──┬──┬──┐
+    #                /        /││  │  │  │
+    #               /   0    / │├──┼──┼──┤
+    #              /        /  ││  │4 │  │
+    # ┌──┬──┬──┐  ┌──┬──┬──┐   │├──┼──┼──┤
+    # │  │  │  │  │  │  │  │ 3 ││  │  │  │
+    # ├──┼──┼──┤  ├──┼──┼──┤   │└──┴──┴──┘
+    # │  │1 │  │  │  │2 │  │  /
+    # ├──┼──┼──┤  ├──┼──┼──┤ /
+    # │  │  │  │  │  │  │  │/
+    # └──┴──┴──┘  └──┴──┴──┘
+    #             ┌──┬──┬──┐
+    #             │  │  │  │
+    #             ├──┼──┼──┤
+    #             │  │5 │  │
+    #             ├──┼──┼──┤
+    #             │  │  │  │
+    #             └──┴──┴──┘
 
 
 COLOR_VALUE_TO_COLOR_NAME = {c.value: c for c in Color}
