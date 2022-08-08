@@ -48,11 +48,8 @@ class CubieCube(RubiksCube):
         # TODO EDGE MULTIPLY
 
     def _corner_multiply(self, other):
-        new_corners_permutation = self._new_corners_permutation(other)  # TODO necessary?
-        new_corners_orientation = self._new_corners_orientation(other)  # TODO necessary?
-        for cor in Corner:
-            self.corners_permutation[cor] = new_corners_permutation[cor]
-            self.corners_orientation[cor] = new_corners_orientation[cor]
+        self.corners_permutation = self._new_corners_permutation(other)
+        self.corners_orientation = self._new_corners_orientation(other)
 
     def _new_corners_permutation(self, other):
         new_corners_permutation = [Corner.URF] * NUMBER_OF_CORNERS
@@ -63,7 +60,7 @@ class CubieCube(RubiksCube):
         return new_corners_permutation
 
     def _new_corners_orientation(self, other):
-        new_corners_orientation = [SingleCornerOrientation.normal] * NUMBER_OF_CORNERS  # TODO necessary?
+        new_corners_orientation = [SingleCornerOrientation.normal] * NUMBER_OF_CORNERS
         for cor in Corner:
             corner_in_destination = other.corners_permutation[cor]
             orientation_in_origin = self.corners_orientation[corner_in_destination]
