@@ -47,6 +47,8 @@ class FaceletsCube:
 if __name__ == "__main__":
     print(FaceletsCube())
     print(FaceletsCube().facelets)
-    cube_str = "DUUBULDBFRULBLUFDUBRDFFFBLURBFRRULLLRRBLBDUDLRDBFDFDRF"
+    # TODO test these two strings everywhere ↓
+    # cube_str = "DUUBULDBFRULBLUFDUBRDFFFBLURBFRRULLLRRBLBDUDLRDBFDFDRF"  # OLD STRING WHEN IT WAS U→L→F→R→B→D. NEEDS TESTING
+    cube_str = "DUUBULDBFRBFRRULLLBRDFFFBLURDBFDFDRFRULBLUFDURRBLBDUDL"  # NEW STRING. NEEDS TESTING
     test_string_cube = FaceletsCube().from_string(cube_str)
     print(test_string_cube)
