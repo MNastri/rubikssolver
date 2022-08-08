@@ -1,6 +1,7 @@
 from enum import IntEnum
 from typing import List
 
+NUMBER_OF_EDGES_ORIENTATIONS = 2
 NUMBER_OF_EDGES = 12
 
 
