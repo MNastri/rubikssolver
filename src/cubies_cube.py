@@ -46,15 +46,15 @@ class CubieCube(RubiksCube):
         """
         applies corner and edge multiplication to this cube.
         """
-        # TODO docs. motivation? how it works?
-        self._corner_multiply(other)
+        self._corners_multiply(other)
+        self._edges_multiply(other)
         # TODO EDGE MULTIPLY
 
-    def _corner_multiply(self, other):
-        self.corners_permutation = self._multiply_corner_permutation(other)
-        self.corners_orientation = self._multiply_corner_orientation(other)
+    def _corners_multiply(self, other):
+        self.corners_permutation = self._multiply_corners_permutation(other)
+        self.corners_orientation = self._multiply_corners_orientation(other)
 
-    def _multiply_corner_permutation(self, other):
+    def _multiply_corners_permutation(self, other):
         """
         let
         A = "some permutation of corners"
@@ -76,7 +76,7 @@ class CubieCube(RubiksCube):
             new_corners_permutation[cor] = corner_in_origin
         return new_corners_permutation
 
-    def _multiply_corner_orientation(self, other):
+    def _multiply_corners_orientation(self, other):
         """
         let
         A = "some permutation of corners"
