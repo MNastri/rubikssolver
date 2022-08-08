@@ -14,6 +14,13 @@ class Corner(IntEnum):
     DLF = 5
     DBL = 6
     DRB = 7
+
+    @classmethod
+    def get_corner_from(cls, name: str):
+        name = name.upper()
+        assert name in Corner.__dict__
+        return Corner.__getattr__(name)
+
     # ┌──┬──┬──┐
     # │2 │  │3 │
     # ├──┼──┼──┤
