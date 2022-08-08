@@ -34,10 +34,10 @@ class CubieCube():
     def __str__(self):
         corners = range(NUMBER_OF_CORNERS)
         edges = range(NUMBER_OF_EDGES)
-        ss = ""
+        ss = "Corners:"
         for cor in corners:
             ss += f"({self.corners_permutation[cor]},{self.corners_orientation[cor]})"
-        ss += "\n"
+        ss += "\nEdges:"
         for edg in edges:
             ss += f"({self.edges_permutation[edg]},{self.edges_orientation[edg]})"
         return ss
