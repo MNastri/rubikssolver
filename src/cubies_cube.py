@@ -43,6 +43,9 @@ class CubieCube(RubiksCube):
         return ss
 
     def __mul__(self, other):
+        """
+        applies corner and edge multiplication to this cube.
+        """
         # TODO docs. motivation? how it works?
         self._corner_multiply(other)
         # TODO EDGE MULTIPLY
@@ -52,6 +55,25 @@ class CubieCube(RubiksCube):
         self.corners_orientation = self._multiply_corner_orientation(other)
 
     def _multiply_corner_permutation(self, other):
+        """
+        let
+        A = "corners in a certain permutation"
+        B = "corners in a certain permutation"
+        M = A * B
+        then
+        M[corner] = A[B[corner]]
+
+        EXAMPLE
+        A move = F turn then R turn
+        1) checking on what corner replaces UBR after both turns:
+        A[UBR] = F[R[UBR]]
+        2) checking on what corner replaces UBR after R turn:
+        R[UBR] = URF
+        3) checking on what corner replaces URF after F turn:
+        F[URF] = UFL
+
+        A[UBR] = F[R[UBR]]= F[URF] = UFL
+        """
         new_corners_permutation = [Corner.URF] * NUMBER_OF_CORNERS
         for cor in Corner:
             corner_in_destination = other.corners_permutation[cor]
