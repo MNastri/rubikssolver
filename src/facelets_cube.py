@@ -9,7 +9,7 @@ from facelets import (
 from interface import RubiksCube
 
 
-class FaceletsCube(RubiksCube):
+class FaceletsCube():
     def __init__(self):
         self._store_solved_cube()
 
