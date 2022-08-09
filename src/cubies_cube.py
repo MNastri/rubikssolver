@@ -88,9 +88,9 @@ class CubieCube:
             corners += (list(corner_as_characters),)
         return corners
 
-    def _get_corners_reference_facelet_from(self, corner_names):
+    def _get_corners_reference_facelet_from(self, corner_characters):
         references = []
-        for corner in corner_names:
+        for corner in corner_characters:
             if Color.U.name in corner:
                 reference_to_add = corner.index(Color.U.name)
             else:
@@ -98,9 +98,9 @@ class CubieCube:
             references += reference_to_add,
         return references
 
-    def _get_corners_from(self, corner_names, reference_facelets):  # TODO renaming overhaul?
+    def _get_corners_from(self, corner_characters, reference_facelets):
         corners = []
-        for cor, ref in zip(corner_names, reference_facelets):
+        for cor, ref in zip(corner_characters, reference_facelets):
             reference_facelet = cor[ref]
             clockwised_facelet = cor[(ref + 1) % 3]
             anticlockwised_facelet = cor[(ref + 2) % 3]
