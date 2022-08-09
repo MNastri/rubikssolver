@@ -50,22 +50,23 @@ class CubieCube:
         the string
         """
         assert len(s) == NUMBER_OF_FACELETS
-        corner_characters = self._get_corners_names_from(s)
-        print(corner_characters)
-        reference_facelets = self._get_reference_facelets_from(corner_characters)
+        corners_characters = self._get_corners_characters_from(s)
+        # TODO check if received corners are valid
+        print(corners_characters)
+        reference_facelets = self._get_corner_reference_facelets_from(corner_characters)
         print(reference_facelets)
-        corner_names = self._get_corners_from(corner_characters, reference_facelets)
-        print(corner_names)
-        corner_permutation = [Corner.get_corner_from(name) for name in corner_names]
-        print(corner_permutation)
-        corner_orientation = [SingleCornerOrientation(value) for value in reference_facelets]
-        print(corner_orientation)
+        corners_names = self._get_corners_from(corners_characters, reference_facelets)
+        print(corners_names)
+        corners_permutation = [Corner.get_corner_from(name) for name in corner_names]
+        print(corners_permutation)
+        corners_orientation = [SingleCornerOrientation(value) for value in reference_facelets]
+        print(corners_orientation)
         # self._check_the_edge_facelets_from(s)  # TODO EDGES
         # self._check_number_of_colors_is_correct(s)  # TODO checking number of colors
         # self._check_orientation(s)  # TODO check if orientation of corners is (0 mod 3) and of edges is (0 mod 2)
         return self
 
-    def _get_corners_names_from(self, s: str):  # TODO renaming overhaul?
+    def _get_corners_characters_from(self, s: str):  # TODO renaming overhaul?
         corners = []
         for corner in CORNER_FACELETS:
             character_in_string = lambda facelet: s[facelet]
