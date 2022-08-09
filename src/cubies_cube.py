@@ -54,34 +54,38 @@ class CubieCube:
         the string
         """
         assert len(s) == NUMBER_OF_FACELETS
-        corners_characters = self._get_corners_characters_from(s)
-        # TODO check if received corners are valid
-        print(corners_characters)
-        reference_facelets = self._get_corners_reference_facelet_from(corners_characters)
-        print(reference_facelets)
-        corners_names = self._get_corners_from(corners_characters, reference_facelets)
-        print(corners_names)
-        corners_permutation = [Corner.get_corner_from(name) for name in corners_names]
-        print(corners_permutation)
-        corners_orientation = [SingleCornerOrientation(value) for value in reference_facelets]
-        print(corners_orientation)
-        print()
-        edge_characters = self._get_edges_characters_from(s)
-        # TODO check if received edges are valid
-        print(edge_characters)
-        reference_facelets = self._get_edges_reference_facelet_from(edge_characters)
-        print(reference_facelets)
-        edges_names = self._get_edges_from(edge_characters, reference_facelets)
-        print(edges_names)
-        edges_permutation = [Edge.get_edge_from(name) for name in edges_names]
-        print(edges_permutation)
-        edges_orientation = [SingleEdgeOrientation(value) for value in
-                               reference_facelets]
-        print(edges_orientation)
+        self._create_corners_from_string(s)
+        self._create_edges_from_string(s)
         # self._check_number_of_colors_is_correct(s)  # TODO checking number of colors
         return self
 
-    def _get_corners_characters_from(self, s: str):
+    def _create_corners_from_string(self, s):
+        corners_characters = self._get_corners_characters_from(s)
+        # TODO check if received corners are valid
+        reference_facelets = self._get_corners_reference_facelet_from(
+            corners_characters
+        )
+        corners_names = self._get_corners_from(corners_characters, reference_facelets)
+        corners_permutation = [Corner.get_corner_from(name) for name in corners_names]
+        corners_orientation = [
+            SingleCornerOrientation(value) for value in reference_facelets
+        ]
+        self.corners_permutation = CsP(corners_permutation)
+        self.corners_orientation = CsO(corners_orientation)
+
+    def _create_edges_from_string(self, s):
+        edge_characters = self._get_edges_characters_from(s)
+        # TODO check if received edges are valid
+        reference_facelets = self._get_edges_reference_facelet_from(edge_characters)
+        edges_names = self._get_edges_from(edge_characters, reference_facelets)
+        edges_permutation = [Edge.get_edge_from(name) for name in edges_names]
+        edges_orientation = [
+            SingleEdgeOrientation(value) for value in reference_facelets
+        ]
+        self.edges_permutation = EsP(edges_permutation)
+        self.edges_orientation = EsO(edges_orientation)
+
+    def _get_corners_characters_from(self, s):
         corners = []
         for facelets_idx in CORNER_FACELETS:
             get_character = lambda idx: s[idx]
@@ -96,7 +100,7 @@ class CubieCube:
                 reference_to_add = corner.index(Color.U.name)
             else:
                 reference_to_add = corner.index(Color.D.name)
-            references += reference_to_add,
+            references += (reference_to_add,)
         return references
 
     def _get_corners_from(self, corner_characters, reference_facelets):
@@ -110,7 +114,7 @@ class CubieCube:
             )
         return corners
 
-    def _get_edges_characters_from(self, s: str):  # TODO renaming overhaul?
+    def _get_edges_characters_from(self, s):
         edges = []
         for edge in EDGE_FACELETS:
             character = lambda idx: s[idx]
@@ -129,7 +133,7 @@ class CubieCube:
                 reference_to_add = edge.index(Color.F.name)
             else:
                 reference_to_add = edge.index(Color.B.name)
-            references += reference_to_add,
+            references += (reference_to_add,)
         return references
 
     def _get_edges_from(self, edge_characters, reference_facelets):
@@ -137,7 +141,7 @@ class CubieCube:
         for edg, ref in zip(edge_characters, reference_facelets):
             reference_facelet = edg[ref]
             flipped_facelet = edg[(ref + 1) % NUMBER_OF_EDGES_ORIENTATIONS]
-            edges += (reference_facelet + flipped_facelet),
+            edges += ((reference_facelet + flipped_facelet),)
         return edges
 
     def __mul__(self, other):
@@ -258,5 +262,13 @@ if __name__ == "__main__":
     print(my_cube.corners_permutation.replaces_URF)
     print(my_cube.corners_permutation)
     print(my_cube)
-    cube_str = "DUUBULDBFRBFRRULLLBRDFFFBLURDBFDFDRFRULBLUFDURRBLBDUDL"
-    CubieCube().from_string(cube_str)
+    cube_strings = {
+        "Example": "DUUBULDBFRBFRRULLLBRDFFFBLURDBFDFDRFRULBLUFDURRBLBDUDL",
+        "Solved": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
+        "U'": "UUUUUUUUUFFFRRRRRRLLLFFFFFFDDDDDDDDDBBBLLLLLLRRRBBBBBB",
+        "F": "UUUUUULLLURRURRURRFFFFFFFFFRRRDDDDDDLLDLLDLLDBBBBBBBBB",
+    }
+    my_cube = CubieCube().from_string(cube_strings["Example"])
+    print(my_cube.corners_permutation.replaces_URF)
+    print(my_cube.corners_permutation)
+    print(my_cube)
