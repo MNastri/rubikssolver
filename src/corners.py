@@ -97,17 +97,37 @@ class SingleCornerOrientation(IntEnum):
 
 
 class CornersPermutation(List):
-    def __init__(self, *args, **kwargs):
-        super(CornersPermutation, self).__init__(*args, **kwargs)
-        assert len(self) == NUMBER_OF_CORNERS
-        self.replaces_URF = self.__getitem__(0)
-        self.replaces_UFL = self.__getitem__(1)
-        self.replaces_ULB = self.__getitem__(2)
-        self.replaces_UBR = self.__getitem__(3)
-        self.replaces_DFR = self.__getitem__(4)
-        self.replaces_DLF = self.__getitem__(5)
-        self.replaces_DBL = self.__getitem__(6)
-        self.replaces_DRB = self.__getitem__(7)
+    @property
+    def replaces_URF(self):
+        return self.__getitem__(0)
+
+    @property
+    def replaces_UFL(self):
+        return self.__getitem__(1)
+
+    @property
+    def replaces_ULB(self):
+        return self.__getitem__(2)
+
+    @property
+    def replaces_UBR(self):
+        return self.__getitem__(3)
+
+    @property
+    def replaces_DFR(self):
+        return self.__getitem__(4)
+
+    @property
+    def replaces_DLF(self):
+        return self.__getitem__(5)
+
+    @property
+    def replaces_DBL(self):
+        return self.__getitem__(6)
+
+    @property
+    def replaces_DRB(self):
+        return self.__getitem__(7)
 
 
 if __name__ == "__main__":
@@ -117,17 +137,37 @@ if __name__ == "__main__":
 
 
 class CornersOrientation(List):
-    def __init__(self, *args, **kwargs):
-        super(CornersOrientation, self).__init__(*args, **kwargs)
-        assert len(self) == NUMBER_OF_CORNERS
-        self.orientation_of_URF = self.__getitem__(0)
-        self.orientation_of_UFL = self.__getitem__(1)
-        self.orientation_of_ULB = self.__getitem__(2)
-        self.orientation_of_UBR = self.__getitem__(3)
-        self.orientation_of_DFR = self.__getitem__(4)
-        self.orientation_of_DLF = self.__getitem__(5)
-        self.orientation_of_DBL = self.__getitem__(6)
-        self.orientation_of_DRB = self.__getitem__(7)
+    @property
+    def orientation_of_URF(self):
+        return self.__getitem__(0)
+
+    @property
+    def orientation_of_UFL(self):
+        return self.__getitem__(1)
+
+    @property
+    def orientation_of_ULB(self):
+        return self.__getitem__(2)
+
+    @property
+    def orientation_of_UBR(self):
+        return self.__getitem__(3)
+
+    @property
+    def orientation_of_DFR(self):
+        return self.__getitem__(4)
+
+    @property
+    def orientation_of_DLF(self):
+        return self.__getitem__(5)
+
+    @property
+    def orientation_of_DBL(self):
+        return self.__getitem__(6)
+
+    @property
+    def orientation_of_DRB(self):
+        return self.__getitem__(7)
 
 
 if __name__ == "__main__":

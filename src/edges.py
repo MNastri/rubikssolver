@@ -24,6 +24,7 @@ class Edge(IntEnum):
         name = name.upper()
         assert name in Edge.__dict__
         return Edge.__getattr__(name)
+
     # ┌──┬──┬──┐
     # │  │3 │  │
     # ├──┼──┼──┤
@@ -60,54 +61,122 @@ class SingleEdgeOrientation(IntEnum):
     frame has the property that 10 of the 18 possible cube moves do not change
     these orientations.
     """
+
     normal = 0
     fliped = 1
 
 
 class EdgesPermutation(List):
-    def __init__(self, *args, **kwargs):
-        super(EdgesPermutation, self).__init__(*args, **kwargs)
-        assert len(self) == NUMBER_OF_EDGES
-        self.permutated_to_UR = self.__getitem__(0)
-        self.permutated_to_UF = self.__getitem__(1)
-        self.permutated_to_UL = self.__getitem__(2)
-        self.permutated_to_UB = self.__getitem__(3)
-        self.permutated_to_DR = self.__getitem__(4)
-        self.permutated_to_DF = self.__getitem__(5)
-        self.permutated_to_DL = self.__getitem__(6)
-        self.permutated_to_DB = self.__getitem__(7)
-        self.permutated_to_FR = self.__getitem__(8)
-        self.permutated_to_FL = self.__getitem__(9)
-        self.permutated_to_BL = self.__getitem__(10)
-        self.permutated_to_BR = self.__getitem__(11)
+    @property
+    def permutated_to_UR(self):
+        return self.__getitem__(0)
+
+    @property
+    def permutated_to_UF(self):
+        return self.__getitem__(1)
+
+    @property
+    def permutated_to_UL(self):
+        return self.__getitem__(2)
+
+    @property
+    def permutated_to_UB(self):
+        return self.__getitem__(3)
+
+    @property
+    def permutated_to_DR(self):
+        return self.__getitem__(4)
+
+    @property
+    def permutated_to_DF(self):
+        return self.__getitem__(5)
+
+    @property
+    def permutated_to_DL(self):
+        return self.__getitem__(6)
+
+    @property
+    def permutated_to_DB(self):
+        return self.__getitem__(7)
+
+    @property
+    def permutated_to_FR(self):
+        return self.__getitem__(8)
+
+    @property
+    def permutated_to_FL(self):
+        return self.__getitem__(9)
+
+    @property
+    def permutated_to_BL(self):
+        return self.__getitem__(10)
+
+    @property
+    def permutated_to_BR(self):
+        return self.__getitem__(11)
 
 
 if __name__ == "__main__":
-    test_permutation = EdgesPermutation([100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111])
+    test_permutation = EdgesPermutation(
+        [100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111]
+    )
     print(test_permutation)
     print(test_permutation.permutated_to_UR)
 
 
 class EdgesOrientation(List):
-    # TODO check if args/kwargs are necessary when calling super
-    def __init__(self, *args, **kwargs):
-        super(EdgesOrientation, self).__init__(*args, **kwargs)
-        assert len(self) == NUMBER_OF_EDGES
-        self.orientation_of_UR = self.__getitem__(0)
-        self.orientation_of_UF = self.__getitem__(1)
-        self.orientation_of_UL = self.__getitem__(2)
-        self.orientation_of_UB = self.__getitem__(3)
-        self.orientation_of_DR = self.__getitem__(4)
-        self.orientation_of_DF = self.__getitem__(5)
-        self.orientation_of_DL = self.__getitem__(6)
-        self.orientation_of_DB = self.__getitem__(7)
-        self.orientation_of_FR = self.__getitem__(8)
-        self.orientation_of_FL = self.__getitem__(9)
-        self.orientation_of_BL = self.__getitem__(10)
-        self.orientation_of_BR = self.__getitem__(11)
+    @property
+    def orientation_of_UR(self):
+        return self.__getitem__(0)
+
+    @property
+    def orientation_of_UF(self):
+        return self.__getitem__(1)
+
+    @property
+    def orientation_of_UL(self):
+        return self.__getitem__(2)
+
+    @property
+    def orientation_of_UB(self):
+        return self.__getitem__(3)
+
+    @property
+    def orientation_of_DR(self):
+        return self.__getitem__(4)
+
+    @property
+    def orientation_of_DF(self):
+        return self.__getitem__(5)
+
+    @property
+    def orientation_of_DL(self):
+        return self.__getitem__(6)
+
+    @property
+    def orientation_of_DB(self):
+        return self.__getitem__(7)
+
+    @property
+    def orientation_of_FR(self):
+        return self.__getitem__(8)
+
+    @property
+    def orientation_of_FL(self):
+        return self.__getitem__(9)
+
+    @property
+    def orientation_of_BL(self):
+        return self.__getitem__(10)
+
+    @property
+    def orientation_of_BR(self):
+        return self.__getitem__(11)
 
 
 if __name__ == "__main__":
-    test_orientation = EdgesOrientation([200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211])
+    test_orientation = EdgesOrientation(
+        [200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211]
+    )
     print(test_orientation)
     print(test_orientation.orientation_of_UR)
