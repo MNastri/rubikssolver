@@ -260,15 +260,33 @@ class CubieCube:
 if __name__ == "__main__":
     my_cube = CubieCube()
     print(my_cube.corners_permutation.replaces_URF)
+    print(my_cube.corners_orientation.orientation_of_URF)
+    print()
     print(my_cube.corners_permutation)
+    print(my_cube.corners_orientation)
+    print()
+    print(my_cube.edges_permutation)
+    print(my_cube.edges_orientation)
+    print()
     print(my_cube)
+    print()
+    print()
+
     cube_strings = {
         "Example": "DUUBULDBFRBFRRULLLBRDFFFBLURDBFDFDRFRULBLUFDURRBLBDUDL",
         "Solved": "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB",
         "U'": "UUUUUUUUUFFFRRRRRRLLLFFFFFFDDDDDDDDDBBBLLLLLLRRRBBBBBB",
         "F": "UUUUUULLLURRURRURRFFFFFFFFFRRRDDDDDDLLDLLDLLDBBBBBBBBB",
     }
+
     my_cube = CubieCube().from_string(cube_strings["Example"])
     print(my_cube.corners_permutation.replaces_URF)
+    print(my_cube.corners_orientation.orientation_of_URF)
+    print()
     print(my_cube.corners_permutation)
+    print(my_cube.corners_orientation)
+    print()
+    print(my_cube.edges_permutation)
+    print(my_cube.edges_orientation)
+    print()
     print(my_cube)
