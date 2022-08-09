@@ -66,12 +66,12 @@ class CubieCube:
         # self._check_orientation(s)  # TODO check if orientation of corners is (0 mod 3) and of edges is (0 mod 2)
         return self
 
-    def _get_corners_characters_from(self, s: str):  # TODO renaming overhaul?
+    def _get_corners_characters_from(self, s: str):
         corners = []
-        for corner in CORNER_FACELETS:
-            character_in_string = lambda facelet: s[facelet]
-            mapped_corners = map(character_in_string, corner)
-            corners += (list(mapped_corners),)
+        for facelets_idx in CORNER_FACELETS:
+            get_character = lambda idx: s[idx]
+            corner_as_characters = map(get_character, facelets_idx)
+            corners += (list(corner_as_characters),)
         return corners
 
     def _get_reference_facelets_from(self, corner_names):  # TODO renaming overhaul!
