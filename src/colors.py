@@ -19,7 +19,8 @@ class Color(Enum):
 
     @classmethod
     def is_number_of_colors_correct(cls, facelets):
-        color_count = [facelets.count(cc.value) for cc in Color]
+        colors = list(map(cls.get_color_from, facelets))
+        color_count = [colors.count(cc) for cc in Color]
         return all(count == 9 for count in color_count)
 
     #                  ──────── ┌──┬──┬──┐

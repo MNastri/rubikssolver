@@ -49,6 +49,7 @@ class RubiksCube(ABC):
          first two layers"""
         raise NotImplementedError
 
+
 class Color(Enum):
     """The colors present on each face of a Rubik's cube"""
 
@@ -76,14 +77,6 @@ class Color(Enum):
     #             ├──┼──┼──┤
     #             │  │  │  │
     #             └──┴──┴──┘
-
-
-COLOR_VALUE_TO_COLOR_NAME = {c.value: c for c in Color}
-
-
-def is_number_of_colors_correct(facelets):
-    color_count = [facelets.count(c.value) for c in Color]
-    return all(count == 9 for count in color_count)
 
 
 def solve_rubiks_cube(cube: RubiksCube):

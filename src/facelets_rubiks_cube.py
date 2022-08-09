@@ -169,7 +169,7 @@ class FaceletsRubiksCube(RubiksCube):
         self.facelets = [facelet for face in faces for facelet in face]
 
     def _store_color_names(self, facelets):
-        self.facelets = [COLOR_VALUE_TO_COLOR_NAME[f] for f in facelets]
+        self.facelets = [Color.get_color_from(ff) for ff in facelets]
 
     def solve_first_cross(self):
         edges_to_solve = ["DB", "DR", "DF", "DL"]
