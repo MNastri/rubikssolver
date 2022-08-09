@@ -18,6 +18,12 @@ class Edge(IntEnum):
     FL = 9
     BL = 10
     BR = 11
+
+    @classmethod
+    def get_edge_from(cls, name: str):
+        name = name.upper()
+        assert name in Edge.__dict__
+        return Edge.__getattr__(name)
     # ┌──┬──┬──┐
     # │  │3 │  │
     # ├──┼──┼──┤

@@ -14,8 +14,11 @@ from edges import (
     NUMBER_OF_EDGES_ORIENTATIONS,
     SingleEdgeOrientation,
 )
-from rubiks_definitions import CORNER_FACELETS
 from facelets import NUMBER_OF_FACELETS
+from rubiks_definitions import (
+    CORNER_FACELETS,
+    EDGE_FACELETS,
+)
 
 
 class CubieCube:
@@ -61,9 +64,20 @@ class CubieCube:
         print(corners_permutation)
         corners_orientation = [SingleCornerOrientation(value) for value in reference_facelets]
         print(corners_orientation)
-        # self._check_the_edge_facelets_from(s)  # TODO EDGES
+        print()
+        edge_characters = self._get_edges_characters_from(s)
+        # TODO check if received edges are valid
+        print(edge_characters)
+        reference_facelets = self._get_edges_reference_facelet_from(edge_characters)
+        print(reference_facelets)
+        edges_names = self._get_edges_from(edge_characters, reference_facelets)
+        print(edges_names)
+        edges_permutation = [Edge.get_edge_from(name) for name in edges_names]
+        print(edges_permutation)
+        edges_orientation = [SingleEdgeOrientation(value) for value in
+                               reference_facelets]
+        print(edges_orientation)
         # self._check_number_of_colors_is_correct(s)  # TODO checking number of colors
-        # self._check_orientation(s)  # TODO check if orientation of corners is (0 mod 3) and of edges is (0 mod 2)
         return self
 
     def _get_corners_characters_from(self, s: str):
@@ -94,6 +108,36 @@ class CubieCube:
                 (reference_facelet + clockwised_facelet + anticlockwised_facelet),
             )
         return corners
+
+    def _get_edges_characters_from(self, s: str):  # TODO renaming overhaul?
+        edges = []
+        for edge in EDGE_FACELETS:
+            character = lambda idx: s[idx]
+            mapped_edges = map(character, edge)
+            edges += (list(mapped_edges),)
+        return edges
+
+    def _get_edges_reference_facelet_from(self, edge_characters):
+        references = []
+        for edge in edge_characters:
+            if Color.U.name in edge:
+                reference_to_add = edge.index(Color.U.name)
+            elif Color.D.name in edge:
+                reference_to_add = edge.index(Color.D.name)
+            elif Color.F.name in edge:
+                reference_to_add = edge.index(Color.F.name)
+            else:
+                reference_to_add = edge.index(Color.B.name)
+            references += reference_to_add,
+        return references
+
+    def _get_edges_from(self, edge_characters, reference_facelets):
+        edges = []
+        for edg, ref in zip(edge_characters, reference_facelets):
+            reference_facelet = edg[ref]
+            flipped_facelet = edg[(ref + 1) % NUMBER_OF_EDGES_ORIENTATIONS]
+            edges += (reference_facelet + flipped_facelet),
+        return edges
 
     def __mul__(self, other):
         """
