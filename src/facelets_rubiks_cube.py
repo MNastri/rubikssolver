@@ -2,10 +2,6 @@ from typing import List
 
 from colors import Color
 from interface import (
-    Corner,
-    CornerPositions,
-    Edge,
-    EdgePositions,
     RubiksCube,
 )
 
@@ -99,31 +95,6 @@ class FaceletsRubiksCube(RubiksCube):
              18, 19, 20, 30, 31, 32, 33, 34, 35,
              27, 28, 29, 39, 40, 41, 42, 43, 44,
              45, 46, 47, 48, 49, 50, 51, 52, 53, ]
-        )
-
-    @property
-    def edges(self):
-        return [self._get_edge(val.positions) for val in self._edges_data.values()]
-
-    def _get_edge(self, pos: EdgePositions):
-        return self.facelets[pos.first].value + self.facelets[pos.second].value
-
-    def find_edge(self, edge_key):
-        # TODO não informa direito sobre a aresta. passa a posição sem orientação
-        if edge_key in self.edges:
-            return self.edges.index(edge_key)
-        reoriented_edges = [edge[::-1] for edge in self.edges]
-        return reoriented_edges.index(edge_key)
-
-    @property
-    def corners(self):
-        return [self._get_corner(val.positions) for val in self._corners_data.values()]
-
-    def _get_corner(self, pos: CornerPositions):
-        return (
-            self.facelets[pos.first].value
-            + self.facelets[pos.second].value
-            + self.facelets[pos.third].value
         )
 
     def _check_facelets(self, facelets):

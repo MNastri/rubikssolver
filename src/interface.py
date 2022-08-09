@@ -2,8 +2,6 @@ from abc import (
     ABC,
     abstractmethod,
 )
-from enum import Enum
-from typing import NamedTuple
 
 
 class RubiksCube(ABC):
@@ -58,24 +56,3 @@ def solve_rubiks_cube(cube: RubiksCube):
     cube.permutate_corners_in_up_face()
     cube.orient_corners_in_up_face()
     cube.permutate_edges_in_up_face()
-
-
-class EdgePositions(NamedTuple):
-    first: int
-    second: int
-
-
-class Edge(NamedTuple):
-    number: int
-    positions: EdgePositions
-
-
-class CornerPositions(NamedTuple):
-    first: int
-    second: int
-    third: int
-
-
-class Corner(NamedTuple):
-    number: int
-    positions: CornerPositions
