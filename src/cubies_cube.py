@@ -53,11 +53,11 @@ class CubieCube:
         corners_characters = self._get_corners_characters_from(s)
         # TODO check if received corners are valid
         print(corners_characters)
-        reference_facelets = self._get_corner_reference_facelets_from(corner_characters)
+        reference_facelets = self._get_corner_reference_facelets_from(corners_characters)
         print(reference_facelets)
         corners_names = self._get_corners_from(corners_characters, reference_facelets)
         print(corners_names)
-        corners_permutation = [Corner.get_corner_from(name) for name in corner_names]
+        corners_permutation = [Corner.get_corner_from(name) for name in corners_names]
         print(corners_permutation)
         corners_orientation = [SingleCornerOrientation(value) for value in reference_facelets]
         print(corners_orientation)
