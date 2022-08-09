@@ -15,6 +15,7 @@ from edges import (
     SingleEdgeOrientation,
 )
 from rubiks_definitions import CORNER_FACELETS
+from facelets import NUMBER_OF_FACELETS
 
 
 class CubieCube:
@@ -48,7 +49,7 @@ class CubieCube:
         Reads a string of facelets and replaces the cubies with the cubies created from
         the string
         """
-        # TODO make some checks: number of colors, length of string, etc
+        assert len(s) == NUMBER_OF_FACELETS
         corner_characters = self._get_corners_names_from(s)
         print(corner_characters)
         reference_facelets = self._get_reference_facelets_from(corner_characters)
@@ -60,6 +61,9 @@ class CubieCube:
         corner_orientation = [SingleCornerOrientation(value) for value in reference_facelets]
         print(corner_orientation)
         # self._check_the_edge_facelets_from(s)  # TODO EDGES
+        # self._check_number_of_colors_is_correct(s)  # TODO checking number of colors
+        # self._check_orientation(s)  # TODO check if orientation of corners is (0 mod 3) and of edges is (0 mod 2)
+        return self
 
     def _get_corners_names_from(self, s: str):  # TODO renaming overhaul?
         corners = []
