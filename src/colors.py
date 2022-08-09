@@ -17,6 +17,11 @@ class Color(Enum):
         assert character in Color.__dict__
         return Color.__getattr__(character)
 
+    @classmethod
+    def is_number_of_colors_correct(cls, facelets):
+        color_count = [facelets.count(cc.value) for cc in Color]
+        return all(count == 9 for count in color_count)
+
     #                  ──────── ┌──┬──┬──┐
     #                /        /││  │  │  │
     #               /   0    / │├──┼──┼──┤

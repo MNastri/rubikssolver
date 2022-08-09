@@ -1,13 +1,11 @@
 from typing import List
-
+from colors import Color
 from interface import (
-    Color,
     COLOR_VALUE_TO_COLOR_NAME,
     Corner,
     CornerPositions,
     Edge,
     EdgePositions,
-    is_number_of_colors_correct,
     RubiksCube,
 )
 
@@ -161,7 +159,7 @@ class FaceletsRubiksCube(RubiksCube):
     def _check_facelets(self, facelets):
         if isinstance(facelets, (List, str)):
             assert len(facelets) == NUMBER_OF_FACELETS
-            assert is_number_of_colors_correct(facelets)
+            assert Color.is_number_of_colors_correct(facelets)
         else:
             allowed_types = [str, List, None]
             raise TypeError(f"facelets should be one of {allowed_types}")
