@@ -102,8 +102,8 @@ class CubieCube:
         corners = []
         for cor, ref in zip(corner_characters, reference_facelets):
             reference_facelet = cor[ref]
-            clockwised_facelet = cor[(ref + 1) % 3]
-            anticlockwised_facelet = cor[(ref + 2) % 3]
+            clockwised_facelet = cor[(ref + 1) % NUMBER_OF_CORNER_ORIENTATIONS]
+            anticlockwised_facelet = cor[(ref + 2) % NUMBER_OF_CORNER_ORIENTATIONS]
             corners += (
                 (reference_facelet + clockwised_facelet + anticlockwised_facelet),
             )
