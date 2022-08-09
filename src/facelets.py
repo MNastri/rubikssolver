@@ -50,15 +50,15 @@ class Facelet(IntEnum):
     L_6_corner = 42
     L_7_edge = 43
     L_8_corner = 44
-    B_corner0 = 45
-    B_edge0 = 46
-    B_corner1 = 47
-    B_edge1 = 48
-    B = 49
-    B_edge2 = 50
-    B_corner2 = 51
-    B_edge3 = 52
-    B_corner3 = 53
+    B_0_corner = 45
+    B_1_edge = 46
+    B_2_corner = 47
+    B_3_edge = 48
+    B_4_center = 49
+    B_5_edge = 50
+    B_6_corner = 51
+    B_7_edge = 52
+    B_8_corner = 53
     #           ┌──┬──┬──┐
     #           │0 │1 │2 │
     #           ├──┼──┼──┤
