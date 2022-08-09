@@ -41,8 +41,6 @@ class FaceletsRubiksCube(RubiksCube):
         else:
             self._check_facelets(facelets)
             self._store_color_names(facelets)
-        self._create_edges_data()
-        self._create_corners_data()
 
     def __repr__(self):
         return str([f.value for f in self.facelets])
@@ -117,22 +115,6 @@ class FaceletsRubiksCube(RubiksCube):
         reoriented_edges = [edge[::-1] for edge in self.edges]
         return reoriented_edges.index(edge_key)
 
-    def _create_edges_data(self):
-        self._edges_data = {
-            "UB": Edge(0, EdgePositions(1, 37)),
-            "UR": Edge(1, EdgePositions(5, 28)),
-            "UF": Edge(2, EdgePositions(7, 19)),
-            "UL": Edge(3, EdgePositions(3, 10)),
-            "BL": Edge(4, EdgePositions(41, 12)),
-            "BR": Edge(5, EdgePositions(39, 32)),
-            "FR": Edge(6, EdgePositions(23, 30)),
-            "FL": Edge(7, EdgePositions(21, 14)),
-            "DB": Edge(8, EdgePositions(52, 43)),
-            "DR": Edge(9, EdgePositions(50, 34)),
-            "DF": Edge(10, EdgePositions(46, 25)),
-            "DL": Edge(11, EdgePositions(48, 16)),
-        }
-
     @property
     def corners(self):
         return [self._get_corner(val.positions) for val in self._corners_data.values()]
@@ -143,18 +125,6 @@ class FaceletsRubiksCube(RubiksCube):
             + self.facelets[pos.second].value
             + self.facelets[pos.third].value
         )
-
-    def _create_corners_data(self):
-        self._corners_data = {
-            "ULB": Corner(0, CornerPositions(0, 9, 38)),
-            "URB": Corner(1, CornerPositions(2, 29, 36)),
-            "URF": Corner(2, CornerPositions(8, 27, 20)),
-            "ULF": Corner(3, CornerPositions(6, 11, 18)),
-            "DLB": Corner(4, CornerPositions(51, 15, 44)),
-            "DRB": Corner(5, CornerPositions(53, 35, 42)),
-            "DRF": Corner(6, CornerPositions(47, 33, 26)),
-            "DLF": Corner(7, CornerPositions(45, 17, 24)),
-        }
 
     def _check_facelets(self, facelets):
         if isinstance(facelets, (List, str)):
