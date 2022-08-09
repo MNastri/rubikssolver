@@ -5,15 +5,15 @@ FACELETS_PER_FACE = 9
 
 
 class Facelet(IntEnum):
-    U_corner0 = 0
-    U_edge0 = 1
-    U_corner1 = 2
-    U_edge1 = 3
-    U = 4
-    U_edge2 = 5
-    U_corner2 = 6
-    U_edge3 = 7
-    U_corner3 = 8
+    U_0_corner = 0
+    U_1_edge = 1
+    U_2_corner = 2
+    U_3_edge = 3
+    U_4_center = 4
+    U_5_edge = 5
+    U_6_corner = 6
+    U_7_edge = 7
+    U_8_corner = 8
     R_corner0 = 9
     R_edge0 = 10
     R_corner1 = 11

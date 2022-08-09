@@ -2,20 +2,20 @@ from colors import Color
 from facelets import Facelet as Fac
 
 CORNER_FACELETS = [
-    [Fac.U_corner3, Fac.R_corner0, Fac.F_corner1],
-    [Fac.U_corner2, Fac.F_corner0, Fac.L_corner1],
-    [Fac.U_corner0, Fac.L_corner0, Fac.B_corner1],
-    [Fac.U_corner1, Fac.B_corner0, Fac.R_corner1],
+    [Fac.U_8_corner, Fac.R_corner0, Fac.F_corner1],
+    [Fac.U_6_corner, Fac.F_corner0, Fac.L_corner1],
+    [Fac.U_0_corner, Fac.L_corner0, Fac.B_corner1],
+    [Fac.U_2_corner, Fac.B_corner0, Fac.R_corner1],
     [Fac.D_corner1, Fac.F_corner3, Fac.R_corner2],
     [Fac.D_corner0, Fac.L_corner3, Fac.F_corner2],
     [Fac.D_corner2, Fac.B_corner3, Fac.L_corner2],
     [Fac.D_corner3, Fac.R_corner3, Fac.B_corner2],
 ]
 EDGE_FACELETS = [
-    [Fac.U_edge2, Fac.R_edge0],
-    [Fac.U_edge3, Fac.F_edge0],
-    [Fac.U_edge1, Fac.L_edge0],
-    [Fac.U_edge0, Fac.B_edge0],
+    [Fac.U_5_edge, Fac.R_edge0],
+    [Fac.U_7_edge, Fac.F_edge0],
+    [Fac.U_3_edge, Fac.L_edge0],
+    [Fac.U_1_edge, Fac.B_edge0],
     [Fac.D_edge2, Fac.R_edge3],
     [Fac.D_edge3, Fac.F_edge3],
     [Fac.D_edge1, Fac.L_edge3],
