@@ -1,7 +1,7 @@
 from typing import List
+
 from colors import Color
 from interface import (
-    COLOR_VALUE_TO_COLOR_NAME,
     Corner,
     CornerPositions,
     Edge,
@@ -47,14 +47,14 @@ class FaceletsRubiksCube(RubiksCube):
     def __repr__(self):
         return str([f.value for f in self.facelets])
 
-    def __str__(self):
-        s = ""
-        for idx in range(NUMBER_OF_FACELETS):
-            for c in Color:
-                if self.facelets[idx] == c:
-                    s += c.value
-                    break
-        return s
+    # def __str__(self):  # TODO
+    #     s = ""
+    #     for idx in range(NUMBER_OF_FACELETS):
+    #         for c in Color:
+    #             if self.facelets[idx] == c:
+    #                 s += c.value
+    #                 break
+    #     return s
 
     def _transform(self, destination):
         """Receives a list of destination for all the facelets and makes the

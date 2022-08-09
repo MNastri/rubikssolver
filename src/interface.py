@@ -50,35 +50,6 @@ class RubiksCube(ABC):
         raise NotImplementedError
 
 
-class Color(Enum):
-    """The colors present on each face of a Rubik's cube"""
-
-    UP = "U"
-    LEFT = "L"
-    FRONT = "F"
-    RIGHT = "R"
-    BACK = "B"
-    DOWN = "D"
-    #                  ──────── ┌──┬──┬──┐
-    #                /        /││  │  │  │
-    #               /   0    / │├──┼──┼──┤
-    #              /        /  ││  │4 │  │
-    # ┌──┬──┬──┐  ┌──┬──┬──┐   │├──┼──┼──┤
-    # │  │  │  │  │  │  │  │ 3 ││  │  │  │
-    # ├──┼──┼──┤  ├──┼──┼──┤   │└──┴──┴──┘
-    # │  │1 │  │  │  │2 │  │  /
-    # ├──┼──┼──┤  ├──┼──┼──┤ /
-    # │  │  │  │  │  │  │  │/
-    # └──┴──┴──┘  └──┴──┴──┘
-    #             ┌──┬──┬──┐
-    #             │  │  │  │
-    #             ├──┼──┼──┤
-    #             │  │5 │  │
-    #             ├──┼──┼──┤
-    #             │  │  │  │
-    #             └──┴──┴──┘
-
-
 def solve_rubiks_cube(cube: RubiksCube):
     cube.solve_first_cross()
     cube.solve_first_face()
