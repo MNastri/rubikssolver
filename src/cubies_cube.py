@@ -53,7 +53,7 @@ class CubieCube:
         corners_characters = self._get_corners_characters_from(s)
         # TODO check if received corners are valid
         print(corners_characters)
-        reference_facelets = self._get_corner_reference_facelets_from(corners_characters)
+        reference_facelets = self._get_corners_reference_facelet_from(corners_characters)
         print(reference_facelets)
         corners_names = self._get_corners_from(corners_characters, reference_facelets)
         print(corners_names)
@@ -74,13 +74,15 @@ class CubieCube:
             corners += (list(corner_as_characters),)
         return corners
 
-    def _get_reference_facelets_from(self, corner_names):  # TODO renaming overhaul!
-        new_list = []
-        for sublist in corner_names:
-            new_list += (
-                (sublist.index("U") if "U" in sublist else sublist.index("D")),
-            )
-        return new_list
+    def _get_corners_reference_facelet_from(self, corner_names):
+        references = []
+        for corner in corner_names:
+            if Color.U.name in corner:
+                reference_to_add = corner.index(Color.U.name)
+            else:
+                reference_to_add = corner.index(Color.D.name)
+            references += reference_to_add,
+        return references
 
     def _get_corners_from(self, corner_names, reference_facelets):  # TODO renaming overhaul?
         corners = []
