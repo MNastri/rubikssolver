@@ -44,7 +44,11 @@ class CubieCube:
         return ss
 
     def from_string(self, s):  # TODO
-        #TODO make some checks, number of colors, length of string, etc
+        """
+        Reads a string of facelets and replaces the cubies with the cubies created from
+        the string
+        """
+        # TODO make some checks: number of colors, length of string, etc
         corner_characters = self._get_corners_names_from(s)
         print(corner_characters)
         reference_facelets = self._get_reference_facelets_from(corner_characters)
