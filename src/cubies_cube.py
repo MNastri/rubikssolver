@@ -1,3 +1,4 @@
+from colors import Color
 from corners import Corner
 from corners import CornersOrientation as CsO
 from corners import CornersPermutation as CsP
