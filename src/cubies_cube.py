@@ -103,7 +103,8 @@ class CubieCube:
         self.edges_permutation = EsP(edges_permutation)
         self.edges_orientation = EsO(edges_orientation)
 
-    def _get_corners_characters_from(self, s):
+    @staticmethod
+    def _get_corners_characters_from(s):
         corners = []
         for facelets_idx in CORNER_FACELETS:
             get_character = lambda idx: s[idx]
@@ -111,7 +112,8 @@ class CubieCube:
             corners += (list(corner_as_characters),)
         return corners
 
-    def _get_corners_reference_facelet_from(self, corner_characters):
+    @staticmethod
+    def _get_corners_reference_facelet_from(corner_characters):
         references = []
         for corner in corner_characters:
             if Color.U.name in corner:
@@ -121,7 +123,8 @@ class CubieCube:
             references += (reference_to_add,)
         return references
 
-    def _get_corners_from(self, corner_characters, reference_facelets):
+    @staticmethod
+    def _get_corners_from(corner_characters, reference_facelets):
         corners = []
         for cor, ref in zip(corner_characters, reference_facelets):
             reference_facelet = cor[ref]
@@ -132,7 +135,8 @@ class CubieCube:
             )
         return corners
 
-    def _get_edges_characters_from(self, s):
+    @staticmethod
+    def _get_edges_characters_from(s):
         edges = []
         for edge in EDGE_FACELETS:
             character = lambda idx: s[idx]
@@ -140,7 +144,8 @@ class CubieCube:
             edges += (list(mapped_edges),)
         return edges
 
-    def _get_edges_reference_facelet_from(self, edge_characters):
+    @staticmethod
+    def _get_edges_reference_facelet_from(edge_characters):
         references = []
         for edge in edge_characters:
             if Color.U.name in edge:
@@ -154,7 +159,8 @@ class CubieCube:
             references += (reference_to_add,)
         return references
 
-    def _get_edges_from(self, edge_characters, reference_facelets):
+    @staticmethod
+    def _get_edges_from(edge_characters, reference_facelets):
         edges = []
         for edg, ref in zip(edge_characters, reference_facelets):
             reference_facelet = edg[ref]
