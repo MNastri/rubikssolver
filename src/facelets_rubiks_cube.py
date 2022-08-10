@@ -8,7 +8,7 @@ from interface import (
 NUMBER_OF_FACELETS = 54
 
 
-class FaceletsRubiksCube(RubiksCube):
+class FaceletsRubiksCube():
     def __init__(self, facelets=None):
         if facelets is None:
             self._store_solved_cube()
@@ -89,33 +89,6 @@ class FaceletsRubiksCube(RubiksCube):
 
     def _store_color_names(self, facelets):
         self.facelets = [Color.get_color_from(ff) for ff in facelets]
-
-    def solve_first_cross(self):
-        edges_to_solve = ["DB", "DR", "DF", "DL"]
-        for edge in edges_to_solve:
-            location = self.find_edge(edge)
-            print(location)
-            # TODO solve edge and repeat?
-        # TODO solve all edge at once?
-        raise NotImplementedError  # TODO
-
-    def solve_first_face(self):
-        raise NotImplementedError  # TODO
-
-    def solve_middle_layer(self):
-        raise NotImplementedError  # TODO
-
-    def make_cross_in_up_face(self):
-        raise NotImplementedError  # TODO
-
-    def permutate_corners_in_up_face(self):
-        raise NotImplementedError  # TODO
-
-    def orient_corners_in_up_face(self):
-        raise NotImplementedError  # TODO
-
-    def permutate_edges_in_up_face(self):
-        raise NotImplementedError  # TODO
 
 
 def unify_transforms(transforms: List[List[int]]) -> List[int]:
