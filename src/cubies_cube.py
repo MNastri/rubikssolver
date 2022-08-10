@@ -23,9 +23,14 @@ from rubiks_definitions import (
 
 
 class CubieCube:
-    def __init__(self):
-        self._store_solved_corners()
-        self._store_solved_edges()
+    def __init__(self, corners_permutation=None, corners_orientation=None, edges_permutation=None, edges_orientation=None):
+        if not all([corners_permutation, corners_orientation, edges_permutation, edges_orientation]):
+            self._store_solved_corners()
+            self._store_solved_edges()
+        elif any([corners_permutation, corners_orientation, edges_permutation, edges_orientation]):
+            raise NotImplementedError
+        else:
+            self._store_initialized_parameters(corners_permutation, corners_orientation, edges_permutation, edges_orientation)
 
     def _store_solved_corners(self):
         corners = lambda: range(NUMBER_OF_CORNERS)  # reusable range
