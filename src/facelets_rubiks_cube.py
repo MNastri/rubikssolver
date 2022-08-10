@@ -1,14 +1,11 @@
 from typing import List
 
 from colors import Color
-from interface import (
-    RubiksCube,
-)
 
 NUMBER_OF_FACELETS = 54
 
 
-class FaceletsRubiksCube():
+class FaceletsRubiksCube:
     def __init__(self, facelets=None):
         if facelets is None:
             self._store_solved_cube()
