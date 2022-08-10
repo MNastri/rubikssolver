@@ -23,6 +23,10 @@ from rubiks_definitions import (
 
 
 class CubieCube:
+    """
+    A Rubik's cube on the cubie level. Cubies are represented by corners/edges
+    with their orientations.
+    """
     def __init__(self, corners_permutation=None, corners_orientation=None, edges_permutation=None, edges_orientation=None):
         if not any([corners_permutation, corners_orientation, edges_permutation, edges_orientation]):
             self._store_solved_corners()
