@@ -42,6 +42,12 @@ class CubieCube:
         self.edges_permutation = EsP(Edge(idx) for idx in edges())
         self.edges_orientation = EsO(SingleEdgeOrientation(0) for _ in edges())
 
+    def _store_initialized_parameters(self, corners_permutation, corners_orientation, edges_permutation, edges_orientation):
+        self.corners_permutation = CsP(corners_permutation)
+        self.corners_orientation = CsO(corners_orientation)
+        self.edges_permutation = EsP(edges_permutation)
+        self.edges_orientation = EsO(edges_orientation)
+
     def __str__(self):
         corners = range(NUMBER_OF_CORNERS)
         edges = range(NUMBER_OF_EDGES)
