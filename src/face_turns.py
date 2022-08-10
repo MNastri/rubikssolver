@@ -7,29 +7,30 @@ from edges import Edge as Ed
 from edges import EdgesOrientation as EsO
 from edges import EdgesPermutation as EsP
 from edges import SingleEdgeOrientation as EdgOri
+from cubies_cube import CubieCube
 
 
-class UTurn(CubeTransformation):
+class UTurn(CubieCube):
     def __init__(self):
-        corner_permutation = CsP([
+        corner_permutation = [
             Co.UBR, Co.URF, Co.UFL, Co.ULB,
             Co.DFR, Co.DLF, Co.DBL, Co.DRB
-        ])
-        corner_orientation = CsO([
+        ]
+        corner_orientation = [
             CorOri.normal, CorOri.normal, CorOri.normal, CorOri.normal,
             CorOri.normal, CorOri.normal, CorOri.normal, CorOri.normal,
-        ])
-        edge_permutation = EsP([
+        ]
+        edge_permutation = [
             Ed.UB, Ed.UR, Ed.UF, Ed.UL,
             Ed.DR, Ed.DF, Ed.DL, Ed.DB,
             Ed.FR, Ed.FL, Ed.BL, Ed.BR
-        ])
-        edge_orientation = EsO([
+        ]
+        edge_orientation = [
             EdgOri.normal, EdgOri.normal, EdgOri.normal, EdgOri.normal,
             EdgOri.normal, EdgOri.normal, EdgOri.normal, EdgOri.normal,
             EdgOri.normal, EdgOri.normal, EdgOri.normal, EdgOri.normal,
-        ])
-        super(UTurn, self).__init__(
+        ]
+        super().__init__(
             corner_permutation, corner_orientation,
             edge_permutation, edge_orientation
         )
