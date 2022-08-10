@@ -31,6 +31,16 @@ class UTurn(CubieCube):
         )
 
 
+if __name__ == "__main__":
+    print(UTurn())
+    print()
+    print(UTurn()*UTurn())
+    print()
+    print(UTurn()*UTurn()*UTurn())
+    print()
+    print(UTurn()*UTurn()*UTurn()*UTurn())
+
+
 class RTurn(CubieCube):
     def __init__(self):
         corner_permutation = [
