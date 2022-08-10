@@ -131,5 +131,3 @@ if __name__ == "__main__":
     print(FaceletsRubiksCube().facelets)
     print(FaceletsRubiksCube("U" * 9 + "L" * 9 + "F" * 9 + "R" * 9 + "B" * 9 + "D" * 9))
     print(FaceletsRubiksCube(["U", "L", "F", "R", "B", "D"] * 9))
-    print(FaceletsRubiksCube().corners)
-    print(FaceletsRubiksCube().edges)
