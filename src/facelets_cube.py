@@ -6,7 +6,6 @@ from facelets import (
     FACELETS_PER_FACE,
     NUMBER_OF_FACELETS,
 )
-from interface import RubiksCube
 
 
 class FaceletsCube:
