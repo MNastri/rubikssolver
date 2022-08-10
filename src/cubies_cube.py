@@ -24,11 +24,9 @@ from rubiks_definitions import (
 
 class CubieCube:
     def __init__(self, corners_permutation=None, corners_orientation=None, edges_permutation=None, edges_orientation=None):
-        if not all([corners_permutation, corners_orientation, edges_permutation, edges_orientation]):
+        if not any([corners_permutation, corners_orientation, edges_permutation, edges_orientation]):
             self._store_solved_corners()
             self._store_solved_edges()
-        elif any([corners_permutation, corners_orientation, edges_permutation, edges_orientation]):
-            raise NotImplementedError
         else:
             self._store_initialized_parameters(corners_permutation, corners_orientation, edges_permutation, edges_orientation)
 
@@ -43,6 +41,11 @@ class CubieCube:
         self.edges_orientation = EsO(SingleEdgeOrientation(0) for _ in edges())
 
     def _store_initialized_parameters(self, corners_permutation, corners_orientation, edges_permutation, edges_orientation):
+        if not all(
+            [corners_permutation, corners_orientation, edges_permutation,
+             edges_orientation]
+        ):
+            raise NotImplementedError("all fields must not be None")
         self.corners_permutation = CsP(corners_permutation)
         self.corners_orientation = CsO(corners_orientation)
         self.edges_permutation = EsP(edges_permutation)
