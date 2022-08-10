@@ -12,8 +12,8 @@ class FaceletsRubiksCube:
             self._check_facelets(facelets)
             self._store_color_names(facelets)
 
-    def __repr__(self):
-        return str([f.value for f in self.facelets])
+    # def __repr__(self):  # TODO
+    #     return str([f.value for f in self.facelets])
 
     # def __str__(self):  # TODO
     #     s = ""
