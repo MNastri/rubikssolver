@@ -1,8 +1,7 @@
 from typing import List
 
 from colors import Color
-
-NUMBER_OF_FACELETS = 54
+from facelets import NUMBER_OF_FACELETS
 
 
 class FaceletsRubiksCube:
