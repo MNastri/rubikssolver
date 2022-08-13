@@ -92,8 +92,8 @@ class SingleCornerOrientation(IntEnum):
     @classmethod
     def get_corner_orientation_from(cls, name: str):
         name = name.upper()
-        assert name in Corner.__dict__
-        return Corner.__getattr__(name)
+        assert name in SingleCornerOrientation.__dict__
+        return SingleCornerOrientation.__getattr__(name)
 
 
 class CornersPermutation(List):
