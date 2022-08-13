@@ -1,3 +1,5 @@
+import pytest
+
 from rubikssolver import colors
 
 
@@ -27,3 +29,18 @@ class TestGetColorFromMethod:
 
     def test_get_color_B(self):
         assert colors.Color.get_color_from(character="B") == colors.Color.B
+
+
+class TestIsNumberOfColorsCorrectMethod:
+    def test_facelets_with_correct_number_of_colors(self):
+        facelets_with_correct_number_of_colors = "URFDLB" * 9
+        assert colors.Color.is_number_of_colors_correct(
+            facelets=facelets_with_correct_number_of_colors
+        )
+
+    def test_facelets_with_incorrect_number_of_colors(self):
+        facelets_with_correct_number_of_colors = "UUUUUU" * 9
+        with pytest.raises(AssertionError):
+            assert colors.Color.is_number_of_colors_correct(
+                facelets=facelets_with_correct_number_of_colors
+            )
