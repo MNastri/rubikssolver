@@ -9,7 +9,7 @@ def test_number_of_colors_is_6():
     assert len(colors.Color) == 6
 
 
-class TestColorMethod:
+class TestGetColorFromMethod:
     def test_get_color_U(self):
         assert colors.Color.get_color_from(character="U") == colors.Color.U
 
