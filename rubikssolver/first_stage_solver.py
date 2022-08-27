@@ -2,6 +2,7 @@ from rubikssolver import (
     cubies_cube,
     edges,
 )
+from rubikssolver.edges import SingleEdgeOrientation
 
 EDGE_BUFFER = edges.Edge(0)
 SETUP_EDGE = edges.Edge(2)
@@ -9,7 +10,7 @@ SETUP_EDGE = edges.Edge(2)
 
 def edge_in_buffer(cube: str):
     cc = cubies_cube.CubieCube().from_string(cube)
-    buffer = cc.edges_permutation[EDGE_BUFFER]
+    buffer = cc.edges_permutation[EDGE_BUFFER], cc.edges_orientation[EDGE_BUFFER]
     return buffer
 
 
