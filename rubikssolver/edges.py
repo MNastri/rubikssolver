@@ -58,7 +58,7 @@ class SingleEdgeOrientation(IntEnum):
     edge position, then the orientation is called fliped.
 
     When the orientations of all edges and corners are 0 the used reference
-    frame has the property that 10 of the 18 possible cube moves do not change
+    frame has the property that 10 of the 27 possible cube moves do not change
     these orientations.
     """
 
