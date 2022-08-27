@@ -20,3 +20,8 @@ def test_setup_edge_is_ul():
 def test_buffer_is_ul_edge_with_normal_orienation():
     one_edge_to_go = "UUUUUUUUUBLFRRRRRRFFRFFFFFFDDDDDDDDDLRLLLLLLLRBBBBBBBB"
     assert edge_in_buffer(one_edge_to_go) == (Edge.UL, SingleEdgeOrientation.normal)
+
+
+def test_buffer_is_ul_edge_with_fliped_orienation():
+    one_edge_to_go = "UUURULUUUBUFRRRRRRFFRFFFFFFDDDDDDDDDLULLLLLLLRBBBBBBBB"
+    assert edge_in_buffer(one_edge_to_go) == (Edge.UL, SingleEdgeOrientation.fliped)

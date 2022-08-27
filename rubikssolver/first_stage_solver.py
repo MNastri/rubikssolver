@@ -2,10 +2,9 @@ from rubikssolver import (
     cubies_cube,
     edges,
 )
-from rubikssolver.edges import SingleEdgeOrientation
 
-EDGE_BUFFER = edges.Edge(0)
-SETUP_EDGE = edges.Edge(2)
+EDGE_BUFFER = edges.Edge.UR
+SETUP_EDGE = edges.Edge.UL
 
 
 def edge_in_buffer(cube: str):
