@@ -1,22 +1,22 @@
-from colors import Color
-from corners import Corner
-from corners import CornersOrientation as CsO
-from corners import CornersPermutation as CsP
-from corners import (
+from rubikssolver.colors import Color
+from rubikssolver.corners import Corner
+from rubikssolver.corners import CornersOrientation as CsO
+from rubikssolver.corners import CornersPermutation as CsP
+from rubikssolver.corners import (
     NUMBER_OF_CORNER_ORIENTATIONS,
     NUMBER_OF_CORNERS,
     SingleCornerOrientation,
 )
-from edges import Edge
-from edges import EdgesOrientation as EsO
-from edges import EdgesPermutation as EsP
-from edges import (
+from rubikssolver.edges import Edge
+from rubikssolver.edges import EdgesOrientation as EsO
+from rubikssolver.edges import EdgesPermutation as EsP
+from rubikssolver.edges import (
     NUMBER_OF_EDGES,
     NUMBER_OF_EDGES_ORIENTATIONS,
     SingleEdgeOrientation,
 )
-from facelets import NUMBER_OF_FACELETS
-from rubiks_definitions import (
+from rubikssolver.facelets import NUMBER_OF_FACELETS
+from rubikssolver.rubiks_definitions import (
     CORNER_FACELETS,
     EDGE_FACELETS,
 )

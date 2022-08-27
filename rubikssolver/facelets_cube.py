@@ -1,8 +1,8 @@
-from colors import (
+from rubikssolver.colors import (
     Color,
     FACELETS_PER_COLOR,
 )
-from facelets import (
+from rubikssolver.facelets import (
     FACELETS_PER_FACE,
     NUMBER_OF_FACELETS,
 )

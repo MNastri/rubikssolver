@@ -1,8 +1,8 @@
-from corners import Corner as Co
-from corners import SingleCornerOrientation as CorOri
-from edges import Edge as Ed
-from edges import SingleEdgeOrientation as EdgOri
-from cubies_cube import CubieCube
+from rubikssolver.corners import Corner as Co
+from rubikssolver.corners import SingleCornerOrientation as CorOri
+from rubikssolver.edges import Edge as Ed
+from rubikssolver.edges import SingleEdgeOrientation as EdgOri
+from rubikssolver.cubies_cube import CubieCube
 
 
 class UTurn(CubieCube):
@@ -34,11 +34,11 @@ class UTurn(CubieCube):
 if __name__ == "__main__":
     print(UTurn())
     print()
-    print(UTurn()*UTurn())
+    print(UTurn() * UTurn())
     print()
-    print(UTurn()*UTurn()*UTurn())
+    print(UTurn() * UTurn() * UTurn())
     print()
-    print(UTurn()*UTurn()*UTurn()*UTurn())
+    print(UTurn() * UTurn() * UTurn() * UTurn())
 
 
 class RTurn(CubieCube):

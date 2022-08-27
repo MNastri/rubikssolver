@@ -1,5 +1,5 @@
-from colors import Color
-from facelets import Facelet as Fac
+from rubikssolver.colors import Color
+from rubikssolver.facelets import Facelet as Fac
 
 CORNER_FACELETS = [
     [Fac.U_8_corner, Fac.R_0_corner, Fac.F_2_corner],
