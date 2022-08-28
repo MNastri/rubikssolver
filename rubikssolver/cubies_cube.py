@@ -168,6 +168,82 @@ class CubieCube:
             edges += ((reference_facelet + flipped_facelet),)
         return edges
 
+    def to_string(self):
+        corners = self._corners_to_string()
+        edges = self._edges_to_string()
+        centers = self._centers_to_string()
+        facelets = [
+            corner if corner != " " else edge if edge != " " else center
+            for corner, edge, center in zip(corners, edges, centers)
+        ]
+        ss = "".join(facelets)
+        return ss
+
+    def _centers_to_string(self):
+        prefix = suffix = "    "
+        faces = [prefix + col.name + suffix for col in Color]
+        ss = "".join(faces)
+        return ss
+
+    def _corners_to_string(self) -> str:
+        ss = " " * NUMBER_OF_FACELETS
+        for each_corner in range(NUMBER_OF_CORNERS):
+            corner_facelets = CORNER_FACELETS[each_corner]
+            corner_in_cube = self.corners_permutation[each_corner]
+            orientation_in_cube = self.corners_orientation[each_corner]
+            corner_facelets_in_cube = CORNER_FACELETS[corner_in_cube]
+            for each_orientation in range(NUMBER_OF_CORNER_ORIENTATIONS):
+                orientation_of_current_facelet = orientation_in_cube + each_orientation
+                adjusted_orientation = (
+                    orientation_of_current_facelet % NUMBER_OF_CORNER_ORIENTATIONS
+                )
+                facelet_in_cube = corner_facelets_in_cube[adjusted_orientation]
+                facelet_name = facelet_in_cube.name
+                facelet_position = corner_facelets[each_orientation]
+
+                prefix_copy = ss[:facelet_position]
+                facelet_character = facelet_name[0]
+                suffix_copy = ss[facelet_position + 1 :]
+
+                ss = prefix_copy + facelet_character + suffix_copy
+        return ss
+
+    def _edges_to_string(self) -> str:
+        ss = " " * NUMBER_OF_FACELETS
+        for each_edge in range(NUMBER_OF_EDGES):
+            edge_facelets = EDGE_FACELETS[each_edge]
+            edge_in_cube = self.edges_permutation[each_edge]
+            orientation_in_cube = self.edges_orientation[each_edge]
+            edge_facelets_in_cube = EDGE_FACELETS[edge_in_cube]
+            for each_orientation in range(NUMBER_OF_EDGES_ORIENTATIONS):
+                orientation_of_current_facelet = orientation_in_cube + each_orientation
+                adjusted_orientation = (
+                    orientation_of_current_facelet % NUMBER_OF_EDGES_ORIENTATIONS
+                )
+                facelet_in_cube = edge_facelets_in_cube[adjusted_orientation]
+                facelet_name = facelet_in_cube.name
+                facelet_position = edge_facelets[each_orientation]
+
+                prefix_copy = ss[:facelet_position]
+                facelet_character = facelet_name[0]
+                suffix_copy = ss[facelet_position + 1 :]
+
+                ss = prefix_copy + facelet_character + suffix_copy
+        return ss
+
+    def _edge_position_in_string_from_faceletes_and_orientation(
+        self, facelets, orientation
+    ):
+        adjusted_orientation = orientation % NUMBER_OF_EDGES_ORIENTATIONS
+        position_in_string = facelets[adjusted_orientation]
+        return position_in_string
+
+    def _add_color_to_str_from_position(self, ss, position):
+        pre = ss[:position]
+        root = position.name[0]
+        suf = ss[position + 1 :]
+        return pre + root + suf
+
     def __mul__(self, other):
         """
         applies corners and edges multiplication to this cube.
@@ -322,3 +398,5 @@ if __name__ == "__main__":
     print(my_cube.edges_orientation)
     print()
     print(my_cube)
+    print()
+    print(my_cube.to_string())
