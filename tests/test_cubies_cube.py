@@ -9,42 +9,42 @@ class TestToStringMethod:
 
     def test_solved_cube(self):
         assert (
-            self.solved_cube.to_string()
+            str(self.solved_cube)
             == "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB"
         )
 
     def test_u_turn(self):
         assert (
-            face_turns.UTurn().to_string()
+            str(face_turns.UTurn())
             == "UUUUUUUUUBBBRRRRRRRRRFFFFFFDDDDDDDDDFFFLLLLLLLLLBBBBBB"
         )
 
     def test_r_turn(self):
         assert (
-            face_turns.RTurn().to_string()
+            str(face_turns.RTurn())
             == "UUFUUFUUFRRRRRRRRRFFDFFDFFDDDBDDBDDBLLLLLLLLLUBBUBBUBB"
         )
 
     def test_f_turn(self):
         assert (
-            face_turns.FTurn().to_string()
+            str(face_turns.FTurn())
             == "UUUUUULLLURRURRURRFFFFFFFFFRRRDDDDDDLLDLLDLLDBBBBBBBBB"
         )
 
     def test_d_turn(self):
         assert (
-            face_turns.DTurn().to_string()
+            str(face_turns.DTurn())
             == "UUUUUUUUURRRRRRFFFFFFFFFLLLDDDDDDDDDLLLLLLBBBBBBBBBRRR"
         )
 
     def test_l_turn(self):
         assert (
-            face_turns.LTurn().to_string()
+            str(face_turns.LTurn())
             == "BUUBUUBUURRRRRRRRRUFFUFFUFFFDDFDDFDDLLLLLLLLLBBDBBDBBD"
         )
 
     def test_b_turn(self):
         assert (
-            face_turns.BTurn().to_string()
+            str(face_turns.BTurn())
             == "RRRUUUUUURRDRRDRRDFFFFFFFFFDDDDDDLLLULLULLULLBBBBBBBBB"
         )

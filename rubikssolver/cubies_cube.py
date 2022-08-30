@@ -55,7 +55,7 @@ class CubieCube:
         self.edges_permutation = EsP(edges_permutation)
         self.edges_orientation = EsO(edges_orientation)
 
-    def __str__(self):
+    def __repr__(self):
         corners = range(NUMBER_OF_CORNERS)
         edges = range(NUMBER_OF_EDGES)
         ss = "Corners (id,ori):"
@@ -168,7 +168,7 @@ class CubieCube:
             edges += ((reference_facelet + flipped_facelet),)
         return edges
 
-    def to_string(self):
+    def __str__(self):
         corners = self._corners_to_string()
         edges = self._edges_to_string()
         centers = self._centers_to_string()
