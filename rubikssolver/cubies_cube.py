@@ -377,6 +377,6 @@ if __name__ == "__main__":
     print(my_cube.edges_permutation)
     print(my_cube.edges_orientation)
     print()
-    print(my_cube)
+    print(repr(my_cube))
     print()
-    print(my_cube.to_string())
+    print(my_cube)
