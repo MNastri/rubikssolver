@@ -29,12 +29,26 @@ class Puzzle(CubieCube):
         return str(self)
 
     def find_setup_moves(self, edge, orientation):
-        solutions = list()
+        setup_move = deque()
         queue = deque()
-        trail = {intern(self.canonical()): None}
-        # append_move_into_queue = queue.append if depth_first else queue.appendleft
-
-        return solutions
+        puzzle_trail = {intern(self.canonical()): None}
+        moves_trail = {intern(self.canonical()): None}
+        while not self._is_buffer_edge_correct(edge, orientation):
+            for mv in AVAILABLE_MOVES:
+                new_puzzle = Puzzle().from_string(str(self))
+                moved_puzzle = new_puzzle * MOVES[mv]
+                if moved_puzzle.canonical() in puzzle_trail:
+                    continue
+                puzzle_trail[intern(moved_puzzle.canonical())] = self
+                moves_trail[intern(moved_puzzle.canonical())] = mv
+                queue.appendleft(moved_puzzle)
+            self = queue.pop()
+        while self:
+            move = moves_trail[self.canonical()]
+            setup_move.appendleft(move)
+            self = puzzle_trail[self.canonical()]
+        setup_move.popleft()
+        return list(setup_move)
 
     def _is_buffer_edge_correct(self, edge, orientation):
         return (
