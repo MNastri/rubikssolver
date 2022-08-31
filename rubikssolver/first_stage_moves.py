@@ -2,7 +2,11 @@ from collections import deque
 from sys import intern
 
 from rubikssolver.cubies_cube import CubieCube
-from rubikssolver.moves import Move
+from rubikssolver.edges import Edge
+from rubikssolver.moves import (
+    Move,
+    MOVES,
+)
 
 AVAILABLE_MOVES = {
     Move.D1,
