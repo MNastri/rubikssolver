@@ -34,6 +34,6 @@ class Puzzle(CubieCube):
 
     def _is_buffer_edge_correct(self, edge, orientation):
         return (
-            self.edges_permutation.permutated_to_UL == edge
-            and self.edges_orientation.orientation_of_UL == orientation
+            self.edges_permutation[Edge.UL] == edge
+            and self.edges_orientation[Edge.UL] == orientation
         )
