@@ -55,6 +55,62 @@ class CubieCube:
         self.edges_permutation = EsP(edges_permutation)
         self.edges_orientation = EsO(edges_orientation)
 
+    def __str__(self):
+        corners = self._corners_to_string()
+        edges = self._edges_to_string()
+        centers = self._centers_to_string()
+        facelets = [
+            corner if corner != " " else edge if edge != " " else center
+            for corner, edge, center in zip(corners, edges, centers)
+        ]
+        ss = "".join(facelets)
+        return ss
+
+    def _corners_to_string(self) -> str:
+        ss = [" "] * NUMBER_OF_FACELETS
+        for corner_number in range(NUMBER_OF_CORNERS):
+            corner = self.corners_permutation[corner_number]
+            orientation = self.corners_orientation[corner_number]
+
+            positions = CORNER_FACELETS[corner_number]
+            facelets = CORNER_FACELETS[corner]
+
+            for orientation_number in range(NUMBER_OF_CORNER_ORIENTATIONS):
+                new_orientation = -orientation + orientation_number
+                adjusted_orientation = new_orientation % NUMBER_OF_CORNER_ORIENTATIONS
+
+                position = positions[orientation_number]
+                facelet = facelets[adjusted_orientation]
+
+                character = facelet.name[0]
+                ss[position] = character
+        return "".join(ss)
+
+    def _edges_to_string(self) -> str:
+        ss = [" "] * NUMBER_OF_FACELETS
+        for edge_number in range(NUMBER_OF_EDGES):
+            edge = self.edges_permutation[edge_number]
+            orientation = self.edges_orientation[edge_number]
+
+            positions = EDGE_FACELETS[edge_number]
+            facelets = EDGE_FACELETS[edge]
+
+            for orientation_number in range(NUMBER_OF_EDGES_ORIENTATIONS):
+                new_orientation = -orientation + orientation_number
+                adjusted_orientation = new_orientation % NUMBER_OF_EDGES_ORIENTATIONS
+
+                position = positions[orientation_number]
+                facelet = facelets[adjusted_orientation]
+
+                character = facelet.name[0]
+                ss[position] = character
+        return "".join(ss)
+
+    def _centers_to_string(self):
+        prefix = suffix = "    "
+        faces = [prefix + color.name + suffix for color in Color]
+        return "".join(faces)
+
     def __repr__(self):
         corners = range(NUMBER_OF_CORNERS)
         edges = range(NUMBER_OF_EDGES)
@@ -167,62 +223,6 @@ class CubieCube:
             flipped_facelet = edg[(ref + 1) % NUMBER_OF_EDGES_ORIENTATIONS]
             edges += ((reference_facelet + flipped_facelet),)
         return edges
-
-    def __str__(self):
-        corners = self._corners_to_string()
-        edges = self._edges_to_string()
-        centers = self._centers_to_string()
-        facelets = [
-            corner if corner != " " else edge if edge != " " else center
-            for corner, edge, center in zip(corners, edges, centers)
-        ]
-        ss = "".join(facelets)
-        return ss
-
-    def _corners_to_string(self) -> str:
-        ss = [" "] * NUMBER_OF_FACELETS
-        for corner_number in range(NUMBER_OF_CORNERS):
-            corner = self.corners_permutation[corner_number]
-            orientation = self.corners_orientation[corner_number]
-
-            positions = CORNER_FACELETS[corner_number]
-            facelets = CORNER_FACELETS[corner]
-
-            for orientation_number in range(NUMBER_OF_CORNER_ORIENTATIONS):
-                new_orientation = -orientation + orientation_number
-                adjusted_orientation = new_orientation % NUMBER_OF_CORNER_ORIENTATIONS
-
-                position = positions[orientation_number]
-                facelet = facelets[adjusted_orientation]
-
-                character = facelet.name[0]
-                ss[position] = character
-        return "".join(ss)
-
-    def _edges_to_string(self) -> str:
-        ss = [" "] * NUMBER_OF_FACELETS
-        for edge_number in range(NUMBER_OF_EDGES):
-            edge = self.edges_permutation[edge_number]
-            orientation = self.edges_orientation[edge_number]
-
-            positions = EDGE_FACELETS[edge_number]
-            facelets = EDGE_FACELETS[edge]
-
-            for orientation_number in range(NUMBER_OF_EDGES_ORIENTATIONS):
-                new_orientation = -orientation + orientation_number
-                adjusted_orientation = new_orientation % NUMBER_OF_EDGES_ORIENTATIONS
-
-                position = positions[orientation_number]
-                facelet = facelets[adjusted_orientation]
-
-                character = facelet.name[0]
-                ss[position] = character
-        return "".join(ss)
-
-    def _centers_to_string(self):
-        prefix = suffix = "    "
-        faces = [prefix + color.name + suffix for color in Color]
-        return "".join(faces)
 
     def __mul__(self, other):
         """
