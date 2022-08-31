@@ -1,7 +1,21 @@
-from enum import Enum
+from enum import IntEnum
+
+from rubikssolver.face_turns import (
+    BTurn,
+    DTurn,
+    FTurn,
+    LTurn,
+    RTurn,
+    UTurn,
+)
+from rubikssolver.slice_turns import (
+    ETurn,
+    MTurn,
+    STurn,
+)
 
 
-class Move(Enum):
+class Move(IntEnum):
     U1 = 0
     U2 = 1
     U3 = 2
@@ -29,3 +43,34 @@ class Move(Enum):
     S1 = 24
     S2 = 25
     S3 = 26
+
+
+MOVES = [
+    UTurn(),
+    UTurn() * UTurn(),
+    UTurn() * UTurn() * UTurn(),
+    RTurn(),
+    RTurn() * RTurn(),
+    RTurn() * RTurn() * RTurn(),
+    FTurn(),
+    FTurn() * FTurn(),
+    FTurn() * FTurn() * FTurn(),
+    DTurn(),
+    DTurn() * DTurn(),
+    DTurn() * DTurn() * DTurn(),
+    LTurn(),
+    LTurn() * LTurn(),
+    LTurn() * LTurn() * LTurn(),
+    BTurn(),
+    BTurn() * BTurn(),
+    BTurn() * BTurn() * BTurn(),
+    ETurn(),
+    ETurn() * ETurn(),
+    ETurn() * ETurn() * ETurn(),
+    MTurn(),
+    MTurn() * MTurn(),
+    MTurn() * MTurn() * MTurn(),
+    STurn(),
+    STurn() * STurn(),
+    STurn() * STurn() * STurn(),
+]
