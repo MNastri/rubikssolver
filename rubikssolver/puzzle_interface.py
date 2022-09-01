@@ -1,13 +1,34 @@
 from collections import deque
 from copy import deepcopy
 from sys import intern
+from typing import List
 
 from rubikssolver.cubies_cube import CubieCube
-from rubikssolver.first_stage_moves import (
-    AVAILABLE_MOVES,
-    Moves,
+from rubikssolver.moves import (
+    Move,
+    MOVES,
 )
-from rubikssolver.moves import MOVES
+
+AVAILABLE_MOVES = {
+    Move.D1,
+    Move.D2,
+    Move.D3,
+    Move.L1,
+    Move.L2,
+    Move.L3,
+    Move.E1,
+    Move.E2,
+    Move.E3,
+    Move.M1,
+    Move.M2,
+    Move.M3,
+}
+
+
+class Moves(List):
+    def __str__(self):
+        to_string = [str(move.name) for move in self]
+        return " ".join(to_string)
 
 
 class Puzzle(CubieCube):
