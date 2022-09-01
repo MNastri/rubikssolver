@@ -1,4 +1,5 @@
 from collections import deque
+from copy import deepcopy
 from sys import intern
 from typing import List
 
@@ -33,22 +34,22 @@ class Moves(List):
 
 class Puzzle(CubieCube):
     def canonical(self):
-        return str(self)
+        raise NotImplementedError
 
     def is_goal(self, *kwargs):
-        edge = kwargs[0]
-        orientation = kwargs[1]
-        return self._is_buffer_edge_correct(edge, orientation)
+        raise NotImplementedError
 
-    def find_setup_moves(self, edge, orientation):
+    def find_setup_moves(self, piece, orientation):
         setup_move = deque()
         queue = deque()
         puzzle_trail = {intern(self.canonical()): None}
         moves_trail = {intern(self.canonical()): None}
-        while not self.is_goal(edge, orientation):
+        while not self.is_goal(piece, orientation):
             for mv in AVAILABLE_MOVES:
-                new_puzzle = Puzzle().from_string(str(self))
-                moved_puzzle = new_puzzle * MOVES[mv]
+                current_puzzle = str(self)
+                copied_puzzle = deepcopy(self)
+                puzzle_to_move = copied_puzzle.from_string(current_puzzle)
+                moved_puzzle = puzzle_to_move * MOVES[mv]
                 if moved_puzzle.canonical() in puzzle_trail:
                     continue
                 puzzle_trail[intern(moved_puzzle.canonical())] = self
@@ -61,6 +62,16 @@ class Puzzle(CubieCube):
             self = puzzle_trail[self.canonical()]
         setup_move.popleft()
         return Moves(setup_move)
+
+
+class FirstStageSolver(Puzzle):
+    def canonical(self):
+        return str(self)
+
+    def is_goal(self, *kwargs):
+        edge = kwargs[0]
+        orientation = kwargs[1]
+        return self._is_buffer_edge_correct(edge, orientation)
 
     def _is_buffer_edge_correct(self, edge, orientation):
         return (
