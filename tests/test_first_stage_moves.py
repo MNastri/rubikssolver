@@ -7,11 +7,11 @@ from rubikssolver.moves import Move
 
 
 class TestIsBufferEdgeCorrectMethod:
-    def test_solved_puzzle(self):
-        puzzle = Puzzle()
+    def test_ul_normal_orientation_in_buffer(self):
+        solved_cube = Puzzle()
         edge = Edge.UL
         orientation = SingleEdgeOrientation.normal
-        assert puzzle._is_buffer_edge_correct(edge, orientation) == True
+        assert solved_cube._is_buffer_edge_correct(edge, orientation) == True
 
 
 class TestFindSetupMoveMethod:
