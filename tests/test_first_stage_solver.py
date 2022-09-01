@@ -7,6 +7,7 @@ from rubikssolver.first_stage_solver import (
     FirstStageSolver,
     SETUP_EDGE,
 )
+from rubikssolver.moves import Move
 
 
 def test_edge_buffer_is_ur():
@@ -33,3 +34,21 @@ def test_buffer_is_uf_edge_with_normal_orienation():
     u_prime_move = "UUUUUUUUUFFFRRRRRRLLLFFFFFFDDDDDDDDDBBBLLLLLLRRRBBBBBB"
     cube = FirstStageSolver().from_string(u_prime_move)
     assert cube.edge_in_buffer() == (Edge.UF, SingleEdgeOrientation.normal)
+
+
+class TestIsBufferEdgeCorrectMethod:
+    def test_ul_normal_orientation_in_buffer(self):
+        cube = FirstStageSolver()
+        edge = Edge.UL
+        orientation = SingleEdgeOrientation.normal
+        assert cube._is_buffer_edge_correct(edge, orientation) is True
+
+
+class TestFindSetupMoveMethod:
+    def test_buffer_has_dr_normal_oriented_then_setup_is_d2l2(self):
+        cube = FirstStageSolver().from_string(
+            "UUUUUUUUUBLFRRRRRRFFRFFFFFFDDDDDDDDDLRLLLLLLLRBBBBBBBB"
+        )
+        edge = Edge.DR
+        orientation = SingleEdgeOrientation.normal
+        assert cube.find_setup_moves(edge, orientation) == [Move.D2, Move.L2]
