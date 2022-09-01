@@ -28,12 +28,17 @@ class Puzzle(CubieCube):
     def canonical(self):
         return str(self)
 
+    def is_goal(self, *kwargs):
+        edge = kwargs[0]
+        orientation = kwargs[1]
+        return self._is_buffer_edge_correct(edge, orientation)
+
     def find_setup_moves(self, edge, orientation):
         setup_move = deque()
         queue = deque()
         puzzle_trail = {intern(self.canonical()): None}
         moves_trail = {intern(self.canonical()): None}
-        while not self._is_buffer_edge_correct(edge, orientation):
+        while not self.is_goal(edge, orientation):
             for mv in AVAILABLE_MOVES:
                 new_puzzle = Puzzle().from_string(str(self))
                 moved_puzzle = new_puzzle * MOVES[mv]
