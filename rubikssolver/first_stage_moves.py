@@ -1,5 +1,6 @@
 from collections import deque
 from sys import intern
+from typing import List
 
 from rubikssolver.cubies_cube import CubieCube
 from rubikssolver.edges import Edge
@@ -22,6 +23,12 @@ AVAILABLE_MOVES = {
     Move.M2,
     Move.M3,
 }
+
+
+class Moves(List):
+    def __str__(self):
+        to_string = [str(move.name) for move in self]
+        return " ".join(to_string)
 
 
 class Puzzle(CubieCube):
@@ -53,7 +60,7 @@ class Puzzle(CubieCube):
             setup_move.appendleft(move)
             self = puzzle_trail[self.canonical()]
         setup_move.popleft()
-        return list(setup_move)
+        return Moves(setup_move)
 
     def _is_buffer_edge_correct(self, edge, orientation):
         return (
