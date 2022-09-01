@@ -2,7 +2,7 @@ from rubikssolver.edges import (
     Edge,
     SingleEdgeOrientation,
 )
-from rubikssolver.first_stage_moves import (
+from rubikssolver.first_stage_solver import (
     EDGE_BUFFER,
     FirstStageSolver,
     SETUP_EDGE,
