@@ -8,10 +8,10 @@ from rubikssolver.moves import Move
 
 class TestIsBufferEdgeCorrectMethod:
     def test_ul_normal_orientation_in_buffer(self):
-        solved_cube = FirstStageSolver()
+        cube = FirstStageSolver()
         edge = Edge.UL
         orientation = SingleEdgeOrientation.normal
-        assert solved_cube._is_buffer_edge_correct(edge, orientation) == True
+        assert cube._is_buffer_edge_correct(edge, orientation) is True
 
 
 class TestFindSetupMoveMethod:
