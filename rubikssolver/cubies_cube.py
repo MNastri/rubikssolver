@@ -19,6 +19,7 @@ from rubikssolver.facelets import NUMBER_OF_FACELETS
 from rubikssolver.rubiks_definitions import (
     CORNER_FACELETS,
     EDGE_FACELETS,
+    get_edge_name_from,
 )
 
 
@@ -340,6 +341,18 @@ class CubieCube:
             orientation = orientation_in_origin + orientation_in_destination
             new_edges_orientation[edg] = orientation % NUMBER_OF_EDGES_ORIENTATIONS
         return new_edges_orientation
+
+    def are_all_edges_solved(self):
+        compare = []
+        for edge in range(NUMBER_OF_EDGES):
+            actual_edge = self.edges_permutation[edge].name
+            orientation = self.edges_orientation[edge]
+            should_be_edge = get_edge_name_from(edge_number=edge)
+            compare += (
+                actual_edge == should_be_edge
+                and orientation == SingleEdgeOrientation.normal,
+            )
+        return all(compare)
 
 
 if __name__ == "__main__":
