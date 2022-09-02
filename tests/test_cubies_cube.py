@@ -48,3 +48,15 @@ class TestToStringMethod:
             str(face_turns.BTurn())
             == "RRRUUUUUURRDRRDRRDFFFFFFFFFDDDDDDLLLULLULLULLBBBBBBBBB"
         )
+
+
+class TestAreAllEdgesSolvedMethod:
+    def test_all_edges_are_solved(self):
+        cube = cubies_cube.CubieCube()
+        assert cube.are_all_edges_solved() is True
+
+    def test_one_edge_to_go(self):
+        one_edge_to_go = cubies_cube.CubieCube().from_string(
+            "UUUUUUUUUBLFRRRRRRFFRFFFFFFDDDDDDDDDLRLLLLLLLRBBBBBBBB"
+        )
+        assert one_edge_to_go.are_all_edges_solved() is False
