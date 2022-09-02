@@ -49,3 +49,13 @@ EDGE_COLORS = [
     [Color.B, Color.L],
     [Color.B, Color.R],
 ]
+
+
+def get_edge_name_from(edge_number):
+    first_facelet, second_facelet = EDGE_FACELETS[edge_number]
+    first_name = first_facelet.name
+    second_name = second_facelet.name
+    first_letter = first_name[0]
+    second_letter = second_name[0]
+    edge_name = first_letter + second_letter
+    return edge_name
