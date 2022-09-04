@@ -3,7 +3,7 @@ from rubikssolver.edges import Edge
 from rubikssolver.moves import Move
 from rubikssolver.puzzle_interface import Puzzle
 
-EDGE_BUFFER = edges.Edge.UR
+BUFFER_EDGE = edges.Edge.UR
 SETUP_EDGE = edges.Edge.UL
 
 AVAILABLE_MOVES = {
@@ -24,6 +24,8 @@ AVAILABLE_MOVES = {
 
 class FirstStageSolver(Puzzle):
     available_moves = AVAILABLE_MOVES
+    buffer_edge = BUFFER_EDGE
+    setup_edge = SETUP_EDGE
 
     def canonical(self):
         return str(self)
@@ -35,13 +37,13 @@ class FirstStageSolver(Puzzle):
 
     def _is_setup_edge_correct(self, edge, orientation):
         return (
-            self.edges_permutation[Edge.UL] == edge
-            and self.edges_orientation[Edge.UL] == orientation
+            self.edges_permutation[self.setup_edge] == edge
+            and self.edges_orientation[self.setup_edge] == orientation
         )
 
     def edge_in_buffer(self):
         buffer = (
-            self.edges_permutation[EDGE_BUFFER],
-            self.edges_orientation[EDGE_BUFFER],
+            self.edges_permutation[self.buffer_edge],
+            self.edges_orientation[self.buffer_edge],
         )
         return buffer
