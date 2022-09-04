@@ -10,11 +10,11 @@ from rubikssolver.first_stage_solver import (
 from rubikssolver.moves import Move
 
 
-def test_edge_buffer_is_ur():
+def test_edge_buffer_defined_as_ur():
     assert EDGE_BUFFER == Edge.UR
 
 
-def test_setup_edge_is_ul():
+def test_setup_edge_defined_as_ul():
     assert SETUP_EDGE == Edge.UL
 
 
