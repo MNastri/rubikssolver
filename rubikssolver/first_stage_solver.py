@@ -1,6 +1,5 @@
 from rubikssolver import edges
-from rubikssolver.edges import Edge
-from rubikssolver.moves import Move
+from rubikssolver.moves import Move, MOVES
 from rubikssolver.puzzle_interface import Puzzle
 
 BUFFER_EDGE = edges.Edge.UR
@@ -20,6 +19,30 @@ AVAILABLE_MOVES = {
     Move.M2,
     Move.M3,
 }
+ALGORITHM_SWAP_TWO_EDGES = [
+    Move.R1,
+    Move.U1,
+    Move.R3,
+    Move.U3,
+    Move.R3,
+    Move.F1,
+    Move.R2,
+    Move.U3,
+    Move.R3,
+    Move.U3,
+    Move.R1,
+    Move.U1,
+    Move.R3,
+    Move.F3,
+]
+
+
+def alg():
+    cube = Puzzle()
+    for mv in ALGORITHM_SWAP_TWO_EDGES:
+        cube * MOVES[mv]
+    print(cube)
+    return cube
 
 
 class FirstStageSolver(Puzzle):

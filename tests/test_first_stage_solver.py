@@ -3,6 +3,7 @@ from rubikssolver.edges import (
     SingleEdgeOrientation,
 )
 from rubikssolver.first_stage_solver import (
+    alg,
     BUFFER_EDGE,
     FirstStageSolver,
     SETUP_EDGE,
@@ -16,6 +17,11 @@ def test_edge_buffer_defined_as_ur():
 
 def test_setup_edge_defined_as_ul():
     assert SETUP_EDGE == Edge.UL
+
+
+def test_algorithm_swap_two_edges():
+    one_edge_to_go = "UUUUUUUUUBLFRRRRRRFFRFFFFFFDDDDDDDDDLRLLLLLLLRBBBBBBBB"
+    assert str(alg()) == one_edge_to_go
 
 
 class TestEdgeInBuffer:
