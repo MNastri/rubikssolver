@@ -1,16 +1,12 @@
 from collections import deque
 from copy import deepcopy
 from sys import intern
-from typing import List
 
 from rubikssolver.cubies_cube import CubieCube
-from rubikssolver.moves import MOVES
-
-
-class Moves(List):
-    def __str__(self):
-        to_string = [str(move.name) for move in self]
-        return " ".join(to_string)
+from rubikssolver.moves import (
+    MOVES,
+    Moves,
+)
 
 
 class Puzzle(CubieCube):

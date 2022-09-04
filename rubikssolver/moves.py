@@ -1,4 +1,5 @@
 from enum import IntEnum
+from typing import List
 
 from rubikssolver.face_turns import (
     BTurn,
@@ -43,6 +44,12 @@ class Move(IntEnum):
     S1 = 24
     S2 = 25
     S3 = 26
+
+
+class Moves(List):
+    def __str__(self):
+        to_string = [str(move.name) for move in self]
+        return " ".join(to_string)
 
 
 MOVES = [
