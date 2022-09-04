@@ -35,12 +35,12 @@ class TestEdgeInBuffer:
         assert cube.edge_in_buffer() == (Edge.UF, SingleEdgeOrientation.normal)
 
 
-class TestIsBufferEdgeCorrectMethod:
+class TestIsSetupEdgeCorrectMethod:
     def test_ul_normal_orientation_in_buffer(self):
         cube = FirstStageSolver()
         edge = Edge.UL
         orientation = SingleEdgeOrientation.normal
-        assert cube._is_buffer_edge_correct(edge, orientation) is True
+        assert cube._is_setup_edge_correct(edge, orientation) is True
 
 
 class TestFindSetupMoveMethod:
