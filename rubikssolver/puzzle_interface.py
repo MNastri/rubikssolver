@@ -4,25 +4,7 @@ from sys import intern
 from typing import List
 
 from rubikssolver.cubies_cube import CubieCube
-from rubikssolver.moves import (
-    Move,
-    MOVES,
-)
-
-AVAILABLE_MOVES = {
-    Move.D1,
-    Move.D2,
-    Move.D3,
-    Move.L1,
-    Move.L2,
-    Move.L3,
-    Move.E1,
-    Move.E2,
-    Move.E3,
-    Move.M1,
-    Move.M2,
-    Move.M3,
-}
+from rubikssolver.moves import MOVES
 
 
 class Moves(List):
@@ -32,6 +14,8 @@ class Moves(List):
 
 
 class Puzzle(CubieCube):
+    available_moves = []
+
     def canonical(self):
         raise NotImplementedError
 
@@ -44,7 +28,7 @@ class Puzzle(CubieCube):
         puzzle_trail = {intern(self.canonical()): None}
         moves_trail = {intern(self.canonical()): None}
         while not self.is_goal(piece, orientation):
-            for mv in AVAILABLE_MOVES:
+            for mv in self.available_moves:
                 current_puzzle = str(self)
                 copied_puzzle = deepcopy(self)
                 puzzle_to_move = copied_puzzle.from_string(current_puzzle)
