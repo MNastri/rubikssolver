@@ -19,7 +19,7 @@ class Puzzle(CubieCube):
     def canonical(self):
         raise NotImplementedError
 
-    def is_goal(self, *kwargs):
+    def is_goal(self, *args):
         raise NotImplementedError
 
     def find_setup_moves(self, piece, orientation):
