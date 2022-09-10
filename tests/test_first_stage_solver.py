@@ -3,12 +3,11 @@ from rubikssolver.edges import (
     SingleEdgeOrientation,
 )
 from rubikssolver.first_stage_solver import (
-    alg,
     BUFFER_EDGE,
     FirstStageSolver,
     SETUP_EDGE,
 )
-from rubikssolver.moves import Move
+from rubikssolver.move import Move
 
 
 def test_edge_buffer_defined_as_ur():
@@ -19,19 +18,18 @@ def test_setup_edge_defined_as_ul():
     assert SETUP_EDGE == Edge.UL
 
 
-def test_algorithm_swap_two_edges():
-    one_edge_to_go = "UUUUUUUUUBLFRRRRRRFFRFFFFFFDDDDDDDDDLRLLLLLLLRBBBBBBBB"
-    assert str(alg()) == one_edge_to_go
-
-
 class TestEdgeInBuffer:
     def test_buffer_edge_is_ul_with_normal_orienation(self):
-        one_edge_to_go = "UUUUUUUUUBLFRRRRRRFFRFFFFFFDDDDDDDDDLRLLLLLLLRBBBBBBBB"
+        one_edge_to_go = (
+            "UUUUUUUUUBLFRRRRRRFFRFFFFFFDDDDDDDDDLRLLLLLLLRBBBBBBBB"  # todo rename
+        )
         cube = FirstStageSolver().from_string(one_edge_to_go)
         assert cube.edge_in_buffer() == (Edge.UL, SingleEdgeOrientation.normal)
 
     def test_buffer_edge_is_ul_with_fliped_orienation(self):
-        one_edge_to_go = "UUURULUUUBUFRRRRRRFFRFFFFFFDDDDDDDDDLULLLLLLLRBBBBBBBB"
+        one_edge_to_go = (
+            "UUURULUUUBUFRRRRRRFFRFFFFFFDDDDDDDDDLULLLLLLLRBBBBBBBB"  # todo rename
+        )
         cube = FirstStageSolver().from_string(one_edge_to_go)
         assert cube.edge_in_buffer() == (Edge.UL, SingleEdgeOrientation.fliped)
 

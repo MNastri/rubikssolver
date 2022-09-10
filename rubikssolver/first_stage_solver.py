@@ -1,5 +1,10 @@
 from rubikssolver import edges
-from rubikssolver.moves import Move, MOVES
+from rubikssolver.move import Move
+from rubikssolver.moves import (
+    make_algorithm_from,
+    Moves,
+)
+from rubikssolver.moves_definition import MOVES
 from rubikssolver.puzzle_interface import Puzzle
 
 BUFFER_EDGE = edges.Edge.UR
@@ -19,36 +24,17 @@ AVAILABLE_MOVES = {
     Move.M2,
     Move.M3,
 }
-ALGORITHM_SWAP_TWO_EDGES = [
-    Move.R1,
-    Move.U1,
-    Move.R3,
-    Move.U3,
-    Move.R3,
-    Move.F1,
-    Move.R2,
-    Move.U3,
-    Move.R3,
-    Move.U3,
-    Move.R1,
-    Move.U1,
-    Move.R3,
-    Move.F3,
-]
-
-
-def alg():
-    cube = Puzzle()
-    for mv in ALGORITHM_SWAP_TWO_EDGES:
-        cube * MOVES[mv]
-    print(cube)
-    return cube
+ALGORITHM_SWAP_TWO_EDGES = "R1 U1 R3 U3 R3 F1 R2 U3 R3 U3 R1 U1 R3 F3"
 
 
 class FirstStageSolver(Puzzle):
     available_moves = AVAILABLE_MOVES
     buffer_edge = BUFFER_EDGE
     setup_edge = SETUP_EDGE
+    stage_algorithm = make_algorithm_from(
+        Moves.create_moves_from(ALGORITHM_SWAP_TWO_EDGES)
+    )
+    moves_definition = MOVES
 
     def canonical(self):
         return str(self)
@@ -70,3 +56,7 @@ class FirstStageSolver(Puzzle):
             self.edges_orientation[self.buffer_edge],
         )
         return buffer
+
+    def find_setup_moves(self, piece, orientation):
+        setup_as_deque = super().find_setup_moves(piece, orientation)
+        return Moves(setup_as_deque)

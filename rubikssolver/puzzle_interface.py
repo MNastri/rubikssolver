@@ -1,16 +1,14 @@
 from collections import deque
 from copy import deepcopy
 from sys import intern
+from typing import List
 
 from rubikssolver.cubies_cube import CubieCube
-from rubikssolver.moves import (
-    MOVES,
-    Moves,
-)
 
 
 class Puzzle(CubieCube):
-    available_moves = []
+    available_moves: List
+    moves_definition: List
 
     def canonical(self):
         raise NotImplementedError
@@ -28,7 +26,7 @@ class Puzzle(CubieCube):
                 current_puzzle = str(self)
                 copied_puzzle = deepcopy(self)
                 puzzle_to_move = copied_puzzle.from_string(current_puzzle)
-                moved_puzzle = puzzle_to_move * MOVES[mv]
+                moved_puzzle = puzzle_to_move * self.moves_definition[mv]
                 if moved_puzzle.canonical() in puzzle_trail:
                     continue
                 puzzle_trail[intern(moved_puzzle.canonical())] = self
@@ -40,4 +38,4 @@ class Puzzle(CubieCube):
             setup_move.appendleft(move)
             self = puzzle_trail[self.canonical()]
         setup_move.popleft()
-        return Moves(setup_move)
+        return setup_move

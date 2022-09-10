@@ -1,0 +1,43 @@
+from rubikssolver.face_turns import (
+    BTurn,
+    DTurn,
+    FTurn,
+    LTurn,
+    RTurn,
+    UTurn,
+)
+from rubikssolver.slice_turns import (
+    ETurn,
+    MTurn,
+    STurn,
+)
+
+MOVES = [
+    UTurn(),
+    UTurn() * UTurn(),
+    UTurn() * UTurn() * UTurn(),
+    RTurn(),
+    RTurn() * RTurn(),
+    RTurn() * RTurn() * RTurn(),
+    FTurn(),
+    FTurn() * FTurn(),
+    FTurn() * FTurn() * FTurn(),
+    DTurn(),
+    DTurn() * DTurn(),
+    DTurn() * DTurn() * DTurn(),
+    LTurn(),
+    LTurn() * LTurn(),
+    LTurn() * LTurn() * LTurn(),
+    BTurn(),
+    BTurn() * BTurn(),
+    BTurn() * BTurn() * BTurn(),
+    ETurn(),
+    ETurn() * ETurn(),
+    ETurn() * ETurn() * ETurn(),
+    MTurn(),
+    MTurn() * MTurn(),
+    MTurn() * MTurn() * MTurn(),
+    STurn(),
+    STurn() * STurn(),
+    STurn() * STurn() * STurn(),
+]
