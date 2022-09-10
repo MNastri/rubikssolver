@@ -51,6 +51,12 @@ class Moves(List):
         to_string = [str(move.name) for move in self]
         return " ".join(to_string)
 
+    @classmethod
+    def create_moves_from(cls, s):
+        moves_names = s.split()
+        moves_to_initialize = (Move.__getitem__(mv) for mv in moves_names)
+        return cls(moves_to_initialize)
+
 
 MOVES = [
     UTurn(),
